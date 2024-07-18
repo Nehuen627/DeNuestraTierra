@@ -1,0 +1,20 @@
+@use './Colors.scss' as a;
+
+.App {
+    a {
+        color: a.$White;
+        text-decoration: none;
+    }
+    .navbar a:hover {
+        color: #ccc; /* Color change on hover */
+    }
+    
+      /* Active page indicator */
+    .navbar a.active {
+        color: #f00; /* Color for active link (adjust as needed) */
+    }
+    html, body {
+        height: 100%;
+        margin: 0;
+    }   
+}

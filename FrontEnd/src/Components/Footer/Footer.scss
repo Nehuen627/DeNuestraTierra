@@ -1,0 +1,100 @@
+@use '../../Sass/Colors.scss' as a;
+
+
+.customShapeDividerTop1721137628 {
+    background-image: url('../../Images/layered-waves-haikei (3).svg') ;
+    aspect-ratio: 960/300;
+    background-repeat: no-repeat;
+    background-position: center 53%;
+    background-size: cover;
+    width: 100%;
+    line-height: 0;
+    padding-top: 3%;
+    /*     background-color: a.$Wine; */
+    /* svg {
+        position: relative;
+        display: block;
+        width: calc(137% + 1.3px);
+    } */
+    .shapeFill {
+        fill: a.$White;
+    }
+    .credits {
+        /* background-color: a.$Burgundy; */
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        margin-top: 2%;
+        /* svg {
+            position: relative;
+            display: block;
+            width: calc(137% + 1.3px);
+        } */
+        /* .shapeFill2 {
+            fill: a.$Wine;
+        }
+        .creditsText {
+            background-color: a.$Burgundy;
+        } */
+    }
+    h3, p, h2 {
+        color: a.$White;
+    }
+    .contentFooter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        padding-top: 9%;
+    }
+    .leftSide {
+        flex: 1;
+        .shopLinks {
+            display: flex;
+            justify-content: space-between;
+            align-items: center ;
+            margin:0 25% 0 25%;
+            .shop, .us {
+                h3 {
+                    padding-bottom: 12%;
+                }
+                .shopLinks2, .usLinks {
+                    p {
+                        padding-bottom: 10%;
+                    }
+                }
+            }
+        }
+        margin-left: 2%;
+    }
+
+    .logoName {
+        flex: 1;
+        text-align: center;
+        .logoImg {
+            width: 40%;
+        }
+    }
+
+    .rightSide {
+        flex: 1;
+        margin-right: 2%;
+        margin-top: 8%;
+        .socialIcons {
+            display: flex;
+            margin-left: 40%;
+            .socialIcon {
+                color: a.$White;
+                width: 35%;
+                    
+            }
+        }
+        h3 {
+            padding-top: 10%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+        }
+    }
+}
+
+

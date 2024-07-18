@@ -1,0 +1,88 @@
+.customShapeDividerTop1721137628 {
+  background-image: url("../../Images/layered-waves-haikei (3).svg");
+  aspect-ratio: 960/300;
+  background-repeat: no-repeat;
+  background-position: center 53%;
+  background-size: cover;
+  width: 100%;
+  line-height: 0;
+  padding-top: 3%;
+  /*     background-color: a.$Wine; */
+  /* svg {
+      position: relative;
+      display: block;
+      width: calc(137% + 1.3px);
+  } */
+}
+.customShapeDividerTop1721137628 .shapeFill {
+  fill: #fff;
+}
+.customShapeDividerTop1721137628 .credits {
+  /* background-color: a.$Burgundy; */
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  margin-top: 2%;
+  /* svg {
+      position: relative;
+      display: block;
+      width: calc(137% + 1.3px);
+  } */
+  /* .shapeFill2 {
+      fill: a.$Wine;
+  }
+  .creditsText {
+      background-color: a.$Burgundy;
+  } */
+}
+.customShapeDividerTop1721137628 h3, .customShapeDividerTop1721137628 p, .customShapeDividerTop1721137628 h2 {
+  color: #fff;
+}
+.customShapeDividerTop1721137628 .contentFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 9%;
+}
+.customShapeDividerTop1721137628 .leftSide {
+  flex: 1;
+  margin-left: 2%;
+}
+.customShapeDividerTop1721137628 .leftSide .shopLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 25% 0 25%;
+}
+.customShapeDividerTop1721137628 .leftSide .shopLinks .shop h3, .customShapeDividerTop1721137628 .leftSide .shopLinks .us h3 {
+  padding-bottom: 12%;
+}
+.customShapeDividerTop1721137628 .leftSide .shopLinks .shop .shopLinks2 p, .customShapeDividerTop1721137628 .leftSide .shopLinks .shop .usLinks p, .customShapeDividerTop1721137628 .leftSide .shopLinks .us .shopLinks2 p, .customShapeDividerTop1721137628 .leftSide .shopLinks .us .usLinks p {
+  padding-bottom: 10%;
+}
+.customShapeDividerTop1721137628 .logoName {
+  flex: 1;
+  text-align: center;
+}
+.customShapeDividerTop1721137628 .logoName .logoImg {
+  width: 40%;
+}
+.customShapeDividerTop1721137628 .rightSide {
+  flex: 1;
+  margin-right: 2%;
+  margin-top: 8%;
+}
+.customShapeDividerTop1721137628 .rightSide .socialIcons {
+  display: flex;
+  margin-left: 40%;
+}
+.customShapeDividerTop1721137628 .rightSide .socialIcons .socialIcon {
+  color: #fff;
+  width: 35%;
+}
+.customShapeDividerTop1721137628 .rightSide h3 {
+  padding-top: 10%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}/*# sourceMappingURL=Footer.css.map */
