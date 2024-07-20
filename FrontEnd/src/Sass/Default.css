@@ -1,15 +1,6 @@
-.App {
-  /* Active page indicator */
-}
 .App a {
   color: #fff;
   text-decoration: none;
-}
-.App .navbar a:hover {
-  color: #ccc; /* Color change on hover */
-}
-.App .navbar a.active {
-  color: #f00; /* Color for active link (adjust as needed) */
 }
 .App html, .App body {
   height: 100%;

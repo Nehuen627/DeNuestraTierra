@@ -7,33 +7,12 @@
   width: 100%;
   line-height: 0;
   padding-top: 3%;
-  /*     background-color: a.$Wine; */
-  /* svg {
-      position: relative;
-      display: block;
-      width: calc(137% + 1.3px);
-  } */
-}
-.customShapeDividerTop1721137628 .shapeFill {
-  fill: #fff;
 }
 .customShapeDividerTop1721137628 .credits {
-  /* background-color: a.$Burgundy; */
   width: 100%;
   overflow: hidden;
   line-height: 0;
   margin-top: 2%;
-  /* svg {
-      position: relative;
-      display: block;
-      width: calc(137% + 1.3px);
-  } */
-  /* .shapeFill2 {
-      fill: a.$Wine;
-  }
-  .creditsText {
-      background-color: a.$Burgundy;
-  } */
 }
 .customShapeDividerTop1721137628 h3, .customShapeDividerTop1721137628 p, .customShapeDividerTop1721137628 h2 {
   color: #fff;
@@ -54,11 +33,17 @@
   align-items: center;
   margin: 0 25% 0 25%;
 }
-.customShapeDividerTop1721137628 .leftSide .shopLinks .shop h3, .customShapeDividerTop1721137628 .leftSide .shopLinks .us h3 {
-  padding-bottom: 12%;
+.customShapeDividerTop1721137628 .leftSide .shopLinks .shop h3 {
+  padding-bottom: 12px;
 }
-.customShapeDividerTop1721137628 .leftSide .shopLinks .shop .shopLinks2 p, .customShapeDividerTop1721137628 .leftSide .shopLinks .shop .usLinks p, .customShapeDividerTop1721137628 .leftSide .shopLinks .us .shopLinks2 p, .customShapeDividerTop1721137628 .leftSide .shopLinks .us .usLinks p {
-  padding-bottom: 10%;
+.customShapeDividerTop1721137628 .leftSide .shopLinks .shop .shopLinks2 p {
+  padding-bottom: 5px;
+}
+.customShapeDividerTop1721137628 .leftSide .shopLinks .us h3 {
+  padding-bottom: 12px;
+}
+.customShapeDividerTop1721137628 .leftSide .shopLinks .us .usLinks p {
+  padding-bottom: 5px;
 }
 .customShapeDividerTop1721137628 .logoName {
   flex: 1;
@@ -85,4 +70,12 @@
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+}
+.customShapeDividerTop1721137628 .title {
+  font-family: "Libre Baskerville", serif;
+  font-size: 2rem;
+}
+.customShapeDividerTop1721137628 h3 {
+  font-family: "Jost", sans-serif;
+  font-size: 1.5rem;
 }/*# sourceMappingURL=Footer.css.map */

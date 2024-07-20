@@ -1,0 +1,42 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #7f2121;
+}
+.navbar a:hover {
+  color: #ea567a;
+  text-shadow: #8e173d 4px 1px 1px;
+}
+.navbar .nvContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar .nvContent .active {
+  color: #f996b5;
+}
+.navbar .nvContent .neverActive {
+  color: #fff !important;
+}
+.navbar .nvContent .nvLeftSide {
+  display: flex;
+  padding-left: 2%;
+  justify-content: flex-start;
+  flex-basis: 20%;
+}
+.navbar .nvContent .nvCenter {
+  display: flex;
+  flex-basis: 60%;
+  justify-content: center;
+  gap: 2%;
+}
+.navbar .nvContent .nvRightSide {
+  display: flex;
+  padding-right: 2%;
+  justify-content: flex-end;
+  flex-basis: 20%;
+}
+.navbar .nvContent .nvRightSide .navIcon {
+  font-size: 2.5rem;
+}/*# sourceMappingURL=Navbar.css.map */

@@ -1,0 +1,49 @@
+@use '../../Sass/Colors.scss' as a;
+@use '../../Sass/Fonts.scss' as b;
+
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: a.$Burgundy;
+    a {
+        &:hover {
+            color: a.$Pink;
+            text-shadow: a.$Wine 4px 1px 1px;
+        }
+    
+    }
+    .nvContent{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .active {
+            color: a.$GreyPink2 ;
+        }
+        .neverActive {
+            color: a.$White !important;
+        }
+        .nvLeftSide {
+            display: flex;
+            padding-left: 2%;
+            justify-content: flex-start; 
+            flex-basis: 20%;
+        }
+        .nvCenter {
+            display: flex;
+            flex-basis: 60%;
+            justify-content: center;
+            gap: 2%; 
+        }
+        .nvRightSide {
+            display: flex;
+            padding-right: 2%;
+            justify-content: flex-end; 
+            flex-basis: 20%;
+            .navIcon {
+                font-size: 2.5rem;
+            }
+        }
+    }
+}

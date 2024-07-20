@@ -2,37 +2,42 @@ import React from 'react'
 import { NavLink } from "react-router-dom";
 import { PersonCircle} from "react-bootstrap-icons";
 import { Link } from "react-router-dom"
+import './Navbar.css'
 
 const Navbar = () => {
     return (
-        <div className="">
-            <div className="navbar">
-                <Link className="linkStyle" to="/">
-                    <div>
-                        <h2>De Nuestra Tierra</h2>
-                    </div>
-                </Link>
-                <Link className="linkStyle" to="/Contacto">
-                    <div>
-                        <h2>Contacto</h2>
-                    </div>
-                </Link>
-                <Link className="linkStyle" to="/Nosotros">
-                    <div>
-                        <h2>Nosotros</h2>
-                    </div>
-                </Link>
-                <Link className="linkStyle" to="/Catalogo">
-                    <div>
-                        <h2>Catalogo</h2>
-                    </div>
-                </Link>
-                <Link className="linkStyle" to="/E-learning">
-                    <div>
-                        <h2>E-learning</h2>
-                    </div>
-                </Link>
-                <div>
+        <div className="navbar">
+            <div className="nvContent">
+                <div className='nvLeftSide'>
+                    <NavLink className="neverActive" to="/" >
+                        <div>
+                            <h2>De Nuestra Tierra</h2>
+                        </div>
+                    </NavLink>
+                </div>
+                <div className='nvCenter'>
+                    <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Contacto">
+                        <div>
+                            <h2>Contacto</h2>
+                        </div>
+                    </NavLink>
+                    <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Nosotros">
+                        <div>
+                            <h2>Nosotros</h2>
+                        </div>
+                    </NavLink>
+                    <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Catalogo">
+                        <div>
+                            <h2>Catalogo</h2>
+                        </div>
+                    </NavLink>
+                    <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/E-learning">
+                        <div>
+                            <h2>E-learning</h2>
+                        </div>
+                    </NavLink>
+                </div>
+                <div className='nvRightSide'>
                     <NavLink to="/Perfil" className="paddingIcon account"><PersonCircle className="navIcon"/></NavLink>
                 </div>
             </div>
