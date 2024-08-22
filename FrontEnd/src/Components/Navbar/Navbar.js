@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
 import { PersonCircle} from "react-bootstrap-icons";
-import { Link } from "react-router-dom"
+
 import './Navbar.css'
 
 const Navbar = () => {

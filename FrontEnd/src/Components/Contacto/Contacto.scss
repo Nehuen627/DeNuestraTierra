@@ -1,0 +1,116 @@
+@use '../../Sass/Colors.scss' as a;
+@use '../../Sass/Fonts.scss' as b;
+
+.contactoContent {
+    h1 {
+        font: b.$Jost;
+    }
+    h2, h1, p, h3 {
+        color: a.$Wine;
+    }
+    .topBlock{
+        background-color: a.$Burgundy2;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px a.$BlackShadow2;
+        width: 40%;
+        padding: 20px;
+        text-align: center;
+        margin: 20px auto 40px auto;
+        h2, h1, p, h3 {
+            color: a.$White;
+        }
+    }
+    .contentBlock {
+        display: flex; 
+        justify-content: space-between;
+        align-items: center;
+        .form {
+            background-color: a.$GreyPink;
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 4px 6px a.$BlackShadow2;
+            width: 55%;
+            margin-left: 180px;
+            .personalInfo {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 20px; 
+                .emailInfo {
+                    input {
+                        width: 80%;
+                        background-color: a.$Wine;
+                        color: a.$White;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 10px;
+                        box-shadow: 0 4px 6px a.$BlackShadow;
+                        outline: none;
+                    }
+                    width: 48%;
+                }
+                .nameInfo {
+                    input {
+                        width: 80%;
+                        background-color: a.$Wine;
+                        color: a.$White;; 
+                        border: none;
+                        border-radius: 8px;
+                        padding: 10px;
+                        box-shadow: 0 4px 6px a.$BlackShadow;
+                        outline: none;
+                    }
+                    width: 48%;
+                    padding-right: 50px;
+                }
+            }
+            .messageInfo {
+                display: flex;
+                .messageArea {
+                    width: 100%; 
+                    textarea {
+                        width: 90%;
+                        background-color: a.$Wine;
+                        color: a.$White;; 
+                        border: none;
+                        border-radius: 8px;
+                        padding: 10px;
+                        box-shadow: 0 4px 6px a.$BlackShadow;
+                        outline: none;
+                        height: 300px;
+                    }
+                }
+                .sendBtn {
+                    display: flex;
+                    align-items: flex-end;
+                    button{
+                        border: none;
+                        border-radius: 50%;
+                        padding: 15px; 
+                        margin-left: 10px; 
+                        color: a.$Wine;
+                        cursor: pointer;
+                        box-shadow: 0 4px 6px a.$BlackShadow;
+                        align-items: center;
+                        justify-content: center;
+                        transition: background-color 0.3s ease;
+    
+                        &:hover {
+                            background-color: darken(a.$GreyPink2, 10%);
+                        }
+
+                    }
+                }
+            }
+        }
+        .infoManual {
+            background-color: a.$GreyPink;
+            border-radius: 30px;
+            padding: 20px; 
+            box-shadow: 0 4px 6px a.$BlackShadow2;
+            width: 15%;
+            height: 20%;
+            margin-right: 180px;
+            
+        }
+    }
+}

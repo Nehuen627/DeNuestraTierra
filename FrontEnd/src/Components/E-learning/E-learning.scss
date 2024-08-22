@@ -1,0 +1,26 @@
+@use '../../Sass/Colors.scss' as a;
+@use '../../Sass/Fonts.scss' as b;
+
+.elearningContent {
+    h2, h1, p, h3 {
+        color: a.$Wine;
+    }
+    .topBlock{
+        background-color: a.$Burgundy2;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px a.$BlackShadow2;
+        width: 40%;
+        padding: 20px;
+        text-align: center;
+        margin: 20px auto 40px auto;
+        h2, h1, p, h3 {
+            color: a.$White;
+        }
+    }
+    .contentPlace {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px; 
+        margin-left: 15%;
+    }
+}

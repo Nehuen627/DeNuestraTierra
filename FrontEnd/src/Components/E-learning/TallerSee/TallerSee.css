@@ -1,0 +1,19 @@
+.tallerDiv {
+  background-color: #eddce2;
+  width: 40%;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+}
+.tallerDiv .infoTaller {
+  margin: 20px;
+}
+.tallerDiv .infoTaller img {
+  margin-top: 20px;
+  width: 80%;
+}
+.tallerDiv .infoTaller h5, .tallerDiv .infoTaller h2, .tallerDiv .infoTaller h6 {
+  color: #8e173d;
+}
+.tallerDiv .infoTaller .infoPrice h6 {
+  padding-left: 85%;
+}/*# sourceMappingURL=TallerSee.css.map */

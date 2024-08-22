@@ -1,0 +1,24 @@
+@use '../../../Sass/Colors.scss' as a;
+@use '../../../Sass/Fonts.scss' as b;
+
+.tallerDiv {
+    background-color: a.$GreyPink;
+    width: 40%;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px a.$BlackShadow2;
+    .infoTaller {
+        margin: 20px;
+        img{
+            margin-top: 20px;
+            width: 80%;
+        }
+        h5, h2, h6 {
+            color: a.$Wine
+        }
+        .infoPrice {
+            h6 {
+                padding-left: 85%;
+            }
+        }
+    }
+}

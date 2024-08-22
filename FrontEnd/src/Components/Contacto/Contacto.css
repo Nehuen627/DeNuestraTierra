@@ -1,0 +1,108 @@
+.contactoContent h1 {
+  font: "Jost", sans-serif;
+}
+.contactoContent h2, .contactoContent h1, .contactoContent p, .contactoContent h3 {
+  color: #8e173d;
+}
+.contactoContent .topBlock {
+  background-color: rgb(166, 52, 52);
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+  width: 40%;
+  padding: 20px;
+  text-align: center;
+  margin: 20px auto 40px auto;
+}
+.contactoContent .topBlock h2, .contactoContent .topBlock h1, .contactoContent .topBlock p, .contactoContent .topBlock h3 {
+  color: #fff;
+}
+.contactoContent .contentBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contactoContent .contentBlock .form {
+  background-color: #eddce2;
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+  width: 55%;
+  margin-left: 180px;
+}
+.contactoContent .contentBlock .form .personalInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.contactoContent .contentBlock .form .personalInfo .emailInfo {
+  width: 48%;
+}
+.contactoContent .contentBlock .form .personalInfo .emailInfo input {
+  width: 80%;
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+  outline: none;
+}
+.contactoContent .contentBlock .form .personalInfo .nameInfo {
+  width: 48%;
+  padding-right: 50px;
+}
+.contactoContent .contentBlock .form .personalInfo .nameInfo input {
+  width: 80%;
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+  outline: none;
+}
+.contactoContent .contentBlock .form .messageInfo {
+  display: flex;
+}
+.contactoContent .contentBlock .form .messageInfo .messageArea {
+  width: 100%;
+}
+.contactoContent .contentBlock .form .messageInfo .messageArea textarea {
+  width: 90%;
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+  outline: none;
+  height: 300px;
+}
+.contactoContent .contentBlock .form .messageInfo .sendBtn {
+  display: flex;
+  align-items: flex-end;
+}
+.contactoContent .contentBlock .form .messageInfo .sendBtn button {
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  margin-left: 10px;
+  color: #8e173d;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+.contactoContent .contentBlock .form .messageInfo .sendBtn button:hover {
+  background-color: #f66693;
+}
+.contactoContent .contentBlock .infoManual {
+  background-color: #eddce2;
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+  width: 15%;
+  height: 20%;
+  margin-right: 180px;
+}/*# sourceMappingURL=Contacto.css.map */

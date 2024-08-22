@@ -1,0 +1,38 @@
+@use '../../Sass/Colors.scss' as a;
+@use '../../Sass/Fonts.scss' as b;
+
+.homeContent {
+    .landingSection{
+        background-image: ;
+        .logoBox{
+            background-color: grey;
+        }
+        .phraseContent {
+            background-color: grey;
+        }
+    }
+    .presentationBox {
+        background-color: grey;
+    }
+    .productsBox {
+        .productsUrls{
+            background-color: grey;
+        }
+        .topProducts {
+            background-color: grey;
+        }
+    }
+    .elearningBox{
+        background-color: grey;
+    }
+    .locationBox{
+        .locationContent{
+            .map{
+                background-color: grey;
+            }
+            .textLocation{
+                background-color: grey;
+            }
+        }
+    }
+}

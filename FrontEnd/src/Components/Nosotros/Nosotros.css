@@ -1,0 +1,33 @@
+.nosotrosContent {
+  background-color: #eddce2;
+  margin: 50px 250px;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+}
+.nosotrosContent h1 {
+  padding-top: 30px;
+  font-size: 2.5rem;
+  color: #8e173d;
+  font: "Libre Baskerville", serif;
+}
+.nosotrosContent .content {
+  display: flex;
+  padding: 80px;
+}
+.nosotrosContent .content .text {
+  padding-right: 90px;
+  color: #8e173d;
+  width: 60%;
+}
+.nosotrosContent .content .text p {
+  font-size: 1.2rem;
+}
+.nosotrosContent .content .pictures {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+}
+.nosotrosContent .content .pictures img {
+  width: 80%;
+}/*# sourceMappingURL=Nosotros.css.map */
