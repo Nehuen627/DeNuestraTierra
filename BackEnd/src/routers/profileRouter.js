@@ -14,7 +14,7 @@ router.get('/profile', (req, res) => {
         name: 'Jane Doe',
         email: 'jane.doe@example.com',
         avatarUrl: imageUrl,
-        
+        role: "Usuario"
     };
 
     res.json(profile);

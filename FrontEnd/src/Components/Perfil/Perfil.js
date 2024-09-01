@@ -13,7 +13,7 @@ const Perfil = () => {
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(resolve => setTimeout(resolve, 1000));
                 const response = await api.get('/api/profile'); 
                 setProfile(response.data); 
                 } catch (err) {
@@ -40,13 +40,13 @@ const Perfil = () => {
         <div className='perfilContent'>
             <div className='pBox'>
                 <div className='pPic' onClick={handleImageClick}>
-                    <img src={profile.avatarUrl} alt='avatar picture'></img>
+                    <img src={profile.avatarUrl} alt='avatar'></img>
                 </div>
                 <Modal isOpen={isModalOpen} onClose={closeModal} />
                 <div className='pInfo'>
                     <h2>{profile.name}</h2>
                     <h3>{profile.email}</h3>
-                    
+                    <h3>{profile.role}</h3>
                 </div>
                 <div className='pBtns'>
                     <button>Actualizar información</button>

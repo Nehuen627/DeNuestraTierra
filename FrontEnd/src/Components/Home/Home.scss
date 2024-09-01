@@ -51,7 +51,21 @@
         }
     }
     .presentationBox {
-        background-color: grey;
+        background-color: a.$Wine;
+        padding: 30px 120px;
+        h2 {
+            color: a.$White;
+            font-family: b.$Jost;
+            font-size: 2rem;
+            margin: 0 0;
+        }
+        h3 {
+            color: a.$White;
+            font-size: 1.3rem;
+        }
+        p {
+            color: a.$White;
+        }
     }
     .productsBox {
         .productsUrls{

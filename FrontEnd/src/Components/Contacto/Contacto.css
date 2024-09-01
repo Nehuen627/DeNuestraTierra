@@ -102,7 +102,22 @@
   border-radius: 30px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
-  width: 15%;
+  width: 20%;
   height: 20%;
-  margin-right: 180px;
+  margin-right: 150px;
+  margin-left: 20px;
+}
+.contactoContent .notification {
+  position: fixed;
+  top: 80px;
+  left: 85%;
+  transform: translateX(-50%);
+  background: #8e173d;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.contactoContent .error {
+  background: #7f2121;
 }/*# sourceMappingURL=Contacto.css.map */

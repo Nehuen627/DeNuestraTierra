@@ -16,4 +16,8 @@
 }
 .tallerDiv .infoTaller .infoPrice h6 {
   padding-left: 85%;
+}
+.tallerDiv .infoTaller h4 {
+  display: none;
+  visibility: hidden;
 }/*# sourceMappingURL=TallerSee.css.map */

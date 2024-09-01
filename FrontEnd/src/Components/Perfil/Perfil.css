@@ -2,16 +2,59 @@
   background-color: #eddce2;
   margin: 50px 350px;
   border-radius: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+  padding: 40px;
 }
 .perfilContent .pBox .pPic {
   margin: 0 auto;
-  padding: 20px 0;
   width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+.perfilContent .pBox .pPic:hover {
+  transform: scale(1.05);
+}
+.perfilContent .pBox .pPic img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .perfilContent .pBox .pInfo {
-  padding: 20px 0;
+  text-align: center;
+  margin-top: 30px;
+}
+.perfilContent .pBox .pInfo h2 {
+  font-family: "Jost", sans-serif;
+  font-size: 2rem;
+  color: #8e173d;
+  margin-bottom: 10px;
+}
+.perfilContent .pBox .pInfo h3 {
+  font-family: "Jost", sans-serif;
+  font-size: 1.2rem;
+  color: #7f2121;
 }
 .perfilContent .pBox .pBtns {
-  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+.perfilContent .pBox .pBtns button {
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-family: "Jost", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.perfilContent .pBox .pBtns button:hover {
+  background-color: #62102a;
 }/*# sourceMappingURL=Perfil.css.map */
