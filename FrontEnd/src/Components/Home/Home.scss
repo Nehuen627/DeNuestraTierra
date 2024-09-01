@@ -1,14 +1,53 @@
 @use '../../Sass/Colors.scss' as a;
 @use '../../Sass/Fonts.scss' as b;
 
+
 .homeContent {
+    max-width: 100%;
+    overflow-x: hidden;
     .landingSection{
-        background-image: ;
+        height: 92vh;
+        background-image: url("../../Images/Pictures/HomePicture2.jpg");
+        background-size:cover;
+        background-position: center;
+        background-repeat: no-repeat;
         .logoBox{
-            background-color: grey;
+            padding: 100px;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 0;
+            
+            .logoImg {
+                width: 200px;
+                
+            }
         }
+        .title {
+            font-family: b.$Baskerville;
+            font-size: 4rem;
+            color: a.$White;
+            text-shadow:  3px 4px a.$Burgundy;
+            margin: 0 ;
+            
+        }
+        .title1 {
+            margin-top: 50px;
+        }
+        .title2 {
+            margin-bottom: 50px ;
+        }
+        
         .phraseContent {
-            background-color: grey;
+            h2 {
+                font-family: b.$Jost;
+                margin: 0 ;
+                font-size: 4rem;
+                color: a.$Pink;
+                text-shadow:  2px 4px a.$WineShadow ;
+                text-align: right;
+                padding-right: 50px;
+                line-height:50px;
+            }         
         }
     }
     .presentationBox {
@@ -18,7 +57,7 @@
         .productsUrls{
             background-color: grey;
         }
-        .topProducts {
+        .topProducts {  
             background-color: grey;
         }
     }
@@ -26,12 +65,67 @@
         background-color: grey;
     }
     .locationBox{
+        margin: 80px;
+        background: linear-gradient(135deg, a.$Wine 38%, a.$GreyPink 38%);
+        box-shadow: 0 4px 6px a.$BlackShadow;
+        padding: 10px;
+        -webkit-transform: skewY(-2deg);
+        -moz-transform: skewY(-2deg);
+        -ms-transform: skewY(-2deg);
+        -o-transform: skewY(-2deg);
+        transform: skewY(-2deg);
         .locationContent{
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
             .map{
-                background-color: grey;
+                margin-left: 150px;
+                background-color: a.$GreyPink;
+
             }
             .textLocation{
-                background-color: grey;
+                color: a.$White;
+                .pin {
+                    font-size: 3.5rem;
+                    transition: font-size 0.5s ease 0.2s, transform 0.5s ease 0s;
+                }
+                
+                .pin:hover {
+                    font-size: 4.5rem; 
+                    transform: scale(1.1);
+                }
+                
+                h3{
+                    font-size: 1.5rem;
+                }
+                margin-top: 50px;
+                justify-self: self-start;
+            }
+        }
+    }
+    .mediosPago{
+        background-color: a.$White;
+        margin: 50px 250px;
+        padding: 20px;
+        border-radius: 30px;
+        box-shadow: 0 4px 6px a.$BlackShadow;
+        h2 {
+            font-family: b.$Jost;
+            font-size: 1.8rem;
+            color: a.$Wine;
+        }
+        .mediosContent{
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding-bottom: 40px;
+            .mp {
+                width: 300px;
+                object-fit: contain;
+            }
+            .pp {
+                width: 100px;
+                object-fit: contain;
             }
         }
     }

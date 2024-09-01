@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+## Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend of the DeNuestraTierra web application. It is built using React, providing a dynamic and responsive user interface.
 
-## Available Scripts
+### Project Structure
 
-In the project directory, you can run:
+- **src**: Contains the main source code for the frontend.
+  - **index.js**: Entry point of the React application.
+  - **App.js**: Main application component.
+  - **components**: Reusable UI components.
+  - **services**: API service functions to interact with the backend.
+  - **styles**: CSS and styling files.
 
-### `npm start`
+### Dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The frontend relies on several key dependencies, including:
+- **react**: JavaScript library for building user interfaces.
+- **react-dom**: Entry point to the DOM and server renderers for React.
+- **axios**: Promise-based HTTP client for making API requests.
+- **react-router-dom**: Declarative routing for React applications.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Scripts
 
-### `npm test`
+- **start**: Runs the application in development mode.
+- **build**: Builds the application for production.
+- **test**: Runs the test suite.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Getting Started
 
-### `npm run build`
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Start the development server:
+   ```bash
+   npm start
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Folder Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **public**: Static files and the HTML template.
+- **assets**: Images, fonts, and other static assets.
 
-### `npm run eject`
+### Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The frontend is composed of reusable components that are organized in the `components` directory. Each component is designed to be modular and maintainable.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### API Services
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+The `services` directory contains functions for making API requests to the backend. These functions use `axios` to handle HTTP requests and responses.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### License
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the MIT License.

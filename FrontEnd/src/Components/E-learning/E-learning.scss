@@ -5,6 +5,9 @@
     h2, h1, p, h3 {
         color: a.$Wine;
     }
+    h2, h1 {
+        font-family: b.$Jost;
+    }
     .topBlock{
         background-color: a.$Burgundy2;
         border-radius: 20px;

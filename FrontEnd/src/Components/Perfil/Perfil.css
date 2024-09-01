@@ -1,0 +1,17 @@
+.perfilContent .pBox {
+  background-color: #eddce2;
+  margin: 50px 350px;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+}
+.perfilContent .pBox .pPic {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: 200px;
+}
+.perfilContent .pBox .pInfo {
+  padding: 20px 0;
+}
+.perfilContent .pBox .pBtns {
+  padding: 20px 0;
+}/*# sourceMappingURL=Perfil.css.map */

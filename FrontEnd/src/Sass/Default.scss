@@ -6,7 +6,41 @@
         text-decoration: none;
     }
     html, body {
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         margin: 0;
+        overflow-x: hidden;
     }   
+    
+    .loader {
+        width: 8.2em;
+        height: 8.2em;
+        margin: 30px auto;
+        
+        animation: spinRing 2100ms linear infinite;
+    }
+    .loader::after{
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        height: auto;
+        width: auto;
+        border: 8.5px solid #df0d6f;
+        border-radius: 50%;
+        clip-path: polygon(50% 50%, 50% 0%, 100% 0%,100% 63.636363636363626%);
+        animation: spinRingInner 2100ms cubic-bezier(0.770, 0.000, 0.175, 1.000) infinite;
+    }
+    @keyframes spinRing {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    @keyframes spinRingInner {
+        0%   { transform: rotate(-180deg); }
+        50%  { transform: rotate(-160deg); }
+        100% { transform: rotate(180deg); }
+    }
 }

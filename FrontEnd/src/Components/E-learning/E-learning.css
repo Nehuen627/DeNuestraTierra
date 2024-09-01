@@ -1,6 +1,9 @@
 .elearningContent h2, .elearningContent h1, .elearningContent p, .elearningContent h3 {
   color: #8e173d;
 }
+.elearningContent h2, .elearningContent h1 {
+  font-family: "Jost", sans-serif;
+}
 .elearningContent .topBlock {
   background-color: rgb(166, 52, 52);
   border-radius: 20px;

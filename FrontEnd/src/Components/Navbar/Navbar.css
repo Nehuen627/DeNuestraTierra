@@ -1,8 +1,12 @@
 .navbar {
   position: sticky;
+  z-index: 1000;
   top: 0;
   width: 100%;
   background-color: #7f2121;
+}
+.navbar h2 {
+  font-size: 1.3rem;
 }
 .navbar a:hover {
   color: #ea567a;
@@ -38,5 +42,6 @@
   flex-basis: 20%;
 }
 .navbar .nvContent .nvRightSide .navIcon {
-  font-size: 2.5rem;
+  padding-right: 10px;
+  font-size: 2rem;
 }/*# sourceMappingURL=Navbar.css.map */

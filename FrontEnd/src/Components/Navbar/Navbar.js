@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from "react-router-dom";
-import { PersonCircle} from "react-bootstrap-icons";
+import { PersonCircle, Cart2} from "react-bootstrap-icons";
 
 import './Navbar.css'
 
@@ -37,7 +37,9 @@ const Navbar = () => {
                         </div>
                     </NavLink>
                 </div>
+                
                 <div className='nvRightSide'>
+                    <NavLink to="/Carrito" className="paddingIcon account"><Cart2 className="navIcon"/></NavLink>
                     <NavLink to="/Perfil" className="paddingIcon account"><PersonCircle className="navIcon"/></NavLink>
                 </div>
             </div>

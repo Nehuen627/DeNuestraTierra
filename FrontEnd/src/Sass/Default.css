@@ -3,6 +3,49 @@
   text-decoration: none;
 }
 .App html, .App body {
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
+  overflow-x: hidden;
+}
+.App .loader {
+  width: 8.2em;
+  height: 8.2em;
+  margin: 30px auto;
+  animation: spinRing 2100ms linear infinite;
+}
+.App .loader::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  height: auto;
+  width: auto;
+  border: 8.5px solid #df0d6f;
+  border-radius: 50%;
+  -webkit-clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 63.6363636364%);
+          clip-path: polygon(50% 50%, 50% 0%, 100% 0%, 100% 63.6363636364%);
+  animation: spinRingInner 2100ms cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+@keyframes spinRing {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinRingInner {
+  0% {
+    transform: rotate(-180deg);
+  }
+  50% {
+    transform: rotate(-160deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
 }/*# sourceMappingURL=Default.css.map */

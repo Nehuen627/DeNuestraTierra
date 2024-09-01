@@ -1,9 +1,10 @@
 @use '../../Sass/Colors.scss' as a;
 @use '../../Sass/Fonts.scss' as b;
 
+
 .contactoContent {
-    h1 {
-        font: b.$Jost;
+    h1, h2 {
+        font-family: b.$Jost;
     }
     h2, h1, p, h3 {
         color: a.$Wine;

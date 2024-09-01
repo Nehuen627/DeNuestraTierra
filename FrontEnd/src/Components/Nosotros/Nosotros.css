@@ -8,7 +8,7 @@
   padding-top: 30px;
   font-size: 2.5rem;
   color: #8e173d;
-  font: "Libre Baskerville", serif;
+  font-family: "Jost", sans-serif;
 }
 .nosotrosContent .content {
   display: flex;

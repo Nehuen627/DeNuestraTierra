@@ -2,7 +2,11 @@
 @use '../../Sass/Fonts.scss' as b;
 
 .navbar {
+    h2{
+        font-size: 1.3rem;
+    }
     position: sticky;
+    z-index: 1000;
     top: 0;
     width: 100%;
     background-color: a.$Burgundy;
@@ -42,7 +46,8 @@
             justify-content: flex-end; 
             flex-basis: 20%;
             .navIcon {
-                font-size: 2.5rem;
+                padding-right: 10px;
+                font-size: 2rem;
             }
         }
     }

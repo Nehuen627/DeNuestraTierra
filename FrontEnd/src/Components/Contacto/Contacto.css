@@ -1,5 +1,5 @@
-.contactoContent h1 {
-  font: "Jost", sans-serif;
+.contactoContent h1, .contactoContent h2 {
+  font-family: "Jost", sans-serif;
 }
 .contactoContent h2, .contactoContent h1, .contactoContent p, .contactoContent h3 {
   color: #8e173d;

@@ -1,8 +1,45 @@
-.homeContent .landingSection .logoBox {
-  background-color: grey;
+.homeContent {
+  max-width: 100%;
+  overflow-x: hidden;
 }
-.homeContent .landingSection .phraseContent {
-  background-color: grey;
+.homeContent .landingSection {
+  height: 92vh;
+  background-image: url("../../Images/Pictures/HomePicture2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.homeContent .landingSection .logoBox {
+  padding: 100px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0;
+}
+.homeContent .landingSection .logoBox .logoImg {
+  width: 200px;
+}
+.homeContent .landingSection .title {
+  font-family: "Libre Baskerville", serif;
+  font-size: 4rem;
+  color: #fff;
+  text-shadow: 3px 4px #7f2121;
+  margin: 0;
+}
+.homeContent .landingSection .title1 {
+  margin-top: 50px;
+}
+.homeContent .landingSection .title2 {
+  margin-bottom: 50px;
+}
+.homeContent .landingSection .phraseContent h2 {
+  font-family: "Jost", sans-serif;
+  margin: 0;
+  font-size: 4rem;
+  color: #ea567a;
+  text-shadow: 2px 4px rgba(142, 23, 61, 0.8156862745);
+  text-align: right;
+  padding-right: 50px;
+  line-height: 50px;
 }
 .homeContent .presentationBox {
   background-color: grey;
@@ -16,9 +53,63 @@
 .homeContent .elearningBox {
   background-color: grey;
 }
+.homeContent .locationBox {
+  margin: 80px;
+  background: linear-gradient(135deg, #8e173d 38%, #eddce2 38%);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+  padding: 10px;
+  transform: skewY(-2deg);
+}
+.homeContent .locationBox .locationContent {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
 .homeContent .locationBox .locationContent .map {
-  background-color: grey;
+  margin-left: 150px;
+  background-color: #eddce2;
 }
 .homeContent .locationBox .locationContent .textLocation {
-  background-color: grey;
+  color: #fff;
+  margin-top: 50px;
+  justify-self: self-start;
+}
+.homeContent .locationBox .locationContent .textLocation .pin {
+  font-size: 3.5rem;
+  transition: font-size 0.5s ease 0.2s, transform 0.5s ease 0s;
+}
+.homeContent .locationBox .locationContent .textLocation .pin:hover {
+  font-size: 4.5rem;
+  transform: scale(1.1);
+}
+.homeContent .locationBox .locationContent .textLocation h3 {
+  font-size: 1.5rem;
+}
+.homeContent .mediosPago {
+  background-color: #fff;
+  margin: 50px 250px;
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+}
+.homeContent .mediosPago h2 {
+  font-family: "Jost", sans-serif;
+  font-size: 1.8rem;
+  color: #8e173d;
+}
+.homeContent .mediosPago .mediosContent {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+.homeContent .mediosPago .mediosContent .mp {
+  width: 300px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.homeContent .mediosPago .mediosContent .pp {
+  width: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }/*# sourceMappingURL=Home.css.map */

@@ -12,6 +12,7 @@ import Contacto from './Components/Contacto/Contacto.js'
 import Producto from './Components/Producto/Producto.js'
 import Curso from './Components/Curso/Curso.js'
 import Navbar from './Components/Navbar/Navbar.js'
+import Carrito from './Components/Carrito/Carrito.js'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home/>}/>
             <Route exact path="/Nosotros" element={<Nosotros/>} />
+            <Route exact path="/Carrito" element={<Carrito/>} />
             <Route exact path="/Contacto" element={<Contacto/>}/>
             <Route exact path="/Catalogo" element={<Catalogo/>}/>
             <Route exact path="/E-learning" element={<Elearning/>}/>
