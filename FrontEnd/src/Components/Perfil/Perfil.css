@@ -57,4 +57,15 @@
 }
 .perfilContent .pBox .pBtns button:hover {
   background-color: #62102a;
+}
+
+.notLogged {
+  margin: 200px;
+  padding: 20px;
+  font-family: "Jost", sans-serif;
+  color: #8e173d;
+  font-size: 2rem;
+  background-color: #eddce2;
+  border-radius: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
 }/*# sourceMappingURL=Perfil.css.map */

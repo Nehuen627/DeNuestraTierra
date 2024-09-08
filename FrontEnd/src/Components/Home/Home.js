@@ -33,7 +33,7 @@ const Home = () => {
                 </div>
             </div>
             <div className='presentationBox'>
-                <h2>¡Bienvenido/a, amante del vino! Sumérgete en una experiencia enológica única. </h2>
+                <h1>¡Bienvenido/a, amante del vino! Sumérgete en una experiencia enológica única</h1>
                 <h3>Explora nuestra vinoteca, donde cada botella cuenta una historia y cada etiqueta es una promesa de calidad.</h3>
                 <p>En "De Nuestra Tierra", nos dedicamos a acompañarte en cada sorbo, asegurando que disfrutes al máximo cada copa y que el viñedo se transmita de una forma única. Nos especializamos en degustaciones, capacitaciones, tour de vinos y eventos, entre muchas otras experiencias.
                 Queremos que cada vez que descorches un vino, lo hagas con una sonrisa desde el primer sorbo hasta el último. Disfruta de la experiencia ¡Salud!</p>

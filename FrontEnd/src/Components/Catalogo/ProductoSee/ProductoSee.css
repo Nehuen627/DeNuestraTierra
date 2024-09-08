@@ -1,0 +1,27 @@
+.productoDiv {
+  background-color: #a91846;
+  width: 30%;
+  border-radius: 50px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+}
+.productoDiv .infoProduct {
+  margin: 20px;
+}
+.productoDiv .infoProduct img {
+  margin-top: 20px;
+  width: 80%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-color: #fff;
+}
+.productoDiv .infoProduct h2, .productoDiv .infoProduct h6, .productoDiv .infoProduct h5 {
+  color: #fff;
+}
+.productoDiv .infoProduct .infoPrice h6 {
+  padding-left: 85%;
+  color: #fff;
+}
+.productoDiv .infoProduct h4 {
+  display: none;
+  visibility: hidden;
+}/*# sourceMappingURL=ProductoSee.css.map */

@@ -1,0 +1,107 @@
+.catalogoContent {
+  margin-top: 40px;
+  margin-bottom: 300px;
+}
+.catalogoContent .form {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+.catalogoContent .settingSearch {
+  background-color: #eddce2;
+  border-radius: 20px;
+  width: 15%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-left: 80px;
+}
+.catalogoContent .settingSearch h3 {
+  color: #8e173d;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.catalogoContent .settingSearch label {
+  color: #8e173d;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+.catalogoContent .settingSearch select {
+  background-color: #a91846;
+  color: #fff;
+  padding: 5px;
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.catalogoContent .settingSearch select:hover {
+  background-color: rgb(166, 52, 52);
+}
+.catalogoContent .settingSearch .starRating {
+  display: flex;
+  gap: 5px;
+}
+.catalogoContent .settingSearch .starRating .star {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #ea567a;
+}
+.catalogoContent .settingSearch .starRating .star:hover, .catalogoContent .settingSearch .starRating .star:hover ~ .star {
+  color: #8e173d;
+}
+.catalogoContent .settingSearch .starRating .active {
+  color: #8e173d;
+}
+.catalogoContent .displaySearchs {
+  width: 80%;
+  margin-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.catalogoContent .displaySearchs .searchBar {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.catalogoContent .displaySearchs .searchBar input {
+  width: 80%;
+  padding: 10px;
+  background-color: #eddce2;
+  border-radius: 30px;
+  border: none;
+  font-size: 1.2rem;
+  color: #7f2121;
+  padding-left: 20px;
+}
+.catalogoContent .displaySearchs .searchBar input:focus {
+  outline: none;
+  border: 2px solid #8e173d;
+}
+.catalogoContent .displaySearchs .searchBar button {
+  background-color: #8e173d;
+  color: #fff;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.catalogoContent .displaySearchs .searchBar button:hover {
+  background-color: rgb(166, 52, 52);
+}
+.catalogoContent .displaySearchs .productsDisplay {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}/*# sourceMappingURL=Catalogo.css.map */

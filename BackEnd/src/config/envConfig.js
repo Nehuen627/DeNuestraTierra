@@ -6,5 +6,9 @@ export default {
     mailSecure: process.env.MAIL_SECURE,
     mailPort: process.env.MAIL_PORT ,
     mail: process.env.MAIL,
-    mailPass: process.env.MAIL_PASSWORD 
+    mailPass: process.env.MAIL_PASSWORD,
+    dbHost: process.env.DB_HOST,
+    dbUser: process.env.DB_USER,
+    dbPass: process.env.DB_PASS,
+    dbDb: process.env.DB_DB
 }

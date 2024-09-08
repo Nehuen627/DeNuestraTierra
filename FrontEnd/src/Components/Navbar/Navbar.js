@@ -31,9 +31,9 @@ const Navbar = () => {
                             <h2>Catalogo</h2>
                         </div>
                     </NavLink>
-                    <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/E-learning">
+                    <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Talleres">
                         <div>
-                            <h2>E-learning</h2>
+                            <h2>Talleres</h2>
                         </div>
                     </NavLink>
                 </div>

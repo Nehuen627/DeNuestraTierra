@@ -27,7 +27,7 @@ function App() {
             <Route exact path="/Carrito" element={<Carrito/>} />
             <Route exact path="/Contacto" element={<Contacto/>}/>
             <Route exact path="/Catalogo" element={<Catalogo/>}/>
-            <Route exact path="/E-learning" element={<Elearning/>}/>
+            <Route exact path="/Talleres" element={<Elearning/>}/>
             <Route exact path="/Perfil" element={<Perfil/>}/>
             {/* Dynamic routes */}
             <Route path="/Producto/:id" element={<Producto/>} />
