@@ -26,7 +26,7 @@
             font-family: b.$Baskerville;
             font-size: 4rem;
             color: a.$White;
-            text-shadow:  3px 4px a.$Burgundy;
+            text-shadow:  3px 4px 4px a.$Burgundy;
             margin: 0 ;
             
         }
@@ -43,7 +43,7 @@
                 margin: 0 ;
                 font-size: 4rem;
                 color: a.$Pink;
-                text-shadow:  2px 4px a.$WineShadow ;
+                text-shadow:  2px 4px 4px a.$Black ;
                 text-align: right;
                 padding-right: 50px;
                 line-height:50px;
@@ -51,32 +51,78 @@
         }
     }
     .presentationBox {
-        background-color: a.$Wine;
+        background-color: a.$GreyPink;
         padding: 30px 120px;
         h1 {
-            color: a.$White;
+            color: a.$Wine;
             font-family: b.$Jost;
             font-size: 2rem;
             margin: 0 0;
         }
         h3 {
-            color: a.$White;
+            color: a.$Wine;
             font-size: 1.3rem;
         }
         p {
-            color: a.$White;
+            color: a.$Wine;
+            font-size: 1.2rem;
         }
     }
     .productsBox {
-        .productsUrls{
-            background-color: grey;
-        }
+        width: 80%;
+        margin: 50px auto;
         .topProducts {  
-            background-color: grey;
+            h3 {
+                font-size: 2rem;
+                color: a.$Wine;
+                text-shadow:  1px 3px a.$BlackShadow2;
+            }
+            .prod {
+                display: flex;
+                justify-content: space-between;
+            }
+            margin-bottom:60px;
+        }
+        .productsUrls{
+            
+            a {
+                .icon {
+                    color: a.$Burgundy;
+                    font-size: 4rem;
+                    transition: transform 0.3s ease;
+                    text-shadow:  2px 4px a.$BlackShadow ;
+                }
+                h3 {
+                    color: a.$Burgundy;
+                    font-family: b.$Jost;
+                    font-size: 2rem;
+                    margin-top: 10px;
+                    text-shadow:  1px 2px a.$BlackShadow ;
+
+                }
+                &:hover {
+                    .icon {
+                        transform: scale(1.5) ;
+                    }
+                }
+            }
         }
     }
-    .elearningBox{
-        background-color: grey;
+    .talleresBox{
+        background-color: a.$GreyPinkShadow;
+        padding: 30px 120px;
+        margin: 50px 100px;
+        box-shadow: 0 4px 6px a.$BlackShadow;
+        h2 {
+            color: a.$Wine;
+            font-family: b.$Jost;
+            font-size: 2rem;
+            margin: 0 0;
+        }
+        p {
+            color: a.$Wine;
+            font-size: 1.3rem;
+        }
     }
     .locationBox{
         margin: 80px;

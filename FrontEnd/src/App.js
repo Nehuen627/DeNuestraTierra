@@ -13,12 +13,13 @@ import Producto from './Components/Producto/Producto.js'
 import Curso from './Components/Curso/Curso.js'
 import Navbar from './Components/Navbar/Navbar.js'
 import Carrito from './Components/Carrito/Carrito.js'
-
+import ScrollToTop from './Components/ScrollToTop/ScrollToTop.js';
 function App() {
   return (
     <div className="App">
       {/* <Incoming /> */}  
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar/>
         <div className='content'>
           <Routes>

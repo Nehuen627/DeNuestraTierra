@@ -22,7 +22,7 @@
   font-family: "Libre Baskerville", serif;
   font-size: 4rem;
   color: #fff;
-  text-shadow: 3px 4px #7f2121;
+  text-shadow: 3px 4px 4px #7f2121;
   margin: 0;
 }
 .homeContent .landingSection .title1 {
@@ -36,36 +36,76 @@
   margin: 0;
   font-size: 4rem;
   color: #ea567a;
-  text-shadow: 2px 4px rgba(142, 23, 61, 0.8156862745);
+  text-shadow: 2px 4px 4px #000;
   text-align: right;
   padding-right: 50px;
   line-height: 50px;
 }
 .homeContent .presentationBox {
-  background-color: #8e173d;
+  background-color: #eddce2;
   padding: 30px 120px;
 }
 .homeContent .presentationBox h1 {
-  color: #fff;
+  color: #8e173d;
   font-family: "Jost", sans-serif;
   font-size: 2rem;
   margin: 0 0;
 }
 .homeContent .presentationBox h3 {
-  color: #fff;
+  color: #8e173d;
   font-size: 1.3rem;
 }
 .homeContent .presentationBox p {
-  color: #fff;
+  color: #8e173d;
+  font-size: 1.2rem;
 }
-.homeContent .productsBox .productsUrls {
-  background-color: grey;
+.homeContent .productsBox {
+  width: 80%;
+  margin: 50px auto;
 }
 .homeContent .productsBox .topProducts {
-  background-color: grey;
+  margin-bottom: 60px;
 }
-.homeContent .elearningBox {
-  background-color: grey;
+.homeContent .productsBox .topProducts h3 {
+  font-size: 2rem;
+  color: #8e173d;
+  text-shadow: 1px 3px rgba(0, 0, 0, 0.166);
+}
+.homeContent .productsBox .topProducts .prod {
+  display: flex;
+  justify-content: space-between;
+}
+.homeContent .productsBox .productsUrls a .icon {
+  color: #7f2121;
+  font-size: 4rem;
+  transition: transform 0.3s ease;
+  text-shadow: 2px 4px rgba(0, 0, 0, 0.297);
+}
+.homeContent .productsBox .productsUrls a h3 {
+  color: #7f2121;
+  font-family: "Jost", sans-serif;
+  font-size: 2rem;
+  margin-top: 10px;
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.297);
+}
+.homeContent .productsBox .productsUrls a:hover .icon {
+  transform: scale(1.5);
+}
+.homeContent .talleresBox {
+  background-color: rgba(237, 220, 226, 0.7725490196);
+  padding: 30px 120px;
+  margin: 50px 100px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+}
+.homeContent .talleresBox h2 {
+  color: #8e173d;
+  font-family: "Jost", sans-serif;
+  font-size: 2rem;
+  margin: 0 0;
+}
+.homeContent .talleresBox p {
+  color: #8e173d;
+  font-size: 1.3rem;
 }
 .homeContent .locationBox {
   margin: 80px;

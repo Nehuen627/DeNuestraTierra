@@ -1,8 +1,10 @@
 .productoDiv {
+  cursor: pointer;
   background-color: #a91846;
   width: 30%;
   border-radius: 50px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.514);
+  transition: transform 0.3s ease;
 }
 .productoDiv .infoProduct {
   margin: 20px;
@@ -24,4 +26,7 @@
 .productoDiv .infoProduct h4 {
   display: none;
   visibility: hidden;
+}
+.productoDiv:hover {
+  transform: scale(1.03);
 }/*# sourceMappingURL=ProductoSee.css.map */

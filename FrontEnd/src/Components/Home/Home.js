@@ -3,11 +3,49 @@ import Logo from '../../Images/Logo.png'
 import mpLogo from '../../Images/MPLogo.webp'
 import ppLogo from '../../Images/PaypalLogo.png'
 import './Home.css'
-import { GeoAltFill, StarFill, BoxFill } from 
+import { GeoAltFill,  BoxFill } from 
 'react-bootstrap-icons'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import bg from "../../Images/bgLayered.svg"
+import ProductoSee from '../Catalogo/ProductoSee/ProductSee'
+import api from '../../axios/api'
+
+
 const Home = () => {
+    const [productos, setProductos] = useState([]);
+    const [error, setError] = useState(null);
+    
+    useEffect(() => {
+        const fetchProductos = async () => {
+            try {
+                const response = await api.get('/api/productos', {
+                    params: {
+                        rating: 5,
+                    }
+                });
+                setProductos(response.data);
+            } catch (err) {
+                setError(err);
+            }
+        };
+    
+        fetchProductos();
+    }, []);
+    
+    const top3 = productos.slice(0, 3)
+    const sortedTop3 = top3.sort((a, b) => b.Rating - a.Rating);
+    const createVisualizator = sortedTop3.map((producto) => (
+        <ProductoSee
+            key={producto.Id}
+            Title={producto.Title}
+            Id={producto.Id}
+            Price={producto.Price}
+            Img={producto.ImgUrl}
+            Rating={producto.Rating}
+        />
+    ));
+
+
     useEffect(() => {
 
         document.body.style.background = `url(${bg}) `;
@@ -39,24 +77,28 @@ const Home = () => {
                 Queremos que cada vez que descorches un vino, lo hagas con una sonrisa desde el primer sorbo hasta el último. Disfruta de la experiencia ¡Salud!</p>
             </div>
             <div className='productsBox'>
-                <div className='productsUrls'>
-                    <div>
-                        <StarFill/>
-                        <a><h3>Mejores Valorados</h3></a>
-                    </div>
-                    <div>
-                        <BoxFill/>
-                        <a><h3>Catálogo Completo</h3></a>
+                <div className='topProducts'>
+                    <h3>Productos mejores valorados:</h3>
+                    <div className='prod'>
+                        {createVisualizator}
                     </div>
                 </div>
-                <div className='topProducts'>
-                    Productos
+                <div className='productsUrls'>
+                    <div>
+                        
+                        <a href='/Catalogo'>
+                            <BoxFill className='icon'/>
+                            <h3>Catálogo Completo</h3>
+                        </a>
+                    </div>
                 </div>
 
             </div>
-            <div className='elearningBox'>
-                <h2>Talleres online</h2>
-                <h3>Explicación de esta modalidad</h3>
+            <div className='talleresBox'>
+                <a href='/Talleres'><h2>Talleres online</h2></a>
+                <p>Contamos con una serie de talleres que puedes completar para capacitarse y perfeccionarse, desde conocimientos básicos hasta algunos más complejos.
+                Los mismos son ideales para los principiantes que se están adentrando en este mundo, hasta los profesionales que quieren afinar sus conocimientos en específico
+                </p>
             </div>
             <div className='locationBox'>
                 

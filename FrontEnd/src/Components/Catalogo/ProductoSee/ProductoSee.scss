@@ -2,10 +2,12 @@
 @use '../../../Sass/Fonts.scss' as b;
 
 .productoDiv {
+    cursor: pointer;
     background-color: a.$WineLight;
     width: 30%;
     border-radius: 50px;
-    box-shadow: 0 4px 6px a.$BlackShadow2;
+    box-shadow: 0 4px 6px a.$BlackShadow3;
+    transition: transform 0.3s ease;
     .infoProduct {
         margin: 20px;
         img{
@@ -27,5 +29,8 @@
             display: none;
             visibility: hidden;
         }
+    }
+    &:hover {
+        transform: scale(1.03) ;
     }
 }

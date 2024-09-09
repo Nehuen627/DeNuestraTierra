@@ -24,7 +24,7 @@ router.get("/nosotros/pictures", (req, res) => {
         
     ];
     /* fake code to try pictures */
-    for (let i = 1 ; i < 13; i++) {
+    for (let i = 1 ; i <= 13; i++) {
         const imageUrl = new URL(`/images/${i}.jpg`, baseUrl).href;
         pictures.push({url: imageUrl , alt: "vinos"})
     }

@@ -16,6 +16,7 @@ router.get("/productos", (req, res) => {
         { Id: 4, Title: "Vino Viogner", Price: 510454, ImgUrl: imageUrl, Rating: 2.3, Type: "Viogner" },
         { Id: 5, Title: "Vino Semillon", Price: 320454, ImgUrl: imageUrl, Rating: 3.9, Type: "Semillon" },
         { Id: 6, Title: "Vino Viogner", Price: 230454, ImgUrl: imageUrl, Rating: 1.2, Type: "Viogner" },
+        { Id: 7, Title: "Vino Viogner", Price: 230454, ImgUrl: imageUrl, Rating: 4.8, Type: "Viogner" },
     ];
 
     // Filter by search query
