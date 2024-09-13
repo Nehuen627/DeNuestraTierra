@@ -63,4 +63,33 @@
         50%  { transform: rotate(-160deg); }
         100% { transform: rotate(180deg); }
     }
+    // Tablet breakpoint (768px)
+    @media (max-width: 768px) {
+        .loader {
+            width: 6em;
+            height: 6em;
+        }
+
+        .loaderBtn {
+            width: 0.8em;
+            height: 0.8em;
+        }
+    }
+
+    // Phone breakpoint (480px)
+    @media (max-width: 480px) {
+        .loader {
+            width: 4em;
+            height: 4em;
+        }
+
+        .loaderBtn {
+            width: 0.6em;
+            height: 0.6em;
+        }
+        body {
+            width: 100vh;
+            overflow: hidden;
+        }
+    }
 }

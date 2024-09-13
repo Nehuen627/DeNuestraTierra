@@ -104,4 +104,209 @@
   flex-wrap: wrap;
   gap: 30px;
   justify-content: center;
+}
+.catalogoContent .settingsButton {
+  display: none;
+  background-color: #8e173d;
+  color: #fff;
+  border-radius: 20px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  margin: 20px;
+  font-size: 1.2rem;
+}
+.catalogoContent .settingsButton:hover {
+  background-color: rgb(166, 52, 52);
+}
+.catalogoContent .modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.catalogoContent .modal .modalContent {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 500px;
+}
+.catalogoContent .modal .modalContent h3 {
+  color: #8e173d;
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+.catalogoContent .modal .modalContent label, .catalogoContent .modal .modalContent select {
+  display: block;
+  margin-bottom: 10px;
+}
+.catalogoContent .modal .modalContent .closeModal {
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+.catalogoContent .modal .modalContent .closeModal:hover {
+  background-color: rgb(166, 52, 52);
+}
+
+@media (max-width: 768px) {
+  .catalogoContent .form {
+    flex-direction: column;
+    align-items: center;
+  }
+  .catalogoContent .settingSearch {
+    display: none;
+  }
+  .catalogoContent .settingsButton {
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+  }
+  .catalogoContent .modal .modalContent {
+    width: 90%;
+    padding: 20px;
+    background-color: #eddce2;
+    border-radius: 20px;
+  }
+  .catalogoContent .modal .modalContent h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  .catalogoContent .modal .modalContent label {
+    font-size: 1.1rem;
+    color: #8e173d;
+    margin-bottom: 10px;
+  }
+  .catalogoContent .modal .modalContent select, .catalogoContent .modal .modalContent .starRating {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+    color: #fff;
+  }
+  .catalogoContent .modal .modalContent select {
+    background-color: #8e173d;
+  }
+  .catalogoContent .modal .modalContent .starRating {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .catalogoContent .modal .modalContent .starRating .star {
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ea567a;
+    border-radius: 50%;
+    padding: 5px;
+  }
+  .catalogoContent .modal .modalContent .starRating .star:hover, .catalogoContent .modal .modalContent .starRating .star:hover ~ .star {
+    color: #8e173d;
+  }
+  .catalogoContent .modal .modalContent .starRating .active {
+    color: #8e173d;
+  }
+  .catalogoContent .modal .modalContent .closeModal {
+    background-color: #8e173d;
+    color: #fff;
+    width: 50%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  .catalogoContent .modal .modalContent .closeModal:hover {
+    background-color: rgb(166, 52, 52);
+  }
+  .catalogoContent .displaySearchs {
+    margin: 0 auto;
+  }
+  .catalogoContent .displaySearchs .searchBar {
+    width: 90%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .catalogoContent .displaySearchs .searchBar input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    border: none;
+    margin-bottom: 15px;
+    background-color: #eddce2;
+    color: #7f2121;
+  }
+  .catalogoContent .displaySearchs .searchBar input:focus {
+    outline: none;
+    border: 2px solid #8e173d;
+  }
+  .catalogoContent .displaySearchs .searchBar button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    background-color: #8e173d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  .catalogoContent .displaySearchs .searchBar button:hover {
+    background-color: rgb(166, 52, 52);
+  }
+  .catalogoContent .displaySearchs .productsDisplay {
+    gap: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .catalogoContent .settingsButton {
+    width: 95%;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+  }
+  .catalogoContent .modal .modalContent {
+    width: 85%;
+    padding: 15px;
+  }
+  .catalogoContent .modal .modalContent h3 {
+    font-size: 1.4rem;
+  }
+  .catalogoContent .modal .modalContent select, .catalogoContent .modal .modalContent .starRating {
+    font-size: 1rem;
+    padding: 8px;
+  }
+  .catalogoContent .modal .modalContent .starRating {
+    padding: 0;
+  }
+  .catalogoContent .modal .modalContent .closeModal {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  .catalogoContent .displaySearchs .searchBar {
+    width: 95%;
+  }
+  .catalogoContent .displaySearchs .searchBar input {
+    padding: 12px;
+    font-size: 1.1rem;
+  }
+  .catalogoContent .displaySearchs .searchBar button {
+    padding: 10px 0;
+    font-size: 1.1rem;
+  }
 }/*# sourceMappingURL=Catalogo.css.map */

@@ -94,6 +94,122 @@
         font-family: b.$Jost;
         font-size: 1.5rem;
     }
+    
+
+    
+     /* Tablet Styles */
+     @media (max-width: 768px) {
+        .contentFooter {
+            flex-direction: column;
+            align-items: center;
+            padding-top: 25%;
+
+            .leftSide,
+            .rightSide {
+                flex: none;
+                width: 100%;
+                margin: 20px 0;
+                text-align: center;
+
+                .shopLinks {
+                    margin: 0;
+                    justify-content: space-around;
+                }
+            }
+
+            .logoName {
+                order: -1;
+                margin-bottom: 30px;
+                padding-top: 200px;
+                .logoImg {
+                    width: 40%;
+                }
+            }
+
+            .rightSide {
+                .socialIcons {
+                    margin-left: 0;
+                    justify-content: center;
+
+                    .socialIcon {
+                        width: 25%;
+                    }
+                }
+
+                h3 {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 480px) {
+
+        .contentFooter {
+            padding-top: 30%;
+
+            .leftSide {
+                .shopLinks {
+                    gap: 20px;
+
+                    .shop,
+                    .us {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .logoName {
+                padding-top: 180px;
+                .logoImg {
+                    width: 30%;
+                }
+
+                .title {
+                    font-size: 1.5rem;
+                }
+            }
+
+            .rightSide {
+                .socialIcons {
+                    .socialIcon {
+                        width: 25%;
+                    }
+                }
+
+                h3 {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        .credits {
+            margin-top: 5%;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .contentFooter {
+            padding-top: 35%; 
+            .leftSide,
+            .rightSide {
+                margin: 10px 0; 
+                text-align: center;
+    
+                .shopLinks {
+                    gap: 10px; 
+                }
+            }
+    
+            .logoName {
+                .logoImg {
+                    width: 25%; 
+                }
+            }
+        }
+    }
+    
 }
 
 

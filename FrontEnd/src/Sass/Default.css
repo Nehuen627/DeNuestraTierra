@@ -69,4 +69,28 @@
   100% {
     transform: rotate(180deg);
   }
+}
+@media (max-width: 768px) {
+  .App .loader {
+    width: 6em;
+    height: 6em;
+  }
+  .App .loaderBtn {
+    width: 0.8em;
+    height: 0.8em;
+  }
+}
+@media (max-width: 480px) {
+  .App .loader {
+    width: 4em;
+    height: 4em;
+  }
+  .App .loaderBtn {
+    width: 0.6em;
+    height: 0.6em;
+  }
+  .App body {
+    width: 100vh;
+    overflow: hidden;
+  }
 }/*# sourceMappingURL=Default.css.map */

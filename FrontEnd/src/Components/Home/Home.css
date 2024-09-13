@@ -10,17 +10,16 @@
   background-repeat: no-repeat;
 }
 .homeContent .landingSection .logoBox {
-  padding: 100px;
+  padding: 50px 100px 0;
   display: flex;
   justify-content: center;
-  padding-bottom: 0;
 }
 .homeContent .landingSection .logoBox .logoImg {
   width: 200px;
 }
 .homeContent .landingSection .title {
   font-family: "Libre Baskerville", serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: #fff;
   text-shadow: 3px 4px 4px #7f2121;
   margin: 0;
@@ -34,7 +33,7 @@
 .homeContent .landingSection .phraseContent h2 {
   font-family: "Jost", sans-serif;
   margin: 0;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: #ea567a;
   text-shadow: 2px 4px 4px #000;
   text-align: right;
@@ -49,7 +48,7 @@
   color: #8e173d;
   font-family: "Jost", sans-serif;
   font-size: 2rem;
-  margin: 0 0;
+  margin: 0;
 }
 .homeContent .presentationBox h3 {
   color: #8e173d;
@@ -73,7 +72,13 @@
 }
 .homeContent .productsBox .topProducts .prod {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.homeContent .productsBox .topProducts .prod > div {
+  width: calc(33.33% - 20px);
+  max-width: 300px;
 }
 .homeContent .productsBox .productsUrls a .icon {
   color: #7f2121;
@@ -101,7 +106,7 @@
   color: #8e173d;
   font-family: "Jost", sans-serif;
   font-size: 2rem;
-  margin: 0 0;
+  margin: 0;
 }
 .homeContent .talleresBox p {
   color: #8e173d;
@@ -141,7 +146,9 @@
 }
 .homeContent .mediosPago {
   background-color: #fff;
-  margin: 50px 250px;
+  margin: 50px auto;
+  max-width: 800px;
+  width: 90%;
   padding: 20px;
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
@@ -153,6 +160,7 @@
 }
 .homeContent .mediosPago .mediosContent {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 40px;
   padding-bottom: 40px;
@@ -166,4 +174,168 @@
   width: 100px;
   -o-object-fit: contain;
      object-fit: contain;
+}
+@media (max-width: 768px) {
+  .homeContent .landingSection .logoBox {
+    padding: 50px 50px 0;
+  }
+  .homeContent .landingSection .logoBox .logoImg {
+    width: 150px;
+  }
+  .homeContent .landingSection .title, .homeContent .landingSection .phraseContent h2 {
+    font-size: 3rem;
+  }
+  .homeContent .presentationBox {
+    padding: 30px 60px;
+  }
+  .homeContent .productsBox {
+    width: 90%;
+  }
+  .homeContent .productsBox .topProducts .prod > div {
+    width: calc(50% - 20px);
+  }
+  .homeContent .talleresBox {
+    padding: 30px 60px;
+    margin: 50px 50px;
+  }
+  .homeContent .locationBox {
+    margin: 80px 40px;
+    background: linear-gradient(135deg, #8e173d 38%, #eddce2 38%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+    padding: 10px;
+    transform: skewY(-2deg);
+  }
+  .homeContent .locationBox .locationContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  .homeContent .locationBox .locationContent .textLocation {
+    color: #eddce2;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .homeContent .locationBox .locationContent .textLocation .pin {
+    font-size: 3.5rem;
+    transition: font-size 0.5s ease 0.2s, transform 0.5s ease 0s;
+  }
+  .homeContent .locationBox .locationContent .textLocation .pin:hover {
+    font-size: 4.5rem;
+    transform: scale(1.1);
+  }
+  .homeContent .locationBox .locationContent .textLocation h3 {
+    font-size: 1.5rem;
+  }
+  .homeContent .locationBox .locationContent .map {
+    width: 100%;
+    max-width: 600px;
+    background-color: #eddce2;
+    margin-left: 0;
+  }
+  .homeContent .locationBox .locationContent .map iframe {
+    width: 100%;
+    height: 400px;
+  }
+  .homeContent .locationBox {
+    margin: 40px;
+  }
+  .homeContent .locationBox h3 {
+    text-shadow: 2px 2px 3px #000;
+  }
+  .homeContent .mediosPago {
+    width: 80%;
+  }
+}
+@media (max-width: 480px) {
+  .homeContent .landingSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .homeContent .landingSection .logoBox {
+    padding: 30px 30px 0;
+  }
+  .homeContent .landingSection .logoBox .logoImg {
+    width: 100px;
+  }
+  .homeContent .landingSection .title, .homeContent .landingSection .phraseContent h2 {
+    font-size: 2.5rem;
+  }
+  .homeContent .landingSection .phraseContent h2 {
+    padding-right: 20px;
+    line-height: 30px;
+  }
+  .homeContent .presentationBox {
+    padding: 20px 30px;
+  }
+  .homeContent .presentationBox h1 {
+    font-size: 1.5rem;
+  }
+  .homeContent .presentationBox h3 {
+    font-size: 1.1rem;
+  }
+  .homeContent .presentationBox p {
+    font-size: 1rem;
+  }
+  .homeContent .productsBox {
+    width: 95%;
+  }
+  .homeContent .productsBox .topProducts h3 {
+    font-size: 1.5rem;
+  }
+  .homeContent .productsBox .topProducts .prod > div {
+    width: 100%;
+  }
+  .homeContent .productsBox .productsUrls a .icon {
+    font-size: 3rem;
+  }
+  .homeContent .productsBox .productsUrls a h3 {
+    font-size: 1.5rem;
+  }
+  .homeContent .talleresBox {
+    padding: 20px 30px;
+    margin: 30px 20px;
+  }
+  .homeContent .talleresBox h2 {
+    font-size: 1.5rem;
+  }
+  .homeContent .talleresBox p {
+    font-size: 1rem;
+  }
+  .homeContent .locationBox {
+    margin: 20px;
+    transform: skewY(0);
+  }
+  .homeContent .locationBox .locationContent .textLocation .pin {
+    font-size: 2.5rem;
+  }
+  .homeContent .locationBox .locationContent .textLocation .pin:hover {
+    font-size: 3rem;
+  }
+  .homeContent .locationBox .locationContent .textLocation h3 {
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 3px #000;
+  }
+  .homeContent .locationBox .locationContent .map iframe {
+    height: 300px;
+  }
+  .homeContent .mediosPago {
+    width: 80%;
+  }
+  .homeContent .mediosPago h2 {
+    font-size: 1.5rem;
+  }
+  .homeContent .mediosPago .mediosContent {
+    gap: 20px;
+  }
+  .homeContent .mediosPago .mediosContent .mp, .homeContent .mediosPago .mediosContent .pp {
+    width: 100%;
+    max-width: 200px;
+  }
+  .homeContent .mediosPago .mediosContent .pp {
+    width: 30%;
+  }
 }/*# sourceMappingURL=Home.css.map */

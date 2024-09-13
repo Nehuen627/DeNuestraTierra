@@ -8,6 +8,8 @@
   width: 100%;
   line-height: 0;
   padding-top: 3%;
+  /* Tablet Styles */
+  /* Mobile Styles */
 }
 .customShapeDividerTop1721137628 .credits {
   width: 100%;
@@ -79,4 +81,88 @@
 .customShapeDividerTop1721137628 h3 {
   font-family: "Jost", sans-serif;
   font-size: 1.5rem;
+}
+@media (max-width: 768px) {
+  .customShapeDividerTop1721137628 .contentFooter {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .leftSide,
+  .customShapeDividerTop1721137628 .contentFooter .rightSide {
+    flex: none;
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .leftSide .shopLinks,
+  .customShapeDividerTop1721137628 .contentFooter .rightSide .shopLinks {
+    margin: 0;
+    justify-content: space-around;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .logoName {
+    order: -1;
+    margin-bottom: 30px;
+    padding-top: 200px;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .logoName .logoImg {
+    width: 40%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .rightSide .socialIcons {
+    margin-left: 0;
+    justify-content: center;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .rightSide .socialIcons .socialIcon {
+    width: 25%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .rightSide h3 {
+    justify-content: center;
+  }
+}
+@media (max-width: 480px) {
+  .customShapeDividerTop1721137628 .contentFooter {
+    padding-top: 30%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .leftSide .shopLinks {
+    gap: 20px;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .leftSide .shopLinks .shop,
+  .customShapeDividerTop1721137628 .contentFooter .leftSide .shopLinks .us {
+    width: 100%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .logoName {
+    padding-top: 180px;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .logoName .logoImg {
+    width: 30%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .logoName .title {
+    font-size: 1.5rem;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .rightSide .socialIcons .socialIcon {
+    width: 25%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .rightSide h3 {
+    font-size: 1.2rem;
+  }
+  .customShapeDividerTop1721137628 .credits {
+    margin-top: 5%;
+  }
+}
+@media (max-width: 375px) {
+  .customShapeDividerTop1721137628 .contentFooter {
+    padding-top: 35%;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .leftSide,
+  .customShapeDividerTop1721137628 .contentFooter .rightSide {
+    margin: 10px 0;
+    text-align: center;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .leftSide .shopLinks,
+  .customShapeDividerTop1721137628 .contentFooter .rightSide .shopLinks {
+    gap: 10px;
+  }
+  .customShapeDividerTop1721137628 .contentFooter .logoName .logoImg {
+    width: 25%;
+  }
 }/*# sourceMappingURL=Footer.css.map */

@@ -1,124 +1,145 @@
 @use '../../Sass/Colors.scss' as a;
 @use '../../Sass/Fonts.scss' as b;
 
-
 .homeContent {
     max-width: 100%;
     overflow-x: hidden;
-    .landingSection{
+
+    .landingSection {
         height: 92vh;
         background-image: url("../../Images/Pictures/HomePicture2.jpg");
-        background-size:cover;
+        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        .logoBox{
-            padding: 100px;
+    
+
+        .logoBox {
+            padding: 50px 100px 0;
             display: flex;
             justify-content: center;
-            padding-bottom: 0;
             
             .logoImg {
                 width: 200px;
-                
             }
         }
+
         .title {
             font-family: b.$Baskerville;
-            font-size: 4rem;
+            font-size: 3.5rem;
             color: a.$White;
-            text-shadow:  3px 4px 4px a.$Burgundy;
-            margin: 0 ;
-            
+            text-shadow: 3px 4px 4px a.$Burgundy;
+            margin: 0;
         }
+
         .title1 {
             margin-top: 50px;
         }
+
         .title2 {
-            margin-bottom: 50px ;
+            margin-bottom: 50px;
         }
         
         .phraseContent {
             h2 {
                 font-family: b.$Jost;
-                margin: 0 ;
-                font-size: 4rem;
+                margin: 0;
+                font-size: 3.5rem;
                 color: a.$Pink;
-                text-shadow:  2px 4px 4px a.$Black ;
+                text-shadow: 2px 4px 4px a.$Black;
                 text-align: right;
                 padding-right: 50px;
-                line-height:50px;
+                line-height: 50px;
             }         
         }
     }
+
     .presentationBox {
         background-color: a.$GreyPink;
         padding: 30px 120px;
+
         h1 {
             color: a.$Wine;
             font-family: b.$Jost;
             font-size: 2rem;
-            margin: 0 0;
+            margin: 0;
         }
+
         h3 {
             color: a.$Wine;
             font-size: 1.3rem;
         }
+
         p {
             color: a.$Wine;
             font-size: 1.2rem;
         }
     }
+
     .productsBox {
         width: 80%;
         margin: 50px auto;
+
         .topProducts {  
+            margin-bottom: 60px;
+
             h3 {
                 font-size: 2rem;
                 color: a.$Wine;
-                text-shadow:  1px 3px a.$BlackShadow2;
+                text-shadow: 1px 3px a.$BlackShadow2;
             }
+
             .prod {
                 display: flex;
-                justify-content: space-between;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+
+                > div {
+                    width: calc(33.33% - 20px);
+                    max-width: 300px;
+                }
             }
-            margin-bottom:60px;
         }
-        .productsUrls{
-            
+
+        .productsUrls {
             a {
                 .icon {
                     color: a.$Burgundy;
                     font-size: 4rem;
                     transition: transform 0.3s ease;
-                    text-shadow:  2px 4px a.$BlackShadow ;
+                    text-shadow: 2px 4px a.$BlackShadow;
                 }
+
                 h3 {
                     color: a.$Burgundy;
                     font-family: b.$Jost;
                     font-size: 2rem;
                     margin-top: 10px;
-                    text-shadow:  1px 2px a.$BlackShadow ;
-
+                    text-shadow: 1px 2px a.$BlackShadow;
                 }
+
                 &:hover {
                     .icon {
-                        transform: scale(1.5) ;
+                        transform: scale(1.5);
                     }
                 }
             }
         }
     }
-    .talleresBox{
+
+    .talleresBox {
         background-color: a.$GreyPinkShadow;
         padding: 30px 120px;
         margin: 50px 100px;
         box-shadow: 0 4px 6px a.$BlackShadow;
+
         h2 {
             color: a.$Wine;
             font-family: b.$Jost;
             font-size: 2rem;
-            margin: 0 0;
+            margin: 0;
         }
+
         p {
             color: a.$Wine;
             font-size: 1.3rem;
@@ -163,29 +184,261 @@
             }
         }
     }
-    .mediosPago{
+    
+
+    .mediosPago {
         background-color: a.$White;
-        margin: 50px 250px;
+        margin: 50px auto;
+        max-width: 800px;
+        width: 90%;
         padding: 20px;
         border-radius: 30px;
         box-shadow: 0 4px 6px a.$BlackShadow;
+
         h2 {
             font-family: b.$Jost;
             font-size: 1.8rem;
             color: a.$Wine;
         }
-        .mediosContent{
+
+        .mediosContent {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             gap: 40px;
             padding-bottom: 40px;
+
             .mp {
                 width: 300px;
                 object-fit: contain;
             }
+
             .pp {
                 width: 100px;
                 object-fit: contain;
+            }
+        }
+    }
+
+    // Tablet breakpoint (768px)
+    @media (max-width: 768px) {
+        .landingSection {
+            .logoBox {
+                padding: 50px 50px 0;
+                
+                .logoImg {
+                    width: 150px;
+                }
+            }
+
+            .title, .phraseContent h2 {
+                font-size: 3rem;
+            }
+        }
+
+        .presentationBox {
+            padding: 30px 60px;
+        }
+
+        .productsBox {
+            width: 90%;
+
+            .topProducts {
+                .prod > div {
+                    width: calc(50% - 20px);
+                }
+            }
+        }
+
+        .talleresBox {
+            padding: 30px 60px;
+            margin: 50px 50px;
+        }
+        .locationBox {
+            margin: 80px 40px;
+            background: linear-gradient(135deg, a.$Wine 38%, a.$GreyPink 38%);
+            box-shadow: 0 4px 6px a.$BlackShadow;
+            padding: 10px;
+            transform: skewY(-2deg);
+    
+            .locationContent {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px;
+    
+                .textLocation {
+                    color: a.$GreyPink;
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    text-align: center;
+    
+                    .pin {
+                        font-size: 3.5rem;
+                        transition: font-size 0.5s ease 0.2s, transform 0.5s ease 0s;
+    
+                        &:hover {
+                            font-size: 4.5rem;
+                            transform: scale(1.1);
+                        }
+                    }
+    
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+                }
+    
+                .map {
+                    width: 100%;
+                    max-width: 600px;
+                    background-color: a.$GreyPink;
+                    margin-left: 0;
+                    iframe {
+                        width: 100%;
+                        height: 400px;
+                    }
+                }
+            }
+        }
+        .locationBox {
+            margin: 40px;
+            h3{
+                text-shadow: 2px 2px 3px a.$Black;
+            }
+        }
+
+        .mediosPago {
+            width: 80%;
+        }
+    }
+
+    // Phone breakpoint (480px)
+    @media (max-width: 480px) {
+        .landingSection {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .logoBox {
+                padding: 30px 30px 0;
+                
+                .logoImg {
+                    width: 100px;
+                }
+            }
+
+            .title, .phraseContent h2 {
+                font-size: 2.5rem;
+            }
+
+            .phraseContent {
+                h2 {
+                    padding-right: 20px;
+                    line-height: 30px;
+                }
+            }
+        }
+
+        .presentationBox {
+            padding: 20px 30px;
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        .productsBox {
+            width: 95%;
+
+            .topProducts {
+                h3 {
+                    font-size: 1.5rem;
+                }
+
+                .prod > div {
+                    width: 100%;
+                }
+            }
+
+            .productsUrls {
+                a {
+                    .icon {
+                        font-size: 3rem;
+                    }
+
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+        }
+
+        .talleresBox {
+            padding: 20px 30px;
+            margin: 30px 20px;
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+
+        .locationBox {
+            margin: 20px;
+            transform: skewY(0);
+
+            .locationContent {
+                .textLocation {
+                    .pin {
+                        font-size: 2.5rem;
+
+                        &:hover {
+                            font-size: 3rem;
+                        }
+                    }
+
+                    h3 {
+                        font-size: 1.2rem;
+                        text-shadow: 2px 2px 3px a.$Black;
+                    }
+                }
+
+                .map {
+                    iframe {
+                        height: 300px;
+                    }
+                }
+            }
+        }
+
+        .mediosPago {
+            width: 80%;
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .mediosContent {
+                gap: 20px;
+                
+                .mp, .pp {
+                    width: 100%;
+                    max-width: 200px;
+                }
+                .pp {
+                    width: 30%;
+                }
             }
         }
     }

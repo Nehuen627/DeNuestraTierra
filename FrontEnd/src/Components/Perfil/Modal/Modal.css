@@ -16,4 +16,16 @@
   width: 80%;
   max-width: 500px;
   text-align: center;
+}
+@media (max-width: 768px) {
+  .modalOverlay .modalContent {
+    width: 90%;
+    padding: 15px;
+  }
+}
+@media (max-width: 480px) {
+  .modalOverlay .modalContent {
+    width: 95%;
+    padding: 10px;
+  }
 }/*# sourceMappingURL=Modal.css.map */

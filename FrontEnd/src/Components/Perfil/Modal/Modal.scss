@@ -18,5 +18,20 @@
         max-width: 500px;
         text-align: center;
     }
+    // Tablet breakpoint (768px)
+    @media (max-width: 768px) {
+        .modalContent {
+            width: 90%; 
+            padding: 15px;  
+        }
+    }
+
+    // Phone breakpoint (480px)
+    @media (max-width: 480px) {
+        .modalContent {
+            width: 95%; 
+            padding: 10px;
+        }
+    }
 }
 

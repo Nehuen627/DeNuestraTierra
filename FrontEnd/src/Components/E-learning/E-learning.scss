@@ -8,11 +8,11 @@
     h2, h1 {
         font-family: b.$Jost;
     }
-    .topBlock{
+    .topBlock {
         background-color: a.$Burgundy2;
         border-radius: 20px;
         box-shadow: 0 4px 6px a.$BlackShadow2;
-        width: 40%;
+        width: 60%;
         padding: 20px;
         text-align: center;
         margin: 20px auto 40px auto;
@@ -23,7 +23,47 @@
     .contentPlace {
         display: flex;
         flex-wrap: wrap;
-        gap: 40px; 
-        margin-left: 15%;
+        justify-content: center;
+        gap: 40px;
+        margin: 0 5%;
+    }
+
+    // Tablet breakpoint (768px)
+    @media (max-width: 768px) {
+        .topBlock {
+            width: 80%;
+        }
+        .contentPlace {
+            gap: 30px;
+        }
+    }
+
+    // Phone breakpoint (480px)
+    @media (max-width: 480px) {
+        .topBlock {
+            width: 90%;
+            padding: 15px;
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+        .contentPlace {
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+
+            > div {
+                width: 100%;
+                max-width: 300px;
+                height: auto;
+                min-height: 200px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
     }
 }

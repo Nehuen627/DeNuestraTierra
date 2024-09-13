@@ -58,6 +58,46 @@
 .perfilContent .pBox .pBtns button:hover {
   background-color: #62102a;
 }
+@media (max-width: 768px) {
+  .perfilContent .pBox {
+    margin: 50px 50px;
+    padding: 30px;
+  }
+  .perfilContent .pBox .pPic {
+    width: 150px;
+    height: 150px;
+  }
+  .perfilContent .pBox .pInfo h2 {
+    font-size: 1.5rem;
+  }
+  .perfilContent .pBox .pInfo h3 {
+    font-size: 1rem;
+  }
+  .perfilContent .pBox .pBtns button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .perfilContent .pBox {
+    margin: 20px;
+    padding: 20px;
+  }
+  .perfilContent .pBox .pPic {
+    width: 120px;
+    height: 120px;
+  }
+  .perfilContent .pBox .pInfo h2 {
+    font-size: 1.2rem;
+  }
+  .perfilContent .pBox .pInfo h3 {
+    font-size: 0.9rem;
+  }
+  .perfilContent .pBox .pBtns button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
 
 .notLogged {
   margin: 200px;

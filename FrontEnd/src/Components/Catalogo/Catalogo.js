@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from "../../axios/api.js";
 import ProductoSee from './ProductoSee/ProductSee.js';
-import "./Catalogo.css"
+import "./Catalogo.css";
 
 const Catalogo = () => {
     const [rating, setRating] = useState(0);
@@ -13,6 +13,7 @@ const Catalogo = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [type, setType] = useState([]);
+    const [modalOpen, setModalOpen] = useState(false);
 
     // Fetch product types (categories)
     useEffect(() => {
@@ -72,12 +73,77 @@ const Catalogo = () => {
         setRating(prevRating => (prevRating === ratingValue ? 0 : ratingValue));
     };
 
+    // Toggle modal
+    const toggleModal = () => {
+        setModalOpen(!modalOpen);
+    };
+
     return (
         <div className='catalogoContent'>
+            <button className="settingsButton" onClick={toggleModal}>
+                Filtros
+            </button>
+
+            {modalOpen && (
+                <div className="modal">
+                    <div className="modalContent">
+                        <h3>Filtros:</h3>
+                        <label htmlFor="rating">Puntuación:</label>
+                        <div className="starRating">
+                            {[...Array(5)].map((star, index) => {
+                                const ratingValue = index + 1;
+                                return (
+                                    <label key={index}>
+                                        <input
+                                            type="radio"
+                                            name="rating"
+                                            value={ratingValue}
+                                            onClick={() => handleRatingClick(ratingValue)}
+                                            style={{ display: 'none' }}
+                                        />
+                                        <span
+                                            className="star"
+                                            onMouseEnter={() => setHover(ratingValue)}
+                                            onMouseLeave={() => setHover(0)}
+                                            style={{
+                                                cursor: 'pointer',
+                                                color: ratingValue <= (hover || rating) ? "#8e173d" : "#f996b5"
+                                            }}
+                                        >
+                                            ★
+                                        </span>
+                                    </label>
+                                );
+                            })}
+                        </div>
+
+                        <label htmlFor="price">Precio:</label>
+                        <select
+                            name="price"
+                            onChange={(e) => setPriceSort(e.target.value)}
+                        >
+                            <option value="lowToHigh">Menor - Mayor</option>
+                            <option value="highToLow">Mayor - Menor</option>
+                        </select>
+
+                        <label htmlFor="category">Categoría:</label>
+                        <select
+                            name="category"
+                            onChange={(e) => setCategory(e.target.value === "all" ? '' : e.target.value)}
+                        >
+                            <option value="all">Todas</option>
+                            {optionsSelector}
+                        </select>
+
+                        <button className="closeModal" onClick={toggleModal}>Cerrar</button>
+                    </div>
+                </div>
+            )}
+
             <form onSubmit={handleSearch} className='form'>
                 <div className='settingSearch'>
                     <h3>Filtros:</h3>
-        
+
                     <label htmlFor="rating">Puntuación:</label>
                     <div className="starRating">
                         {[...Array(5)].map((star, index) => {
@@ -141,7 +207,7 @@ const Catalogo = () => {
 
                     <div className='productsDisplay'>
                         {loading ? <div className="loader"></div> : createVisualizator}
-                        {error ? <p>Error loading cursos: {error.message}</p> : ""}
+                        {error ? <p>Error loading productos: {error.message}</p> : ""}
                     </div>
                 </div>
             </form>

@@ -2,53 +2,159 @@
 @use '../../Sass/Fonts.scss' as b;
 
 .navbar {
-    h2{
-        font-size: 1.3rem;
-    }
     position: sticky;
     z-index: 1000;
     top: 0;
     width: 100%;
     background-color: a.$Burgundy;
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
     a {
         &:hover {
             color: a.$Pink;
             text-shadow: a.$Wine 4px 1px 1px;
         }
-    
     }
-    .nvContent{
+
+    .nvContent {
         display: flex;
         justify-content: space-between;
         align-items: center;
 
         .active {
-            color: a.$GreyPink2 ;
+            color: a.$GreyPink2;
         }
+
         .neverActive {
             color: a.$White !important;
         }
+
         .nvLeftSide {
             display: flex;
             padding-left: 2%;
             justify-content: flex-start; 
             flex-basis: 20%;
         }
+
         .nvCenter {
             display: flex;
             flex-basis: 60%;
             justify-content: center;
             gap: 2%; 
         }
+
         .nvRightSide {
             display: flex;
             padding-right: 2%;
             justify-content: flex-end; 
             flex-basis: 20%;
+
             .navIcon {
                 padding-right: 10px;
                 font-size: 2rem;
             }
         }
     }
+
+    .menuButton {
+        display: none;
+        background: none;
+        border: none;
+        color: a.$White;
+        font-size: 1.5rem;
+        cursor: pointer;
+        margin-right: 15px;
+    }
+
+    .navModal {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: a.$Burgundy;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        z-index: 1001;
+    }
+
+    // Tablet breakpoint (768px)
+    @media (max-width: 768px) {
+        .nvContent {
+            .nvCenter, .nvRightSide {
+                display: none;
+            }
+
+            .menuButton {
+                display: block;
+            }
+        }
+
+        .navModal {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+
+            &.open {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            a {
+                color: a.$White;
+                text-decoration: none;
+                padding: 0.5rem 0;
+                font-size: 1.2rem;
+
+                &:hover {
+                    color: a.$Pink;
+                }
+            }
+        }
+    }
+
+    // Mobile breakpoint (480px)
+    @media (max-width: 480px) {
+        .nvContent {
+            .nvLeftSide {
+                flex-basis: auto;
+            }
+        }
+
+        .navModal {
+            a {
+                font-size: 1rem;
+            }
+        }
+    }
+    // Mobile breakpoint (375px)
+    @media (max-width: 375px) {
+        width: 100vh;
+        .nvContent {
+            padding: 0 5%; 
+            .nvLeftSide {
+                flex-basis: auto; 
+            }
+            .nvCenter {
+                h2 {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+        .menuButton {
+            font-size: 1.2rem; 
+        }
+
+        .navModal {
+            a {
+                font-size: 0.9rem; 
+            }
+        }
+    }
+
 }

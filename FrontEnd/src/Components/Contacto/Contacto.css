@@ -120,4 +120,119 @@
 }
 .contactoContent .error {
   background: #7f2121;
+}
+@media (max-width: 768px) {
+  .contactoContent .topBlock {
+    width: 80%;
+    padding: 20px;
+  }
+  .contactoContent .topBlock h1 {
+    font-size: 1.8rem;
+  }
+  .contactoContent .topBlock h3 {
+    font-size: 1rem;
+  }
+  .contactoContent .contentBlock {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+  .contactoContent .contentBlock .form, .contactoContent .contentBlock .infoManual {
+    width: 85%;
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
+  .contactoContent .contentBlock .form {
+    padding: 15px;
+    margin: 20px 0;
+  }
+  .contactoContent .contentBlock .form .personalInfo {
+    flex-direction: column;
+  }
+  .contactoContent .contentBlock .form .personalInfo .emailInfo, .contactoContent .contentBlock .form .personalInfo .nameInfo {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .contactoContent .contentBlock .form .personalInfo .emailInfo input, .contactoContent .contentBlock .form .personalInfo .nameInfo input {
+    width: 90%;
+  }
+  .contactoContent .contentBlock .form .messageInfo {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contactoContent .contentBlock .form .messageInfo .messageArea {
+    width: 90%;
+    margin-bottom: 15px;
+  }
+  .contactoContent .contentBlock .form .messageInfo .messageArea textarea {
+    height: 300px;
+  }
+  .contactoContent .contentBlock .form .messageInfo .sendBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .contactoContent .contentBlock .infoManual {
+    margin: 0;
+  }
+}
+@media (max-width: 480px) {
+  .contactoContent .topBlock {
+    width: 90%;
+    padding: 15px;
+  }
+  .contactoContent .topBlock h1 {
+    font-size: 1.4rem;
+  }
+  .contactoContent .topBlock h3 {
+    font-size: 0.8rem;
+  }
+  .contactoContent .contentBlock {
+    margin: 0;
+  }
+  .contactoContent .contentBlock .form {
+    width: 85%;
+    max-width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+  }
+  .contactoContent .contentBlock .form .personalInfo {
+    flex-direction: column;
+  }
+  .contactoContent .contentBlock .form .personalInfo .emailInfo, .contactoContent .contentBlock .form .personalInfo .nameInfo {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .contactoContent .contentBlock .form .personalInfo .emailInfo input, .contactoContent .contentBlock .form .personalInfo .nameInfo input {
+    width: 90%;
+  }
+  .contactoContent .contentBlock .form .personalInfo .nameInfo {
+    padding-right: 0;
+  }
+  .contactoContent .contentBlock .form .messageInfo {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contactoContent .contentBlock .form .messageInfo .messageArea {
+    width: 90%;
+    margin-bottom: 15px;
+  }
+  .contactoContent .contentBlock .form .messageInfo .messageArea textarea {
+    height: 300px;
+  }
+  .contactoContent .contentBlock .form .messageInfo .sendBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .contactoContent .contentBlock .infoManual {
+    width: 85%;
+    max-width: 100%;
+    padding: 15px;
+    margin: 0;
+  }
+  .contactoContent .notification {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    text-align: center;
+  }
 }/*# sourceMappingURL=Contacto.css.map */

@@ -1,0 +1,133 @@
+.registerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.registerContent form {
+  background-color: #eddce2;
+  border-radius: 20px;
+  padding: 40px;
+  width: 400px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.297);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.registerContent form h2 {
+  color: #8e173d;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.registerContent form label {
+  font-size: 1.2rem;
+  color: #8e173d;
+  font-weight: bold;
+}
+.registerContent form input, .registerContent form select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #8e173d;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  background-color: #a91846;
+  color: #fff;
+}
+.registerContent form input:focus, .registerContent form select:focus {
+  outline: none;
+  border: 2px solid #8e173d;
+}
+.registerContent form input[type=checkbox] {
+  margin-right: 10px;
+}
+.registerContent form input[type=checkbox]:checked {
+  background-color: #ea567a;
+}
+.registerContent form input[type=checkbox]:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.registerContent form button {
+  background-color: #8e173d;
+  color: #fff;
+  padding: 12px 0;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.registerContent form button:hover {
+  background-color: #ea567a;
+}
+.registerContent form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.registerContent div {
+  text-align: center;
+  margin-top: 20px;
+  color: #7f2121;
+}
+.registerContent div a {
+  color: #8e173d;
+  text-decoration: none;
+  font-weight: bold;
+}
+.registerContent div a:hover {
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  .registerContent {
+    width: 80%;
+    margin: 20px auto;
+  }
+  .registerContent form {
+    width: 90%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .registerContent form button {
+    padding: 10px;
+    font-size: 1rem;
+    width: 100%;
+  }
+  .registerContent form input, .registerContent form select {
+    font-size: 1rem;
+    padding: 8px;
+  }
+}
+@media (max-width: 480px) {
+  .registerContent {
+    width: 85%;
+    margin: 20px auto;
+  }
+  .registerContent form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+  }
+  .registerContent form input, .registerContent form select {
+    width: 90%;
+  }
+  .registerContent form input, .registerContent form select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+  .registerContent form button {
+    padding: 8px;
+    font-size: 1rem;
+    width: 90%;
+  }
+  .registerContent h2 {
+    font-size: 1.8rem;
+  }
+}/*# sourceMappingURL=Register.css.map */

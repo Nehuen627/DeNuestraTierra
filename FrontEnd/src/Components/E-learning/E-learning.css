@@ -8,7 +8,7 @@
   background-color: rgb(166, 52, 52);
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
-  width: 40%;
+  width: 60%;
   padding: 20px;
   text-align: center;
   margin: 20px auto 40px auto;
@@ -19,6 +19,41 @@
 .elearningContent .contentPlace {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
-  margin-left: 15%;
+  margin: 0 5%;
+}
+@media (max-width: 768px) {
+  .elearningContent .topBlock {
+    width: 80%;
+  }
+  .elearningContent .contentPlace {
+    gap: 30px;
+  }
+}
+@media (max-width: 480px) {
+  .elearningContent .topBlock {
+    width: 90%;
+    padding: 15px;
+  }
+  .elearningContent .topBlock h1 {
+    font-size: 1.8rem;
+  }
+  .elearningContent .topBlock h2 {
+    font-size: 1.5rem;
+  }
+  .elearningContent .contentPlace {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+  .elearningContent .contentPlace > div {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }/*# sourceMappingURL=E-learning.css.map */

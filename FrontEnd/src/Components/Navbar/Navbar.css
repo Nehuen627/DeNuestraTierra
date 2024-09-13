@@ -44,4 +44,79 @@
 .navbar .nvContent .nvRightSide .navIcon {
   padding-right: 10px;
   font-size: 2rem;
+}
+.navbar .menuButton {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.navbar .navModal {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #7f2121;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1001;
+}
+@media (max-width: 768px) {
+  .navbar .nvContent .nvCenter, .navbar .nvContent .nvRightSide {
+    display: none;
+  }
+  .navbar .nvContent .menuButton {
+    display: block;
+  }
+  .navbar .navModal {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+  }
+  .navbar .navModal.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .navbar .navModal a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 0;
+    font-size: 1.2rem;
+  }
+  .navbar .navModal a:hover {
+    color: #ea567a;
+  }
+}
+@media (max-width: 480px) {
+  .navbar .nvContent .nvLeftSide {
+    flex-basis: auto;
+  }
+  .navbar .navModal a {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 375px) {
+  .navbar {
+    width: 100vh;
+  }
+  .navbar .nvContent {
+    padding: 0 5%;
+  }
+  .navbar .nvContent .nvLeftSide {
+    flex-basis: auto;
+  }
+  .navbar .nvContent .nvCenter h2 {
+    font-size: 1rem;
+  }
+  .navbar .menuButton {
+    font-size: 1.2rem;
+  }
+  .navbar .navModal a {
+    font-size: 0.9rem;
+  }
 }/*# sourceMappingURL=Navbar.css.map */
