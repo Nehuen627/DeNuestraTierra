@@ -15,6 +15,12 @@
   align-items: center;
   gap: 20px;
 }
+.loginContent form h2 {
+  color: #8e173d;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
 .loginContent form label {
   font-size: 1.2rem;
   color: #8e173d;

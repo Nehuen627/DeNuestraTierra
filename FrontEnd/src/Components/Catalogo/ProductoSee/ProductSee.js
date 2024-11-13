@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import "./ProductoSee.css"
 
 
@@ -6,7 +7,8 @@ const productoSee = ({Title, Id, Price, Img, Rating}) => {
 
     return (
         <div className='productoDiv'>
-            <div className='infoProduct'>
+            <Link to={`/Producto/${Id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div className='infoProduct'>
                 <img src={Img} alt='foto producto'></img>
                 <h2>{Title}</h2>
                 <h4>Id: {Id}</h4>
@@ -14,7 +16,8 @@ const productoSee = ({Title, Id, Price, Img, Rating}) => {
                 <div className='infoPrice'>
                     <h6>${Price}</h6>
                 </div>
-            </div>
+                </div>
+            </Link>
         </div>
     )
 }

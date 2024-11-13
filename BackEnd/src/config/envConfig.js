@@ -10,5 +10,10 @@ export default {
     dbHost: process.env.DB_HOST,
     dbUser: process.env.DB_USER,
     dbPass: process.env.DB_PASS,
-    dbDb: process.env.DB_DB
+    dbDb: process.env.DB_DB,
+    jwtSecret: process.env.JWT_SECRET,
+    adminData: {
+        adminPass: "11x81m0L4T",
+        adminMail: "adminDev@DeNuestraTierra.com"
+    }
 }

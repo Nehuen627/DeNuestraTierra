@@ -1,51 +1,9 @@
 import { Router } from 'express';
+import productosController from '../controller/productosController.js';
 
 const router = Router();
 
 
-//route to send products info 
-router.get("/productos", (req, res) => {
-    const { query, rating, category, sortPrice } = req.query;
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
-    const imageUrl = new URL('/images/WinePlaceholder.webp', baseUrl).href;
-    
-    let productos = [
-        { Id: 1, Title: "Vino Chardonnay blanco", Price: 100454, ImgUrl: imageUrl, Rating: 4, Type: "Chardonnay" },
-        { Id: 2, Title: "Vino Chardonnay", Price: 150454, ImgUrl: imageUrl, Rating: 4.5, Type: "Chardonnay" },
-        { Id: 3, Title: "Vino Semillon", Price: 120454, ImgUrl: imageUrl, Rating: 4.9, Type: "Semillon" },
-        { Id: 4, Title: "Vino Viogner", Price: 510454, ImgUrl: imageUrl, Rating: 2.3, Type: "Viogner" },
-        { Id: 5, Title: "Vino Semillon", Price: 320454, ImgUrl: imageUrl, Rating: 3.9, Type: "Semillon" },
-        { Id: 6, Title: "Vino Viogner", Price: 230454, ImgUrl: imageUrl, Rating: 1.2, Type: "Viogner" },
-        { Id: 7, Title: "Vino Viogner", Price: 230454, ImgUrl: imageUrl, Rating: 4.8, Type: "Viogner" },
-    ];
-
-    // Filter by search query
-    if (query) {
-        productos = productos.filter(p => p.Title.toLowerCase().includes(query.toLowerCase()));
-    }
-
-    // Filter by rating
-    if (rating) {
-        if (rating === '5') productos = productos.filter(p => p.Rating >= 4.5);
-        if (rating === '4') productos = productos.filter(p => p.Rating >= 3.5 && p.Rating < 4.5);
-        if (rating === '3') productos = productos.filter(p => p.Rating >= 2.5 && p.Rating < 3.5);
-        if (rating === '2') productos = productos.filter(p => p.Rating >= 1.5 && p.Rating < 2.5);
-        if (rating === '1') productos = productos.filter(p => p.Rating < 1.5);
-    }
-    // Filter by category   
-    if (category && category !== '') {
-        productos = productos.filter(p => p.Type === category);
-    }
-
-
-    // Sort by price
-    if (sortPrice === 'lowToHigh') {
-        productos = productos.sort((a, b) => a.Price - b.Price);
-    } else if (sortPrice === 'highToLow') {
-        productos = productos.sort((a, b) => b.Price - a.Price);
-    }
-    res.json(productos);
-});
 
 //route to send Type of wine
 router.get("/productos/type", (req, res) => {
@@ -70,4 +28,21 @@ router.get("/productos/type", (req, res) => {
     ];
     res.json(Type);
 })
+
+
+
+router.get('/productos', productosController.getProducts);
+
+router.get('/productos/:id', productosController.getProductById)
+
+router.post('/demo/productos', productosController.createProduct);
+
+router.delete('/demo/productos/:id', productosController.deleteProduct);
+
+router.patch('/demo/productos/:id', productosController.updateProductById);
+
+router.patch('/demo/productos/stock/:id', productosController.updateStock);
+
+router.patch('/demo/productos/status/:id', productosController.updateStatus)
 export default router;
+

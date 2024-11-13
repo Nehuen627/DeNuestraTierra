@@ -1,30 +1,31 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../axios/api';
 import TallerSee from './TallerSee/TallerSee';
-import './E-learning.css'
+import './E-learning.css';
 
 const Elearning = () => {
     const [cursos, setCursos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
 
+    // Fetch cursos data on component mount
     useEffect(() => {
         const fetchCursosData = async () => {
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                const response = await api.get('/api/cursos'); 
-                setCursos(response.data); 
-                } catch (err) {
+                await new Promise(resolve => setTimeout(resolve, 1000)); 
+                const response = await api.get('/api/talleres');
+                setCursos(response.data);
+            } catch (err) {
                 setError(err);
-                } finally {
+            } finally {
                 setLoading(false);
             }
         };
 
-    fetchCursosData();}, []);
+        fetchCursosData();
+    }, []);
 
+    // Map cursos to display
     const createVisualizator = cursos.map((curso) => (
         <TallerSee
             key={curso.Id}
@@ -34,7 +35,8 @@ const Elearning = () => {
             Price={curso.Price}
             Img={curso.ImgUrl}
         />
-    )); 
+    ));
+
     if (loading) return <div className="loader"></div>;
     if (error) return <p>Error loading cursos: {error.message}</p>;
 
@@ -48,7 +50,7 @@ const Elearning = () => {
                 {createVisualizator}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Elearning
+export default Elearning;

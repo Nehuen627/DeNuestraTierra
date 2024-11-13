@@ -1,0 +1,129 @@
+@use '../../Sass/Colors.scss' as a;
+
+.cartContainer {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: a.$LightGrey2;
+    border-radius: 10px;
+    box-shadow: 0 0 25px a.$BlackShadow;
+
+    h2 {
+        text-align: center;
+        color: a.$Wine;
+    }
+
+    .cartItems {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .cartItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: a.$GreyPink;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            span {
+                font-size: 18px;
+                color: #333;
+            }
+        }
+    }
+
+    .cartSummary {
+        margin-top: 20px;
+        text-align: center;
+
+        h3 {
+            font-size: 22px;
+            color: a.$Wine;
+        }
+
+        .buyButton {
+            padding: 15px 30px;
+            background-color: a.$Wine;
+            color: a.$White;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: a.$Pink;
+            }
+        }
+    }
+
+    // Responsive styles
+    @media (max-width: 768px) {
+        padding: 15px;
+
+        h2 {
+            font-size: 24px;
+        }
+
+        .cartItem {
+            flex-direction: column;
+            align-items: flex-start;
+
+            span {
+                font-size: 16px;
+            }
+
+            .deleteButton {
+                align-self: flex-end;
+            }
+        }
+
+        .cartSummary h3 {
+            font-size: 20px;
+        }
+
+        .buyButton {
+            font-size: 18px;
+            padding: 12px 25px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 10px;
+
+        h2 {
+            font-size: 22px;
+        }
+
+        .cartItem {
+            span {
+                font-size: 14px;
+            }
+        }
+
+        .cartSummary h3 {
+            font-size: 18px;
+        }
+
+        .buyButton {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+}
+
+.deleteButton {
+    background-color: red;
+    color: a.$White;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken(red, 10%);
+    }
+}

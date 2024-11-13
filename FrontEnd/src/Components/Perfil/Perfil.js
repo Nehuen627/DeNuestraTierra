@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Modal from './Modal/Modal.js';
 import api from '../../axios/api';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import "./Perfil.css"
 
 const Perfil = () => {

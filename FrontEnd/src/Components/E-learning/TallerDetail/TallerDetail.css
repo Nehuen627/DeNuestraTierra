@@ -1,0 +1,112 @@
+.tallerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e6e6e6;
+}
+
+.tallerDetail {
+  display: flex;
+  align-items: flex-start;
+  background-color: #f3f2f2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.297);
+  margin: 5% auto;
+  max-width: 900px;
+  width: 100%;
+}
+.tallerDetail .tallerGallery {
+  width: 45%;
+  max-width: 350px;
+  margin: auto 0;
+}
+.tallerDetail .tallerGallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.tallerDetail .tallerInfo {
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 55%;
+  margin-left: 20px;
+  padding: 20px;
+  background-color: #eddce2;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.tallerDetail .tallerInfo h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #8e173d;
+}
+.tallerDetail .tallerInfo p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #555;
+}
+.tallerDetail .tallerInfo h3 {
+  font-size: 24px;
+  color: #8e173d;
+  margin-bottom: 20px;
+}
+.tallerDetail .tallerInfo .skillsSection {
+  margin-bottom: 20px;
+}
+.tallerDetail .tallerInfo .skillsSection h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #8e173d;
+}
+.tallerDetail .tallerInfo .skillsSection ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+.tallerDetail .tallerInfo .skillsSection ul li {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: #333;
+}
+.tallerDetail .tallerInfo .buyNow {
+  padding: 10px 30px;
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+.tallerDetail .tallerInfo .buyNow:hover {
+  background-color: #ea567a;
+}
+@media (max-width: 768px) {
+  .tallerDetail {
+    flex-direction: column;
+  }
+  .tallerDetail .tallerGallery,
+  .tallerDetail .tallerInfo {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 480px) {
+  .tallerDetail .tallerGallery {
+    max-width: 100%;
+  }
+  .tallerDetail .tallerInfo h2 {
+    font-size: 22px;
+  }
+  .tallerDetail .tallerInfo h3 {
+    font-size: 20px;
+  }
+  .tallerDetail .buyNow {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}/*# sourceMappingURL=TallerDetail.css.map */

@@ -158,6 +158,28 @@
 .catalogoContent .modal .modalContent .closeModal:hover {
   background-color: rgb(166, 52, 52);
 }
+.catalogoContent .pagination {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+.catalogoContent .pagination .pageButton {
+  background-color: #8e173d;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.catalogoContent .pagination .pageButton:hover {
+  background-color: rgb(166, 52, 52);
+}
+.catalogoContent .pagination .disabled {
+  background-color: #eddce2;
+  cursor: not-allowed;
+}
 
 @media (max-width: 768px) {
   .catalogoContent .form {
@@ -308,5 +330,17 @@
   .catalogoContent .displaySearchs .searchBar button {
     padding: 10px 0;
     font-size: 1.1rem;
+  }
+}
+@media (max-width: 768px) {
+  .pagination .pageButton {
+    padding: 8px 15px;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .pagination .pageButton {
+    padding: 6px 10px;
+    font-size: 0.9rem;
   }
 }/*# sourceMappingURL=Catalogo.css.map */

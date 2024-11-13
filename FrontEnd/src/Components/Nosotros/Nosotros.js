@@ -25,7 +25,9 @@ const Nosotros = () => {
         const fetchPicturesData = async () => {
             try {
                 const response = await api.get('/api/nosotros/pictures'); 
-                setPictures(response.data); 
+                
+                setPictures(response.data.pictures);
+                
             } catch (err) {
                 console.error(err);
             } finally {

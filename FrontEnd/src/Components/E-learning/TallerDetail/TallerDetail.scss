@@ -1,0 +1,128 @@
+@use '../../../Sass/Colors.scss' as a;
+
+.tallerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: a.$LightGrey;
+}
+
+.tallerDetail {
+  display: flex;
+  align-items: flex-start;
+  background-color: a.$LightGrey2;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 25px a.$BlackShadow;
+  margin: 5% auto;
+  max-width: 900px;
+  width: 100%;
+
+  .tallerGallery {
+    width: 45%;
+    max-width: 350px;
+    margin: auto 0;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+
+  .tallerInfo {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 55%;
+    margin-left: 20px;
+    padding: 20px;
+    background-color: a.$GreyPink;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      color: a.$Wine;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    h3 {
+      font-size: 24px;
+      color: a.$Wine;
+      margin-bottom: 20px;
+    }
+
+    .skillsSection {
+      margin-bottom: 20px;
+
+      h4 {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: a.$Wine;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 20px;
+
+        li {
+          font-size: 16px;
+          margin-bottom: 5px;
+          color: #333;
+        }
+      }
+    }
+
+    .buyNow {
+      padding: 10px 30px;
+      background-color: a.$Wine;
+      color: a.$White;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+      width: 100%;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: a.$Pink;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+
+    .tallerGallery,
+    .tallerInfo {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tallerGallery {
+      max-width: 100%;
+    }
+
+    .tallerInfo h2 {
+      font-size: 22px;
+    }
+
+    .tallerInfo h3 {
+      font-size: 20px;
+    }
+
+    .buyNow {
+      font-size: 16px;
+      padding: 10px 20px;
+    }
+  }
+}

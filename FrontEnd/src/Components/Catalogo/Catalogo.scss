@@ -185,6 +185,31 @@
             }
         }
     }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    
+        .pageButton {
+            background-color: a.$Wine;
+            color: a.$White;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+    
+            &:hover {
+                background-color: a.$Burgundy2;
+            }
+        }
+    
+        .disabled {
+            background-color: a.$GreyPink;
+            cursor: not-allowed;
+        }
+    }
 }
 
 @media (max-width: 768px) {
@@ -368,3 +393,18 @@
     }
 }
 
+
+
+@media (max-width: 768px) {
+    .pagination .pageButton {
+        padding: 8px 15px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pagination .pageButton {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+}

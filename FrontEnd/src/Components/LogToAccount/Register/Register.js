@@ -84,7 +84,7 @@ const Register = () => {
     return (
         <div className='registerContent'>
             <form onSubmit={handleSearch} className='form'>
-                <h2>Register</h2>
+                <h2>Registrate</h2>
                 <label>Nombre:</label>
                 <input type="text" name="name" onChange={(e) => setName(e.target.value)} placeholder='Escribe tu nombre' required />
 

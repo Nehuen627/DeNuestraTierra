@@ -1,6 +1,6 @@
 import app from './app.js';
 import config from './config/envConfig.js'
-
+import init from './db/db.js';
 
 const PORT = config.port;
 

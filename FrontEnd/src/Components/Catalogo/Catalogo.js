@@ -14,8 +14,9 @@ const Catalogo = () => {
     const [error, setError] = useState(null);
     const [type, setType] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1); 
 
-    // Fetch product types (categories)
     useEffect(() => {
         const fetchTypeData = async () => {
             try {
@@ -28,9 +29,8 @@ const Catalogo = () => {
         fetchTypeData();
     }, []);
 
-    // Handle form submission to search for products
     const handleSearch = async (e) => {
-        e.preventDefault();
+        if (e) e.preventDefault();
         setLoading(true);
         setError(null);
 
@@ -40,10 +40,13 @@ const Catalogo = () => {
                     query: searchQuery,
                     rating: rating,
                     category: category,
-                    sortPrice: priceSort
+                    sortPrice: priceSort,
+                    page: currentPage,
                 }
-            });
-            setProductos(response.data);
+            }); 
+            
+            setProductos(response.data.productos); 
+            setTotalPages(response.data.totalPages); 
         } catch (err) {
             setError(err);
         } finally {
@@ -51,29 +54,35 @@ const Catalogo = () => {
         }
     };
 
-    // Map products to display
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
+    useEffect(() => {
+        handleSearch();
+    }, [currentPage]);
+
+    console.log(productos);
+    
     const createVisualizator = productos.map((producto) => (
         <ProductoSee
-            key={producto.Id}
-            Title={producto.Title}
-            Id={producto.Id}
-            Price={producto.Price}
-            Img={producto.ImgUrl}
-            Rating={producto.Rating}
+            key={producto.id}
+            Title={producto.title}
+            Id={producto.id}
+            Price={producto.price}
+            Img={producto.imgUrl}
+            Rating={producto.rating}
         />
     ));
 
-    // Options for category selector
     const optionsSelector = type.map((option) => (
         <option key={option.Id} value={option.Name}>{option.Name}</option>
     ));
 
-    // Toggle rating selection
     const handleRatingClick = (ratingValue) => {
         setRating(prevRating => (prevRating === ratingValue ? 0 : ratingValue));
     };
 
-    // Toggle modal
     const toggleModal = () => {
         setModalOpen(!modalOpen);
     };
@@ -211,6 +220,25 @@ const Catalogo = () => {
                     </div>
                 </div>
             </form>
+
+            {/* Pagination controls */}
+            <div className="pagination">
+                <button 
+                    className={`pageButton ${currentPage === 1 ? 'disabled' : ''}`} 
+                    onClick={() => handlePageChange(currentPage - 1)} 
+                    disabled={currentPage === 1}
+                >
+                    Anterior
+                </button>
+                <button 
+                    className={`pageButton ${currentPage === totalPages ? 'disabled' : ''}`} 
+                    onClick={() => handlePageChange(currentPage + 1)} 
+                    disabled={currentPage === totalPages}
+                >
+                    Siguiente
+                </button>
+            </div>  
+
         </div>
     );
 }

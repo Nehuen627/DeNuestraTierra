@@ -17,29 +17,29 @@ const Navbar = () => {
                 <div className='nvLeftSide'>
                     <NavLink className="neverActive" to="/" >
                         <div>
-                            <h2>De Nuestra Tierra</h2>
+                            <p>De Nuestra Tierra</p>
                         </div>
                     </NavLink>
                 </div>
                 <div className='nvCenter'>
                     <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Contacto">
                         <div>
-                            <h2>Contacto</h2>
+                            <p>Contacto</p>
                         </div>
                     </NavLink>
                     <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Nosotros">
                         <div>
-                            <h2>Nosotros</h2>
+                            <p>Nosotros</p>
                         </div>
                     </NavLink>
                     <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Catalogo">
                         <div>
-                            <h2>Catalogo</h2>
+                            <p>Catalogo</p>
                         </div>
                     </NavLink>
                     <NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/Talleres">
                         <div>
-                            <h2>Talleres</h2>
+                            <p>Talleres</p>
                         </div>
                     </NavLink>
                 </div>

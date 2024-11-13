@@ -30,6 +30,7 @@ const Login = () => {
     return (
         <div className='loginContent'>
             <form onSubmit={handleSubmit}>
+                <h2>Logeate</h2>
                 <label>Mail:</label>
                 <input
                     type="email"

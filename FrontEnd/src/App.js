@@ -9,8 +9,8 @@ import Nosotros from './Components/Nosotros/Nosotros.js'
 import Elearning from './Components/E-learning/E-learning.js'
 import Catalogo from './Components/Catalogo/Catalogo.js'
 import Contacto from './Components/Contacto/Contacto.js'
-import Producto from './Components/Producto/Producto.js'
-import Curso from './Components/Curso/Curso.js'
+import ProductDetail from './Components/Catalogo/ProductDetail.js/ProductDetail.js';
+import TallerDetail from './Components/E-learning/TallerDetail/TallerDetail.js'
 import Navbar from './Components/Navbar/Navbar.js'
 import Carrito from './Components/Carrito/Carrito.js'
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop.js';
@@ -36,8 +36,8 @@ function App() {
             <Route exact path="/Login" element={<Login/>}/>
             <Route exact path="/Register" element={<Register/>}/>
             {/* Dynamic routes */}
-            <Route path="/Producto/:id" element={<Producto/>} />
-            <Route path="/Curso/:id" element={<Curso/>}/>
+            <Route path="/Producto/:id" element={<ProductDetail/>} />
+            <Route path="/Talleres/:id" element={<TallerDetail/>}/>
           </Routes>
         </div>
         <Footer/>

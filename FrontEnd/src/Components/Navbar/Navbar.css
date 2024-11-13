@@ -5,8 +5,8 @@
   width: 100%;
   background-color: #7f2121;
 }
-.navbar h2 {
-  font-size: 1.3rem;
+.navbar p {
+  font-size: 1.1rem;
 }
 .navbar a:hover {
   color: #ea567a;
@@ -110,7 +110,7 @@
   .navbar .nvContent .nvLeftSide {
     flex-basis: auto;
   }
-  .navbar .nvContent .nvCenter h2 {
+  .navbar .nvContent .nvCenter p {
     font-size: 1rem;
   }
   .navbar .menuButton {

@@ -1,21 +1,24 @@
-import mysql from "mysql2"
-import config from "../config/envConfig.js"
+import mysql from "mysql2";
+import config from "../config/envConfig.js";
 
 const pool = mysql.createPool({
     host: config.dbHost,
     user: config.dbUser,
     password: config.dbPass,
-    database: config.dbDb
+    database: config.dbDb,
+    waitForConnections: true,
+    queueLimit: 0         
 });
 
-const promisePool = pool.promise();
+const init = pool.promise();
 
-pool.query('SELECT * FROM yourTable', (err, results, fields) => {
-    if (err) {
-      console.error('Database connection error:', err);
-    } else {
-      console.log('Database results:', results);
-    }
-  });
-  
-export default promisePool
+init.query('SELECT 1')
+    .then(() => {
+        console.log('Successfully connected to MySQL');
+    })
+    .catch((err) => {
+        console.error('Error connecting to MySQL:', err);
+    });
+
+
+export default init;
