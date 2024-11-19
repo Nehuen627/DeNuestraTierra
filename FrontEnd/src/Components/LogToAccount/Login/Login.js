@@ -14,7 +14,7 @@ const Login = () => {
 
 
         try {
-            const response = await api.post('/api/user/login', { email, password });
+            const response = await api.post('/auth/sessions/login', { email, password });
             if (response.data.success) {
                 console.log("Login successful");
             } else {

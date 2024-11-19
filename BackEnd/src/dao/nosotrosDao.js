@@ -1,4 +1,4 @@
-import init from '../db/db.js';  
+import {init} from '../db/db.js';  
 
 export default class NosotrosDao {
     static async getText() {

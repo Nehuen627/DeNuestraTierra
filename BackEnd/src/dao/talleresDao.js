@@ -1,39 +1,41 @@
-import init from '../db/db.js';  
+import {init} from '../db/db.js';  
 import { v4 as uuidv4 } from 'uuid';
 
 export default class {
-    static async getTalleres({limit = 4, offset = 0 }) {
-        let sql = `SELECT * FROM talleres WHERE 1 = 1`;
-        let countSql = `SELECT COUNT(*) as total FROM talleres WHERE 1 = 1`;
-        const values = [];
+    static async getTalleres() {
+        let sql = `SELECT * FROM talleres `;
+    
+        const [rows] = await init.execute(sql);
+    
+        const talleres = rows.map((taller) => ({
+            ...taller,
+            skills: JSON.parse(taller.skills), 
+        }));
 
-    
-        sql += ` LIMIT ${limit} OFFSET ${offset}`;
-    
-        const [countResult] = await init.execute(countSql, values);
-        const totalTalleres = countResult[0].total;
-    
-        const [rows] = await init.execute(sql, values);
-    
-        const totalPages = Math.ceil(totalTalleres / limit);
-    
-        return { talleres: rows, totalPages };
+        return talleres; 
     }
     static async getTallerById(id) {
         const sql = 'SELECT * FROM talleres WHERE id = ?';
         const [rows] = await init.execute(sql, [id]);
-        return rows.length > 0 ? rows[0] : null;
+
+        if (rows.length > 0) {
+            const taller = rows[0];
+            taller.skills = JSON.parse(taller.skills);
+            return taller;
+        }
+
+        return null;
     }
     static async createTaller(tallerData) {
         const id = uuidv4(); 
         const { title, description, price, skills} = tallerData; 
         
-        const sql = `INSERT INTO talleres (id, title, description, price, skills) VALUES (?, ?, ?, ?, ?)`;
-        const values = [id, title, description, price, skills];
+        const sql = `INSERT INTO talleres (id, title, description, price, skills, imgurl) VALUES (?, ?, ?, ?, ?, ?)`;
+        const values = [id, title, description, price, skills, imgurl];
         
         const [result] = await init.execute(sql, values);
         
-        return { id, title, description, price, skills };
+        return { id, title, description, price, skills, imgurl };
     }
     static async deleteTaller(id) {
         const sql = `DELETE FROM talleres WHERE id = ?`;

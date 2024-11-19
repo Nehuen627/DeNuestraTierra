@@ -4,7 +4,8 @@ import talleresRouter from "./talleresRouter.js"
 import contactoRouter from "./contactoRouter.js"
 import nosotrosRouter from "./nosotrosRouter.js"
 import productosRouter from "./productosRouter.js"
-
+import userRouter from "./userRouter.js"
+import sessionsRouter from "./sessionRouter.js"
 const router = Router();
 
 
@@ -13,5 +14,7 @@ router.use("/api", talleresRouter)
 router.use("/api", contactoRouter)
 router.use("/api", nosotrosRouter)
 router.use("/api", productosRouter)
+router.use("/api", userRouter)
+router.use("/auth", sessionsRouter)
 
 export default router;

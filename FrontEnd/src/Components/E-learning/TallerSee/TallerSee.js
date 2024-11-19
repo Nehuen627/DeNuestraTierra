@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TallerSee.css';
 
-const TallerSee = ({ Title, Id, Description, Price, Img }) => {
+const TallerSee = ({ Title, Id, Description, Price, Skills, Img }) => {
   return (
     <div className="tallerDiv">
         <Link to={`/talleres/${Id}`} style={{textDecoration: 'none', color: 'inherit' }} >
@@ -10,6 +10,7 @@ const TallerSee = ({ Title, Id, Description, Price, Img }) => {
             <img src={Img} alt={`Foto del taller ${Title}`} />
             <h2>{Title}</h2>
             <h5>{Description}</h5>
+            <p>{Skills}</p>
             <div className="infoPrice">
                 <h6>{Price}</h6>
             </div>

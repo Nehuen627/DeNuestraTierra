@@ -15,4 +15,17 @@ export default class {
     static async addProduct(productData) {
         return await productosDao.insertProduct(productData);
     }
+
+
+
+
+    static async getProductosType() {
+        return await productosDao.getProductosType()
+    }
+    static async createProductosType(prodcutosTypeData) {
+        return await productosDao.createProductosType(prodcutosTypeData)
+    }
+    static async deleteProductosType(id) {
+        return await productosDao.deleteProduct(id)
+    }
 }

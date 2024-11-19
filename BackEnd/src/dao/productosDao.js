@@ -1,4 +1,4 @@
-import init from '../db/db.js';  
+import {init} from '../db/db.js';  
 import { v4 as uuidv4 } from 'uuid';
 
 export default class {
@@ -82,7 +82,7 @@ export default class {
         await init.execute(sql, [id]);
 
         const [rows] = await init.execute('SELECT * FROM products WHERE id = ?', [id])
-        return  
+        return 
     }
 
     static async insertProduct({ title, price, imgUrl, rating, type, description, stock, barCode, status = 1 }) {
@@ -96,4 +96,31 @@ export default class {
         return { id, title, price, imgUrl, rating, type, description, stock, barCode, status };
     }
 
+
+
+    static async getProductosType(){
+        let sql = `SELECT * FROM productosType `;
+    
+        const [rows] = await init.execute(sql);
+    
+        return rows;
+    }
+    static async createProductosType(prodocutosTypeData){
+        const id = uuidv4(); 
+        const { type } = prodocutosTypeData; 
+        
+        const sql = `INSERT INTO productosType (id, type) VALUES (?, ?)`;
+        const values = [id, type];
+        
+        const [result] = await init.execute(sql, values);
+        
+        return { id, type };
+    }
+    static async deleteProductosType(id){
+        const sql = `DELETE FROM productosType WHERE id = ?`;
+        await init.execute(sql, [id]);
+
+        const [rows] = await init.execute('SELECT * FROM productosType WHERE id = ?', [id])
+        return 
+    }
 }

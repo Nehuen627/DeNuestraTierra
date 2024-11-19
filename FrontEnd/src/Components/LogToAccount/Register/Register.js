@@ -21,7 +21,7 @@ const Register = () => {
         let isMounted = true;
         const fetchTypeData = async () => {
             try {
-                const response = await api.get('/api/user/region');
+                const response = await api.get('/api/user/regions');
                 if (isMounted) setType(response.data);
             } catch (err) {
                 if (isMounted) setError(err);
@@ -53,26 +53,27 @@ const Register = () => {
 
         try {
             if (pass === confirmPass) {
-                const validEmail = await api.get('/api/user/email', {
-                    params: {
-                        Email: email
-                    }
-                });
-                if (validEmail.data) {
-                    const response = await api.post('/api/user/register', {
-                        Name: name,
-                        LastName: lastName,
-                        Email: email,
-                        Region: province,
-                        Password: pass,
-                        ConfirmPassword: confirmPass,
-                        Date: date,
-                        InformativeEmails: informativeEmails
+                let user = {
+                    name: name,
+                        lastName: lastName,
+                        email: email,
+                        province: province,
+                        password: pass,
+                        birthDate: date,
+                        informativeEmails: informativeEmails
+                }
+                console.log(user);
+                
+                    const response = await api.post('/auth/sessions/register', {
+                        name: name,
+                        lastName: lastName,
+                        email: email,
+                        province: province,
+                        password: pass,
+                        birthDate: date,
+                        informativeEmails: informativeEmails
                     });
                     setConfirmation(response.data);
-                } else {
-                    setError({ message: "Email already registered" });
-                }
             }
         } catch (err) {
             setError(err);

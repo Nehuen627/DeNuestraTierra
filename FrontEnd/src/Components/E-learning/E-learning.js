@@ -4,17 +4,16 @@ import TallerSee from './TallerSee/TallerSee';
 import './E-learning.css';
 
 const Elearning = () => {
-    const [cursos, setCursos] = useState([]);
+    const [talleres, settalleres] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Fetch cursos data on component mount
+    // Fetch talleres data on component mount
     useEffect(() => {
-        const fetchCursosData = async () => {
+        const fetchtalleresData = async () => {
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000)); 
                 const response = await api.get('/api/talleres');
-                setCursos(response.data);
+                settalleres(response.data);
             } catch (err) {
                 setError(err);
             } finally {
@@ -22,23 +21,24 @@ const Elearning = () => {
             }
         };
 
-        fetchCursosData();
+        fetchtalleresData();
     }, []);
-
-    // Map cursos to display
-    const createVisualizator = cursos.map((curso) => (
+    
+    // Map talleres to display
+    const createVisualizator = talleres.map((curso) => (
         <TallerSee
             key={curso.Id}
-            Title={curso.Title}
-            Id={curso.Id}
-            Description={curso.Description}
-            Price={curso.Price}
-            Img={curso.ImgUrl}
+            Title={curso.title}
+            Id={curso.id}
+            Description={curso.description}
+            Price={curso.price}
+            Skills={curso.skills}
+            Img={curso.imgUrl}
         />
     ));
 
     if (loading) return <div className="loader"></div>;
-    if (error) return <p>Error loading cursos: {error.message}</p>;
+    if (error) return <p>Error loading talleres: {error.message}</p>;
 
     return (
         <div className='elearningContent'>

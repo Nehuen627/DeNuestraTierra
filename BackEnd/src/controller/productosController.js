@@ -105,4 +105,36 @@ export default class {
         }
         
     }
+
+
+
+
+    /* type */
+    static async getProductosType(req, res) {
+        try {
+            const productosType = await productosService.getProductosType()
+            res.json(productosType);
+        } catch (error) {
+            console.error('Error fetching productosType:', error);
+            res.status(500).json({ message: 'Error fetching prodcutosType', error });
+        }
+    }
+    static async createProductosType(req, res) {
+        try {
+            const productosTypeData = req.body; 
+            const newproductosType = await productosService.createProductosType(productosTypeData);
+            res.status(201).json({ message: 'productosType created successfully', productosType: newproductosType });
+        } catch (error) {
+            res.status(500).json({ message: 'Error creating productosType', error });
+        }
+    }
+    static async deleteProductosType(req, res) {
+        try {
+            const { id } = req.params;
+            await productosService.deleteProductosType(id);
+            res.status(200).json({ message: 'productosType deleted successfully' });
+        } catch (error) {
+            res.status(500).json({ message: 'Error deleting productosType', error });
+        }
+    }
 }

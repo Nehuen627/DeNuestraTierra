@@ -1,11 +1,10 @@
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
+import { Strategy as LocalStrategy } from 'passport-local';
 import { Exception } from '../utils/utils.js';
 import config from './envConfig.js'
-import usersController from ;
-import UserDTO from ;
-import {createError} from '../utils/createError.js';
-import cartsController from ;
+import usersController from '../controller/userController.js';
+import UserDTO from '../dao/DTO/userDTO.js';
 
 const optsUser = {
     usernameField: 'email',
@@ -27,7 +26,7 @@ const optsJWT = {
 
 
 export const init = () => {
-    passport.use('register', new LocalStrategy(optsUser, async (req, email, password, done) => {
+    passport.use('register', new LocalStrategy(optsUser, async (req, email, password, done) => {        
         try {
             const isEmailUsed = await usersController.findEmail(email)
             if(isEmailUsed){
@@ -35,17 +34,14 @@ export const init = () => {
             } else {
                 const data = req.body 
                 const newUser = await usersController.addUser(data)
+                console.log(newUser);
+                
                 done(null, newUser);
             }
         }
         catch(error) {
-            return done(
-                createError.Error({
-                    name: 'Register error',
-                    cause: error,
-                    message: 'An error occured within the register method',
-                })
-            );
+            console.log(error);
+            
         }
     }));
     passport.use('login', new LocalStrategy(optsUser, async (req, email, password, done) => {
@@ -57,20 +53,17 @@ export const init = () => {
                     _id: "admin",
                     cart: 1,
                     name: "current Admin",
+                    lastName: "admin",
                     role: "admin",
-                    age: "AdminAge",
+                    birthdate: "Admin",
+                    province: "admin",
                     email: email,
-                    documents: "",
                 }
                 done(null, user);
             } else {
                 const user = await usersController.getUserData(email, password);
                 if(user === "Email or password invalid") {
-                    return done(createError.Error({
-                        name: 'Login error',
-                        cause: generatorUserLoginError(email, password),
-                        message: 'Email or password invalid',
-                    }))
+                    error
                 } else {
                     done(null, user);
                 }
@@ -81,64 +74,6 @@ export const init = () => {
         }
     }));
 
-    passport.use('github', new GithubStrategy({
-        clientID: config.github.clientID, 
-        clientSecret: config.github.clientSecret,
-        callbackURL: "http://localhost:8080/auth/sessions/github-callback", 
-    }, async (accessToken, refreshToken, profile, done) => {
-        try {
-            const email = profile._json.email;
-            const githubId = profile.id;
-
-            if (!email) {
-                const userWithGithubId = await usersController.findUserByGithubId(githubId);
-
-                if (userWithGithubId) {
-                    return done(null, userWithGithubId);
-                }
-                const data = {
-                    firstName: profile._json.name,
-                    lastName: '',
-                    email: undefined,
-                    age: '',
-                    password: '',
-                    provider: 'Github',
-                    githubId: githubId, 
-                    cart: "",
-                    document: '',
-                    lastConnection: ""
-                };
-    
-                const newUser = await usersController.addGithubUser(data);
-                return done(null, newUser);
-            }
-    
-            let user = await usersController.findEmail(email);
-            if (user) {
-                return done(null, user);
-            }
-            const userCart = await cartsController.addCart(email)
-            const data = {
-                firstName: profile._json.name,
-                lastName: '',
-                email: email,
-                age: '',
-                password: '',
-                provider: 'Github',
-                document: '',
-                lastConnection: "",
-                cart: userCart
-            };
-    
-            const newUser = await usersController.addGithubUser(data);
-            done(null, newUser);
-        } catch (error) {
-            done(error, null);
-        }
-    }));
-    
-
-    
     passport.serializeUser((user, done) => {
         done(null, user._id);
     });
@@ -150,11 +85,10 @@ export const init = () => {
                 _id: "admin",
                 cart: 1,
                 firstName: "Admin",
-                lastName: "Coder",
+                lastName: "admin",
                 role: "admin",
-                age: "AdminAge",
-                email: "adminCoder@coder.com",
-                document: ''
+                birthdate: "admin",
+                email: "adminadmin@adming.com",
             };
             return done(null, adminUser);
         }

@@ -1,12 +1,10 @@
 import talleresService from "../services/talleresService.js";
 export default class {
     static async getTalleres(req, res) {
-        const { page = 1, limit = 4 } = req.query;
-        const offset = (page - 1) * limit;
     
         try {
-            const { talleres, totalPages } = await talleresService.getTalleres({ limit: Number(limit), offset})
-            res.json({ talleres, totalPages });
+            const talleres = await talleresService.getTalleres()
+            res.json(talleres);
         } catch (error) {
             console.error('Error fetching talleres:', error);
             res.status(500).json({ message: 'Error fetching talleres', error });

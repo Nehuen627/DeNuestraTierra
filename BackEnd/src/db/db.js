@@ -21,4 +21,4 @@ init.query('SELECT 1')
     });
 
 
-export default init;
+export { pool, init };

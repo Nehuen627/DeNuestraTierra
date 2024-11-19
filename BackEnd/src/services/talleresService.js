@@ -1,7 +1,7 @@
 import talleresDao from "../dao/talleresDao.js";
 export default class {
-    static async getTalleres(filters) {
-        return talleresDao.getTalleres(filters)
+    static async getTalleres() {
+        return talleresDao.getTalleres()
     }
     static async getTallerById(id) {
         return talleresDao.getTallerById(id)

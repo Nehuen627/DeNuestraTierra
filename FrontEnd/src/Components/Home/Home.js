@@ -23,7 +23,9 @@ const Home = () => {
                         rating: 5,
                     }
                 });
-                setProductos(response.data);
+
+                
+                setProductos(response.data.productos);
             } catch (err) {
                 setError(err);
             }
@@ -32,16 +34,19 @@ const Home = () => {
         fetchProductos();
     }, []);
     
+    
     const top3 = productos.slice(0, 3)
+    
     const sortedTop3 = top3.sort((a, b) => b.Rating - a.Rating);
+    
     const createVisualizator = sortedTop3.map((producto) => (
         <ProductoSee
-            key={producto.Id}
-            Title={producto.Title}
-            Id={producto.Id}
-            Price={producto.Price}
-            Img={producto.ImgUrl}
-            Rating={producto.Rating}
+            key={producto.id}
+            Title={producto.title}
+            Id={producto.id}
+            Price={producto.price}
+            Img={producto.imgUrl}
+            Rating={producto.rating}
         />
     ));
 

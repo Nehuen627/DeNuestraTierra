@@ -13,7 +13,9 @@ export default {
     dbDb: process.env.DB_DB,
     jwtSecret: process.env.JWT_SECRET,
     adminData: {
-        adminPass: "11x81m0L4T",
-        adminMail: "adminDev@DeNuestraTierra.com"
-    }
+        adminPass: process.env.ADMIN_PASS,
+        adminMail: process.env.ADMIN_MAIL
+    },
+    cookieSecret: process.env.COOKIE_SECRET,
+    sessionSecret: process.env.SESSION_SECRET
 }

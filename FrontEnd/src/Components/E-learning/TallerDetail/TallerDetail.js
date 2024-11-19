@@ -6,7 +6,7 @@ import "./TallerDetail.css";
 const TallerDetail = () => {
   const { id } = useParams(); 
   const [taller, setTaller] = useState(null);
-  const [isInCart, setIsInCart] = useState(false); // State to track if the item is added to cart
+  const [isInCart, setIsInCart] = useState(false); 
 
   useEffect(() => {
     const fetchTaller = async () => {
@@ -24,9 +24,9 @@ const TallerDetail = () => {
   const addToCart = () => {
     if (!isInCart) {
       setIsInCart(true);
-      console.log(`${taller.Title} has been added to your cart.`);
+      console.log(`${taller.title} has been added to your cart.`);
     } else {
-      console.log(`${taller.Title} is already in your cart.`);
+      console.log(`${taller.title} is already in your cart.`);
     }
   };
 
@@ -36,18 +36,18 @@ const TallerDetail = () => {
     <div className="tallerDetailContainer">
       <div className="tallerDetail">
         <div className="tallerGallery">
-          <img src={taller.ImgUrl} alt={taller.Title} className="tallerImage" />
+          <img src={taller.imgUrl} alt={taller.title} className="tallerImage" />
         </div>
         <div className="tallerInfo">
-          <h2>{taller.Title}</h2>
-          <p>{taller.Description}</p>
-          <h3>${taller.Price}</h3>
+          <h2>{taller.title}</h2>
+          <p>{taller.description}</p>
+          <h3>${taller.price}</h3>
           
           {/* Skills Section */}
           <div className="skillsSection">
             <h4>Skills Gained:</h4>
             <ul>
-              {taller.Skills?.map((skill, index) => (
+              {taller.skills?.map((skill, index) => (
                 <li key={index}>{skill}</li>
               ))}
             </ul>
