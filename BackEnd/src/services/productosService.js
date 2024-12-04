@@ -26,6 +26,6 @@ export default class {
         return await productosDao.createProductosType(prodcutosTypeData)
     }
     static async deleteProductosType(id) {
-        return await productosDao.deleteProduct(id)
+        return await productosDao.deleteProductosType(id)
     }
 }

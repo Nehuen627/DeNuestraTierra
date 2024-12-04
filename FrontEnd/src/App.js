@@ -16,6 +16,7 @@ import Carrito from './Components/Carrito/Carrito.js'
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop.js';
 import Login from './Components/LogToAccount/Login/Login.js';
 import Register from './Components/LogToAccount/Register/Register.js';
+import Dashboard from './Components/Dashboard/dashboard.js';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route exact path="/Perfil" element={<Perfil/>}/>
             <Route exact path="/Login" element={<Login/>}/>
             <Route exact path="/Register" element={<Register/>}/>
+            <Route exact path="/Dashboard" element={<Dashboard/>}/>
             {/* Dynamic routes */}
             <Route path="/Producto/:id" element={<ProductDetail/>} />
             <Route path="/Talleres/:id" element={<TallerDetail/>}/>

@@ -76,7 +76,7 @@ const Catalogo = () => {
     ));
 
     const optionsSelector = type.map((option) => (
-        <option key={option.Id} value={option.Name}>{option.Name}</option>
+        <option key={option.id} value={option.type}>{option.type}</option>
     ));
 
     const handleRatingClick = (ratingValue) => {

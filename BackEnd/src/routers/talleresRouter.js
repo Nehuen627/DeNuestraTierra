@@ -6,8 +6,8 @@ const router = Router();
 
 router.get('/talleres', talleresController.getTalleres)
 router.get('/talleres/:id', talleresController.getTallerById)
-router.post('/demo/talleres', talleresController.createTaller)
-router.delete('/demo/talleres/:id', talleresController.deleteTaller)
-router.patch('/demo/talleres/:id', talleresController.updateTallerById)
+router.post('/talleres', talleresController.createTaller)
+router.delete('/talleres/:id', talleresController.deleteTaller)
+router.patch('/talleres/:id', talleresController.updateTallerById)
 
 export default router;

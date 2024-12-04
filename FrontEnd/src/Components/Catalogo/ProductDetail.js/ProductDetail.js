@@ -21,7 +21,6 @@ const ProductDetail = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    // Handle adding the product to the cart with the selected quantity
     console.log(`Adding ${quantity} of ${product.title} to cart`);
   };
 
@@ -34,13 +33,10 @@ const ProductDetail = () => {
 
   if (!product) return <div>Loading...</div>;
 
-  console.log(product);
-  
   return (
     <div className="productContainer">
       <div className="productDetail">
         <div className="productGallery">
-          {/* Static Image with zoom on hover */}
           <img src={product.imgUrl} alt={product.title} className="productImage" />
         </div>
         <div className="productInfo">
@@ -48,7 +44,6 @@ const ProductDetail = () => {
           <p>{product.description}</p>
           <h3>${product.price}</h3>
           
-          {/* Star Rating Display */}
           <div className="starRating">
             {[...Array(5)].map((star, index) => {
               const ratingValue = index + 1;
@@ -67,7 +62,6 @@ const ProductDetail = () => {
             <span>({product.rating})</span>
           </div>
 
-          {/* Quantity Selector */}
           <div className="quantitySection">
             <label htmlFor="quantity">Quantity:</label>
             <input
@@ -84,6 +78,18 @@ const ProductDetail = () => {
           <button className="addToCart" onClick={handleAddToCart}>
             Add {quantity} to Cart
           </button>
+
+          {/* Ficha Técnica */}
+          <div className="fichaTecnica">
+            <h4>Ficha Técnica</h4>
+            <ul>
+              <li><strong>Tipo de uva:</strong> {product.grapeType || "No especificado"}</li>
+              <li><strong>Región:</strong> {product.region || "No especificado"}</li>
+              <li><strong>Cosecha:</strong> {product.harvestYear || "No especificado"}</li>
+              <li><strong>Maridaje:</strong> {product.pairing || "No especificado"}</li>
+              <li><strong>Graduación alcohólica:</strong> {product.alcoholContent || "No especificado"}</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

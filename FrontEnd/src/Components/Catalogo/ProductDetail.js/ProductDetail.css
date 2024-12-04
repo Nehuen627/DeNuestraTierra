@@ -100,6 +100,30 @@
 .productDetail .productInfo .addToCart:hover {
   background-color: #ea567a;
 }
+.productDetail .productInfo .fichaTecnica {
+  margin-top: 20px;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.productDetail .productInfo .fichaTecnica h4 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #8e173d;
+}
+.productDetail .productInfo .fichaTecnica ul {
+  list-style: none;
+  padding: 0;
+}
+.productDetail .productInfo .fichaTecnica ul li {
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 8px;
+}
+.productDetail .productInfo .fichaTecnica ul li strong {
+  color: #8e173d;
+}
 @media (max-width: 768px) {
   .productDetail {
     flex-direction: column;

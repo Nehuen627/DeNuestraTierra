@@ -1,0 +1,390 @@
+@use '../../Sass/Colors.scss' as a;
+@use '../../Sass/Fonts.scss' as b;
+
+.dashboard {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+
+    .dashboard-nav {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: a.$GreyPink;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px a.$BlackShadow;
+
+        button {
+            padding: 10px 20px;
+            background-color: a.$Wine;
+            color: a.$White;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: a.$Pink;
+            }
+
+            &.active {
+                background-color: a.$Pink;
+            }
+        }
+    }
+
+    .dashboard-content {
+        .search-section {
+            margin-bottom: 20px;
+            
+            .search-form {
+                display: flex;
+                gap: 10px;
+                max-width: 600px;
+                margin: 0 auto;
+
+                input {
+                    flex: 1;
+                    padding: 10px;
+                    background-color: a.$GreyPink;
+                    border-radius: 30px;
+                    border: none;
+                    font-size: 1.2rem;
+                    color: a.$Burgundy;
+                    padding-left: 20px;
+
+                    &:focus {
+                        outline: none;
+                        border: 2px solid a.$Wine;
+                    }
+                }
+
+                button {
+                    background-color: a.$Wine;
+                    color: a.$White;
+                    border-radius: 30px;
+                    padding: 10px 20px;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 1.2rem;
+
+                    &:hover {
+                        background-color: a.$Burgundy2;
+                    }
+
+                    &:last-child {
+                        background-color: a.$GreyPink;
+                        color: a.$Wine;
+
+                        &:hover {
+                            background-color: darken(a.$GreyPink, 10%);
+                        }
+                    }
+                }
+            }
+        }
+
+        .add-button {
+            padding: 10px 20px;
+            background-color: a.$Wine;
+            color: a.$White;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            &:hover {
+                background-color: a.$Pink;
+            }
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+
+            .item-card {
+                background-color: a.$GreyPink;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 6px a.$BlackShadow;
+
+                h3 {
+                    color: a.$Wine;
+                    margin-bottom: 10px;
+                }
+
+                p {
+                    color: #333;
+                    margin-bottom: 5px;
+                }
+
+                .card-actions {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 10px;
+                    margin-top: 15px;
+
+                    button {
+                        background-color: a.$Wine;
+                        color: a.$White;
+                        border: none;
+                        padding: 8px;
+                        border-radius: 5px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: a.$Pink;
+                        }
+                    }
+                }
+
+                .role-section {
+                    margin-top: 10px;
+
+                    select {
+                        width: 100%;
+                        padding: 8px;
+                        background-color: a.$Wine;
+                        color: a.$White;
+                        border: none;
+                        border-radius: 5px;
+                        font-size: 1.1rem;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: a.$Pink;
+                        }
+                    }
+                }
+            }
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 20px;
+
+            .pageButton {
+                background-color: a.$Wine;
+                color: a.$White;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 8px;
+                font-size: 1.2rem;
+                cursor: pointer;
+
+                &:hover:not(.disabled) {
+                    background-color: a.$Burgundy2;
+                }
+
+                &.disabled {
+                    background-color: a.$GreyPink;
+                    cursor: not-allowed;
+                }
+            }
+
+            .page-info {
+                color: a.$Wine;
+                font-size: 1.2rem;
+            }
+        }
+
+        .form-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+
+            .dashboard-form {
+                background-color: a.$White;
+                padding: 30px;
+                border-radius: 10px;
+                width: 90%;
+                max-width: 500px;
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+
+                input, textarea {
+                    padding: 10px;
+                    border: 1px solid a.$GreyPink;
+                    border-radius: 5px;
+                    font-size: 1rem;
+
+                    &:focus {
+                        outline: none;
+                        border-color: a.$Wine;
+                    }
+                }
+
+                textarea {
+                    min-height: 100px;
+                    resize: vertical;
+                }
+
+                .form-buttons {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 10px;
+                    margin-top: 20px;
+
+                    button {
+                        padding: 10px 20px;
+                        border: none;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        font-size: 1.1rem;
+
+                        &:first-child {
+                            background-color: a.$Wine;
+                            color: a.$White;
+
+                            &:hover {
+                                background-color: a.$Pink;
+                            }
+                        }
+
+                        &:last-child {
+                            background-color: a.$GreyPink;
+                            color: a.$Wine;
+
+                            &:hover {
+                                background-color: darken(a.$GreyPink, 10%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .loader {
+        border: 4px solid a.$GreyPink;
+        border-top: 4px solid a.$Wine;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-nav {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .items-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .dashboard-form {
+            width: 95%;
+            padding: 20px;
+        }
+
+        .search-section {
+            .search-form {
+                flex-direction: column;
+                
+                input {
+                    width: 100%;
+                }
+                
+                button {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.pagination-container {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        
+        .pageButton {
+            background-color: a.$Wine;
+            color: a.$White;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+
+            &:hover:not(.disabled) {
+                background-color: a.$Burgundy2;
+            }
+
+            &.disabled {
+                background-color: a.$GreyPink;
+                cursor: not-allowed;
+            }
+        }
+
+        .page-info {
+            color: a.$Wine;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.user-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    gap: 15px;
+
+    .role-section {
+        flex: 1;
+        
+        select {
+            width: 100%;
+            padding: 8px;
+            background-color: a.$Wine;
+            color: a.$White;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+    }
+
+    .delete-btn {
+        padding: 8px 12px;
+        background-color: a.$Wine;
+        color: a.$White;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}

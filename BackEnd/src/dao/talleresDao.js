@@ -27,15 +27,17 @@ export default class {
         return null;
     }
     static async createTaller(tallerData) {
-        const id = uuidv4(); 
-        const { title, description, price, skills} = tallerData; 
+        console.log("entro aca");
         
-        const sql = `INSERT INTO talleres (id, title, description, price, skills, imgurl) VALUES (?, ?, ?, ?, ?, ?)`;
-        const values = [id, title, description, price, skills, imgurl];
+        const id = uuidv4(); 
+        const { title, description, price, skills, link, imgUrl = " "} = tallerData; 
+        
+        const sql = `INSERT INTO talleres (id, title, description, price, skills, link, imgurl) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+        const values = [id, title, description, price, skills, link, imgUrl];
         
         const [result] = await init.execute(sql, values);
         
-        return { id, title, description, price, skills, imgurl };
+        return { id, title, description, price, skills, link, imgUrl };
     }
     static async deleteTaller(id) {
         const sql = `DELETE FROM talleres WHERE id = ?`;

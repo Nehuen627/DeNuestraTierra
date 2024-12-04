@@ -85,17 +85,25 @@ export default class {
         return 
     }
 
-    static async insertProduct({ title, price, imgUrl, rating, type, description, stock, barCode, status = 1 }) {
+    static async insertProduct({ title, price, imgUrl, rating, type, description, stock, barCode, status = 1,grapeType = null, region = null, harvestYear = null, pairing = null, alcoholContent = null 
+    }) {
+        console.log(title, price, imgUrl, rating, type, description, stock, barCode, status,grapeType, region, harvestYear, pairing, alcoholContent);
+        //! arreglar dashboard create product no funciona
+
         const id = uuidv4();
         const sql = `
-            INSERT INTO products (id, title, price, imgUrl, rating, type, description, stock, barCode, status)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO products (id, title, price, imgUrl, rating, type, description, stock, barCode, status, grapeType, region, harvestYear, pairing, alcoholContent)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `;
-        await init.execute(sql, [id, title, price, imgUrl, rating, type, description, stock, barCode, status]);
+        await init.execute(sql, [
+            id, title, price, imgUrl, rating, type, description, stock, barCode, status,grapeType, region, harvestYear, pairing, alcoholContent
+        ]);
         
-        return { id, title, price, imgUrl, rating, type, description, stock, barCode, status };
+        return { 
+            id, title, price, imgUrl, rating, type, description, stock, barCode, status,grapeType, region, harvestYear, pairing, alcoholContent 
+        };
     }
-
+    
 
 
     static async getProductosType(){

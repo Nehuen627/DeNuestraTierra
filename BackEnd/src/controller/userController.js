@@ -85,15 +85,13 @@ export default class {
     }
 
     static async changeRol(req, res){
-        const { id } = req.params;
-        const { newRole } = req.body; 
 
         try {
+            const { id } = req.params;
+            const { role } = req.body; 
             let user = await userService.getUserById(id);
             if (!user) return res.status(404).json({ message: "user not found" });
-
-            user.role = newRole
-
+            user.role = role
             const updatedUser = await userService.updateUserById(id, user);
             res.json(updatedUser);
         } catch (error) {

@@ -3,8 +3,8 @@ import userController from '../controller/userController.js';
 const router = Router();
 
 router.get('/users', userController.getUsers)
-router.post('/users/:uid/changeRol', userController.changeRol)
-router.delete('/users/delete/:id', userController.deleteUserById)
+router.patch('/users/changeRol/:id', userController.changeRol)
+router.delete('/users/:id', userController.deleteUserById)
 router.get('/user/regions', (req, res) => {
     const regions = [
         { id: 1, Name: "Buenos Aires" },
