@@ -6,47 +6,124 @@ import userController from '../controller/userController.js';
 const router = Router();
 router.post('/sessions/register', passport.authenticate('register'/* , { failureRedirect: '/register' } */), async (req, res) => {
     /* res.redirect('/login'); */
-    res.json("done")
+    res.status(200).json({    success: true,    redirectUrl: 'http://localhost:3000/login'});
 });
-router.post('/sessions/login', passport.authenticate('login', { failureRedirect: '/login' }), async (req, res) => {
-
-    const token = tokenGenerator(req.user)
-    if(req.user.role === "admin"){
-        res
-        .cookie('access_token', token, { maxAge: 1000*60*30, httpOnly: true, signed: true })
-        .status(200)
-        .redirect('htpp://localhost:3000/productos');
-    } else {
-        const date = Date()
-        const connection = await userController.lastConnection(req.user._id, date)
-        if(connection){
-            res
-            .cookie('access_token', token, { maxAge: 1000*60*30, httpOnly: true, signed: true })
-            .status(200)
-            .redirect('/perfil');
-        } else {
-            res.redirect('/login')
+router.post('/sessions/login', (req, res, next) => {
+    passport.authenticate('login', (err, user, info) => {
+        if (err) {
+            return res.status(500).json({ 
+                success: false, 
+                message: "Internal server error" 
+            });
         }
-    }
+        
+        if (!user) {
+            return res.status(401).json({ 
+                success: false, 
+                message: info.message || "Invalid credentials" 
+            });
+        }
+
+        req.logIn(user, async (err) => {
+            if (err) {
+                return res.status(500).json({ 
+                    success: false, 
+                    message: "Error logging in" 
+                });
+            }
+
+            const token = tokenGenerator(user);
+            const isAdmin = user.role === "admin";
+
+            try {
+                if (isAdmin) {
+                    res
+                        .cookie('access_token', token, { 
+                            maxAge: 1000*60*30, 
+                            httpOnly: true, 
+                            signed: true,
+                            sameSite: 'lax'
+                        })
+                        .status(200)
+                        .json({
+                            success: true,
+                            redirectUrl: 'http://localhost:3000/perfil',
+                            user: user
+                        });
+                } else {
+                    const date = new Date().toISOString();
+                    const connection = await userController.lastConnection(user._id, date);
+                    
+                    if (connection) {
+                        res
+                            .cookie('access_token', token, { 
+                                maxAge: 1000*60*30, 
+                                httpOnly: true, 
+                                signed: true,
+                                sameSite: 'lax'
+                            })
+                            .status(200)
+                            .json({
+                                success: true,
+                                redirectUrl: 'http://localhost:3000/perfil',
+                                user: user
+                            });
+                    } else {
+                        res.status(400).json({ 
+                            success: false, 
+                            message: "Connection error" 
+                        });
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+                
+                res.status(500).json({ 
+                    success: false, 
+                    message: "Server error" 
+                });
+            }
+        });
+    })(req, res, next);
 });
-router.get('/sessions/current', passport.authenticate('current', { failureRedirect: '/login' }), async (req, res) => {
-    const currentUser = req.user;
-    res.json({ user: currentUser });
+router.get('/sessions/current', passport.authenticate('currentProfile', { session: false }), async (req, res) => {
+    try {
+       
+        
+        res.json({
+            success: true,
+            user: req.user
+        });
+    } catch (error) {
+        res.status(401).json({
+            success: false,
+            message: "Not authenticated"
+        });
+    }
 });
 router.get('/sessions/logout', passport.authenticate('currentProfile', { session: false }), async (req, res) => {
     if(req.user.role === "admin"){
         res
         .clearCookie('access_token')
-        .redirect('/login')
+        .json({
+            success: true,   
+            redirectUrl: 'http://localhost:3000/login'
+        })
     } else {
         const date = Date()
         const connection = await userController.lastConnection(req.user._id, date)
         if(connection){
             res
             .clearCookie('access_token')
-            .redirect('/login')
+            .json({
+                success: true,   
+                redirectUrl: 'http://localhost:3000/login'
+            })
         } else {
-            res.redirect('/perfil')
+            res.json({
+                success: false,   
+                redirectUrl: 'http://localhost:3000/perfil'
+            })
         }
     }
 

@@ -5,6 +5,7 @@ import { Exception } from '../utils/utils.js';
 import config from './envConfig.js'
 import usersController from '../controller/userController.js';
 import UserDTO from '../dao/DTO/userDTO.js';
+import cartController from '../controller/cartController.js';
 
 const optsUser = {
     usernameField: 'email',
@@ -32,16 +33,27 @@ export const init = () => {
             if(isEmailUsed){
                 return done(null, false, { message: "There is a user already created with that email" });
             } else {
-                const data = req.body 
+                const data = {
+                    ...req.body,
+                    email,
+                    password
+                }
                 const newUser = await usersController.addUser(data)
-                console.log(newUser);
                 
-                done(null, newUser);
+                if(newUser){
+                    const addCart = await cartController.addCart(newUser.email)
+                } else {
+                    new Exception("Error adding user", 500)
+                }
+                return done(null, {
+                    _id: newUser.id,
+                    ...newUser
+                });
             }
         }
         catch(error) {
-            console.log(error);
-            
+            console.log("Register error:", error);
+            return done(error);
         }
     }));
     passport.use('login', new LocalStrategy(optsUser, async (req, email, password, done) => {
@@ -59,23 +71,30 @@ export const init = () => {
                     province: "admin",
                     email: email,
                 }
-                done(null, user);
+                return done(null, user);
             } else {
                 const user = await usersController.getUserData(email, password);
                 if(user === "Email or password invalid") {
-                    error
+                    return done(null, false, { message: "Invalid credentials" });
                 } else {
-                    done(null, user);
+                    return done(null, {
+                        _id: user.id,
+                        ...user
+                    });
                 }
             }
         }
         catch(error) {
-            done(new Exception(`Error: ${error.message}`, 500));
+            return done(new Exception(`Error: ${error.message}`, 500));
         }
     }));
 
     passport.serializeUser((user, done) => {
-        done(null, user._id);
+        if (!user || (!user._id && !user.id)) {
+            return done(new Error('Invalid user object for serialization'));
+        }
+        const userId = user._id || user.id;
+        done(null, userId);
     });
     
     
@@ -95,7 +114,13 @@ export const init = () => {
     
         try {
             const user = await usersController.findById(id);
-            done(null, user);
+            if (!user) {
+                return done(new Error('User not found'));
+            }
+            done(null, {
+                _id: user.id,
+                ...user
+            });
         } 
         catch (error) {
             done(error, null);

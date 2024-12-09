@@ -1,7 +1,8 @@
-import React, { useState, useEffect, act } from 'react';
+import React, { useState, useEffect} from 'react';
 import { Pencil, Trash, Plus } from 'react-bootstrap-icons';
 import api from '../../axios/api';
 import "./dashboard.css";
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('productos');
@@ -215,6 +216,13 @@ const Dashboard = () => {
             alert('Error al actualizar el rol: ' + err.message);
         }
     };
+
+    if (error) return (
+        <div className="notLogged">
+            <p>Inicia sesión para ver el dashboard</p>
+            <Link to="/login"><button className='Login'>Iniciar sesión</button></Link>
+        </div>
+    );
 
     return (
         <div className="dashboard">

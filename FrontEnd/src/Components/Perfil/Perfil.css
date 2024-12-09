@@ -1,17 +1,22 @@
+.perfilContent {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
 .perfilContent .pBox {
-  background-color: #eddce2;
-  margin: 50px 350px;
-  border-radius: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
-  padding: 40px;
+  background: #eddce2;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.297);
 }
 .perfilContent .pBox .pPic {
-  margin: 0 auto;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 20px;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
   transition: transform 0.3s ease;
 }
 .perfilContent .pBox .pPic:hover {
@@ -23,40 +28,65 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-.perfilContent .pBox .pInfo {
-  text-align: center;
-  margin-top: 30px;
+.perfilContent .pBox .pInfoSection {
+  text-align: left;
+  padding: 20px;
 }
-.perfilContent .pBox .pInfo h2 {
-  font-family: "Jost", sans-serif;
-  font-size: 2rem;
+.perfilContent .pBox .pInfoSection h2 {
   color: #8e173d;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
 }
-.perfilContent .pBox .pInfo h3 {
-  font-family: "Jost", sans-serif;
-  font-size: 1.2rem;
+.perfilContent .pBox .pInfoSection p {
+  margin: 10px 0;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+.perfilContent .pBox .pInfoSection strong {
   color: #7f2121;
+  min-width: 150px;
+  display: inline-block;
 }
 .perfilContent .pBox .pBtns {
   display: flex;
+  gap: 10px;
   justify-content: center;
-  gap: 20px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .perfilContent .pBox .pBtns button {
-  background-color: #8e173d;
-  color: #fff;
-  border: none;
   padding: 10px 20px;
-  border-radius: 20px;
-  font-family: "Jost", sans-serif;
-  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
-.perfilContent .pBox .pBtns button:hover {
-  background-color: #62102a;
+.perfilContent .pBox .pBtns button.updateBtn {
+  background-color: #8e173d;
+  color: white;
+}
+.perfilContent .pBox .pBtns button.updateBtn:hover {
+  background-color: #ea567a;
+}
+.perfilContent .pBox .pBtns button.deleteBtn {
+  background-color: #b02929;
+  color: white;
+}
+.perfilContent .pBox .pBtns button.deleteBtn:hover {
+  background-color: #7f2121;
+}
+.perfilContent .pBox .pBtns button.dashboardBtn {
+  background-color: #b02929;
+  color: white;
+}
+.perfilContent .pBox .pBtns button.dashboardBtn:hover {
+  background-color: #7f2121;
+}
+.perfilContent .pBox .pBtns button.closeBtn {
+  background-color: #ea567a;
+  color: #fff;
+}
+.perfilContent .pBox .pBtns button.closeBtn:hover {
+  background-color: #a91846;
 }
 @media (max-width: 768px) {
   .perfilContent .pBox {
@@ -67,10 +97,10 @@
     width: 150px;
     height: 150px;
   }
-  .perfilContent .pBox .pInfo h2 {
+  .perfilContent .pBox .pInfoSection h2 {
     font-size: 1.5rem;
   }
-  .perfilContent .pBox .pInfo h3 {
+  .perfilContent .pBox .pInfoSection p {
     font-size: 1rem;
   }
   .perfilContent .pBox .pBtns button {
@@ -87,10 +117,10 @@
     width: 120px;
     height: 120px;
   }
-  .perfilContent .pBox .pInfo h2 {
+  .perfilContent .pBox .pInfoSection h2 {
     font-size: 1.2rem;
   }
-  .perfilContent .pBox .pInfo h3 {
+  .perfilContent .pBox .pInfoSection p {
     font-size: 0.9rem;
   }
   .perfilContent .pBox .pBtns button {
@@ -108,4 +138,22 @@
   background-color: #eddce2;
   border-radius: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.166);
+}
+.notLogged button {
+  background-color: #8e173d;
+  color: #fff;
+  padding: 12px 0;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 50%;
+}
+.notLogged button:hover {
+  background-color: #ea567a;
+}
+.notLogged button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
 }/*# sourceMappingURL=Perfil.css.map */

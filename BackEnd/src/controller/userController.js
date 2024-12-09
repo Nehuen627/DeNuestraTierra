@@ -5,6 +5,7 @@ import cartController from "./cartController.js";
 
 export default class {
     static async findEmail(email){
+        
         const user = await userService.getUserByEmail(email);
 
         if (!user) {
@@ -18,12 +19,14 @@ export default class {
     
     }
     static async getUserData(email, password){
+        
         const user = await this.findEmail(email)
         if (!user) {
             return "Email or password invalid";
         }
-
+        
         const passwordMatch = await bcrypt.compare(password, user.password);
+        
         if (passwordMatch) {
             return user;
         } else {
@@ -118,6 +121,24 @@ export default class {
         } catch (error) {
             console.error('Error fetching users:', error);
             res.status(500).json({ message: 'Error fetching products', error });
+        }
+    }
+
+    static async lastConnection(userId, date) {
+        try {
+            let user = await userService.getUserById(userId);
+            if (!user) {
+                throw new Error("User not found");
+            }
+            
+            const formattedDate = new Date(date).toISOString().slice(0, 19).replace('T', ' ');
+            
+            user.lastConnection = formattedDate;
+            const updatedUser = await userService.updateUserById(userId, user);
+            return updatedUser;
+        } catch (error) {
+            console.error("Error updating last connection:", error);
+            return false;
         }
     }
 }

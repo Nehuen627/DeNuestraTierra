@@ -62,7 +62,6 @@ const Register = () => {
                         birthDate: date,
                         informativeEmails: informativeEmails
                 }
-                console.log(user);
                 
                     const response = await api.post('/auth/sessions/register', {
                         name: name,
@@ -73,6 +72,16 @@ const Register = () => {
                         birthDate: date,
                         informativeEmails: informativeEmails
                     });
+
+                    if(response.data.success){
+                        console.log("Registered correctly");
+                        window.location.href = '/login';
+                        
+                    } else {
+                        console.log(response.data.message);
+                        
+                        setError(response.data.message || "Invalid parameters");
+                    }
                     setConfirmation(response.data);
             }
         } catch (err) {

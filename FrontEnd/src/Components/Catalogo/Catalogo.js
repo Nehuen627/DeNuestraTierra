@@ -61,8 +61,6 @@ const Catalogo = () => {
     useEffect(() => {
         handleSearch();
     }, [currentPage]);
-
-    console.log(productos);
     
     const createVisualizator = productos.map((producto) => (
         <ProductoSee

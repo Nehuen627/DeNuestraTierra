@@ -36,10 +36,9 @@ app.use(expressSession({
 /* Initialize cors */
 
 app.use(cors({
-    origin:  'http://localhost:3000',
-    methods: ["GET", "POST", 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ["Content-Type"],
-    credentials: true
+    origin: 'http://localhost:3000',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']
 }));
 
 

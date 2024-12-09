@@ -39,9 +39,37 @@ export default class {
         };
     }
 
+    static async findByUserId(uid) { 
+        const cartSql = 'SELECT * FROM carts WHERE user_id = ?';
+        const itemsSql = `
+            SELECT ci.*, p.title, p.price, p.imgUrl 
+            FROM cart_items ci 
+            JOIN products p ON ci.product_id = p.id 
+            WHERE ci.cart_id = ?`;
+    
+        const [[cart]] = await init.execute(cartSql, [uid]);
+    
+        if (!cart) return null;
+    
+        const [items] = await init.execute(itemsSql, [cart.id]);
+    
+        return {
+            ...cart,
+            products: items.map(item => ({
+                productId: {
+                    _id: item.product_id,
+                    title: item.title,
+                    price: item.price,
+                    imgUrl: item.imgUrl
+                },
+                quantity: item.quantity
+            }))
+        };
+    }
+    
+
     static async findOneAndUpdate(criteria) {
         const { _id: cartId, products } = criteria;
-        console.log(criteria);
         try {
             const connection = await init.getConnection();
             
@@ -108,4 +136,35 @@ export default class {
         await init.execute('DELETE FROM carts WHERE id = ?', [cid]);
         return true;
     }
+    static async deleteCartItem(cid, pid) {
+        const connection = await init.getConnection(); 
+        try {
+            await connection.beginTransaction();
+    
+            const deleteQuery = 'DELETE FROM cart_items WHERE product_id = ? AND cart_id = ?';
+            await connection.execute(deleteQuery, [pid, cid]);
+    
+            const [priceResults] = await connection.execute(`
+                SELECT SUM(p.price * ci.quantity) as total_price
+                FROM cart_items ci
+                JOIN products p ON ci.product_id = p.id
+                WHERE ci.cart_id = ?
+            `, [cid]);
+    
+            
+            const totalPrice = priceResults[0]?.total_price || 0;
+                
+            const updateQuery = 'UPDATE carts SET total_price = ? WHERE id = ?';
+            const [updateResult] = await connection.execute(updateQuery, [totalPrice, cid]);
+            await connection.commit();
+    
+            return this.findById(cid); 
+        } catch (error) {
+            await connection.rollback();
+            throw new Error(`Error deleting product from cart: ${error.message}`);
+        } finally {
+            connection.release();
+        }
+    }
+    
 }

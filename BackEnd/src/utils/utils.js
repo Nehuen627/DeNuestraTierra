@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 import JWT from 'jsonwebtoken';
 import {createError} from './createError.js';
+import config from "../config/envConfig.js"
 
 export const __dirname = path.dirname(__filename);
 
@@ -10,23 +11,30 @@ export const __dirname = path.dirname(__filename);
 export const tokenGenerator = (user) => {
     const {
         _id,
-        firstName,
+        name,
         lastName,
-        age,
         email,
+        birthDate,
+        province,
         role,
         cart,
-        documents
+        documents,
+        lastConnection,
+        informativeEmails
     } = user;    
+    
     const payload = {
         _id,
-        firstName,
+        name,
         lastName,
         email,
-        age,
+        birthDate,
+        province,
         role,
         cart,
-        documents
+        documents,
+        lastConnection,
+        informativeEmails
     };
     return JWT.sign(payload, config.jwtSecret, { expiresIn: '30m' });
 }

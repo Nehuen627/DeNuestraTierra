@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { json, Router } from 'express';
 import cartController from "../controller/cartController.js"
 import productosService from '../services/productosService.js';
 const router = Router();
@@ -6,7 +6,8 @@ const router = Router();
 router.post("/carts", async (req, res) => {
     try {
         let { body: data } = req;
-        const cart = await cartController.addCart(data);
+        let userEmail = data.userEmail
+        const cart = await cartController.addCart(userEmail);
 
         if (cart) {
             res.status(201).send({
@@ -88,8 +89,8 @@ router.delete("/carts/:cid", async (req, res) => {
 router.post("/carts/:cid/producto/:pid", async (req, res) => {
     const idCart = req.params.cid;
     const idProduct = req.params.pid;
-    const quantity = parseInt(req.body.quantity) || 1;
-    
+    const quantity = parseInt(req.body.quantity1) || 1;
+        
     try {
         const product = await productosService.getProductById(idProduct);
         if (!product) {
@@ -118,6 +119,7 @@ router.put("/carts/:cid/producto/:pid", async (req, res) => {
     const idCart = req.params.cid;
     const idProduct = req.params.pid;
     const { quantity } = req.body;
+    
 
     if (!quantity || quantity < 0) {
         return res.status(400).send({ message: "Invalid quantity provided" });
@@ -179,7 +181,36 @@ router.delete("/carts/erase/:cid", async (req, res) => {
         });
     }
 });
+router.get('/carts/user/:uid', async (req, res) => {
+    const uid = req.params.uid;
+    try {
+        const cart = await cartController.getCartContentByUserId(uid);
+        if (cart) {
+            res.json(cart)
+        } else {
+            res.status(404).send({ message: "There is no cart by that user id" });
+        }
+    } catch (error) {
+        res.status(500).send({ message: "Error finding cart", error: error.message });
+    }
+})
+router.delete('/carts/:cid/producto/:pid/erase', async (req, res) =>{
+    const idCart = req.params.cid;
+    const idProduct = req.params.pid;
 
+    try {
+        const updatedCart = await cartController.deleteProductOfCart(idCart, idProduct);
+        res.status(200).send({ 
+            message: "Product quantity removed from cart", 
+            cart: updatedCart 
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: "Error removing product from cart",
+            error: error.message
+        });
+    }
+})
 /* router.post("/carts/:cid/purchase", async (req, res) => {
     const idCart = req.params.cid;
     

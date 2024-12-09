@@ -26,7 +26,10 @@
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
+            .buttons{
+                display: flex;
+                flex-direction: row;
+            }
             span {
                 font-size: 18px;
                 color: #333;
@@ -115,7 +118,7 @@
 }
 
 .deleteButton {
-    background-color: red;
+    background-color: a.$Burgundy;
     color: a.$White;
     border: none;
     padding: 5px 10px;
@@ -125,5 +128,32 @@
 
     &:hover {
         background-color: darken(red, 10%);
+    }
+}
+.minusButton {
+    background-color: a.$Wine;
+    color: a.$White;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 1%;
+    &:hover {
+        background-color: lighten(a.$Pink, 10%);
+    }
+}
+.addButton {
+    margin-left: 1%;
+    background-color: a.$Pink;
+    color: a.$White;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: darken(a.$Wine, 10%);
     }
 }

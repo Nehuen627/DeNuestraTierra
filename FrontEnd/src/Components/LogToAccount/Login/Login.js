@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./Login.css";
 import api from '../../../axios/api';
+import { Link } from 'react-router-dom';
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -12,16 +13,21 @@ const Login = () => {
         setLoading(true);
         setError(null);
 
-
         try {
-            const response = await api.post('/auth/sessions/login', { email, password });
+            const response = await api.post('/auth/sessions/login', { 
+                email, 
+                password 
+            });
+            
             if (response.data.success) {
                 console.log("Login successful");
+                window.location.href = response.data.redirectUrl;
             } else {
-                setError("Invalid credentials");
+                setError(response.data.message || "Invalid credentials");
             }
         } catch (err) {
-            setError("An error occurred. Please try again.");
+            console.error(err);
+            setError(err.response?.data?.message || "An error occurred. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -55,6 +61,10 @@ const Login = () => {
                     {loading ? <div className="loader"></div> : "Login"}
                 </button>
             </form>
+            <div className='register'>
+                <h2>No tienes una cuenta?</h2>
+                <Link to='/register'><button>Registrate</button></Link>
+            </div>
             {error && <p className="error">{error}</p>}
         </div>
     );

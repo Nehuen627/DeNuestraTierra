@@ -1,42 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import api from "../../axios/api";  // This is your axios instance
 import "./Carrito.css";
-
+import { Link } from 'react-router-dom';
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [cart, setCart] = useState([])
     
-    // Uncomment this once you have the real backend ready
-    /*
     useEffect(() => {
-        const fetchCart = async () => {
-            try {
-                const token = localStorage.getItem('token'); // Assuming token is stored here
-                if (!token) throw new Error("User not authenticated");
-
-                // Decode token to get the user cart ID
-                const { cart } = JSON.parse(atob(token.split('.')[1]));
-
-                // Send token in Authorization header
-                const response = await api.get(`/api/cart/${cart}`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-                });
-                setCartItems(response.data.items);
-            } catch (err) {
-                setError(err);
-            } finally {
-                setLoading(false);
-            }
-        };
         fetchCart();
     }, []);
-    */
+   
+    const fetchCart = async () => {
+        try {
+            const currentUserResponse = await api.get('/auth/sessions/current');
+            
+
+            if (currentUserResponse.data.success) {
+                const userId = currentUserResponse.data.user._id;
+                const cartResponse = await api.get(`/api/carts/user/${userId}`);
+                setCart(cartResponse.data)
+                setCartItems(cartResponse.data.products || []); 
+            } else {
+                setError(new Error("Not authenticated"));
+            }
+        } catch (err) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
+    };
 
     // Fake version for testing frontend (mock data)
-    useEffect(() => {
+   /*  useEffect(() => {
         const fetchCart = async () => {
             try {
                 setLoading(true);
@@ -53,24 +50,28 @@ const Cart = () => {
             }
         };
         fetchCart();
-    }, []);
+    }, []); */
 
-    // Delete item from the cart (mock version)
-    const handleDelete = async (itemId) => {
+    const handleDelete = async (itemId, quantity) => {
         try {
-            // Uncomment when using real backend
-            /*
-            const token = localStorage.getItem('token');
-            const { cart } = JSON.parse(atob(token.split('.')[1]));
-            await api.delete(`/api/cart/${cart}/item/${itemId}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            */
-
-            // Fake removal for frontend testing
-            setCartItems((prevItems) => prevItems.filter(item => item.id !== itemId));
+            await api.delete(`/api/carts/${cart.id}/producto/${itemId}/erase`)
+            fetchCart()
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    };
+    const handleDelete1 = async (itemId) => {
+        try {
+            await api.delete(`/api/carts/${cart.id}/producto/${itemId}`)
+            fetchCart()
+        } catch (error) {
+            console.error('Error deleting item:', error);
+        }
+    };
+    const handleAdd1 = async (itemId) => {
+        try {
+            await api.post(`/api/carts/${cart.id}/producto/${itemId}`)
+            fetchCart()
         } catch (error) {
             console.error('Error deleting item:', error);
         }
@@ -81,10 +82,25 @@ const Cart = () => {
     };
 
     if (loading) return <div className="loader"></div>;
-    if (error) return <p>{error}</p>;
-
-    const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-
+    if (error) return (
+        <div className="notLogged">
+            <p>Inicia sesión para ver tu carrito</p>
+            <Link to="/login"><button className='Login'>Iniciar sesión</button></Link>
+        </div>
+    );
+    let finalBtn = ""
+    if (cartItems.length === 0) {
+        finalBtn = (<div className='cartSummary'>
+                        <Link to="/catalogo"><button className='buyButton'>Explora el catálogo</button></Link>
+                    </div> )
+    } else {
+        finalBtn = (<div className="cartSummary">
+                        <h3>Total: ${cart.total_price}</h3>
+                        <button className="buyButton" onClick={handleCheckout}>Comprar Ahora</button>
+                    </div>)
+    }
+    
+    
     return (
         <div className="cartContainer">
             <h2>Tu Carrito</h2>
@@ -93,19 +109,20 @@ const Cart = () => {
             ) : (
                 <div className="cartItems">
                     {cartItems.map(item => (
-                        <div key={item.id} className="cartItem">
-                            <span>{item.title}</span>
+                        <div key={item.productId._id} className="cartItem">
+                            <span>{item.productId.title}</span>
                             <span>Cantidad: {item.quantity}</span>
-                            <span>Precio: ${item.price}</span>
-                            <button className="deleteButton" onClick={() => handleDelete(item.id)}>Eliminar</button>
+                            <span>Precio: ${item.productId.price}</span>
+                            <div className='buttons'>
+                            <button className="minusButton" onClick={() => handleDelete1(item.productId._id)}>-</button>
+                            <button className="deleteButton" onClick={() => handleDelete(item.productId._id, item.quantity)}>Borrar</button>
+                            <button className="addButton" onClick={() => handleAdd1(item.productId._id)}>+</button>
+                            </div>
                         </div>
                     ))}
                 </div>
             )}
-            <div className="cartSummary">
-                <h3>Total: ${total}</h3>
-                <button className="buyButton" onClick={handleCheckout}>Comprar Ahora</button>
-            </div>
+            {finalBtn}
         </div>
     );
 };

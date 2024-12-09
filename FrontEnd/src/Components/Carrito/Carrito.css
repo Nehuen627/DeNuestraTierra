@@ -24,6 +24,10 @@
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.cartContainer .cartItems .cartItem .buttons {
+  display: flex;
+  flex-direction: row;
+}
 .cartContainer .cartItems .cartItem span {
   font-size: 18px;
   color: #333;
@@ -94,7 +98,7 @@
 }
 
 .deleteButton {
-  background-color: red;
+  background-color: #7f2121;
   color: #fff;
   border: none;
   padding: 5px 10px;
@@ -104,4 +108,32 @@
 }
 .deleteButton:hover {
   background-color: #cc0000;
+}
+
+.minusButton {
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 1%;
+}
+.minusButton:hover {
+  background-color: #f0839e;
+}
+
+.addButton {
+  margin-left: 1%;
+  background-color: #ea567a;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.addButton:hover {
+  background-color: #62102a;
 }/*# sourceMappingURL=Carrito.css.map */

@@ -6,6 +6,9 @@ export default class {
     static async findById(cid) {
         return await cartDao.findById(cid)
     }
+    static async findByUserId(uid) {
+        return await cartDao.findByUserId(uid)
+    }
     static async findOneAndUpdate(criteria) {
         return await cartDao.findOneAndUpdate(criteria)
     }
@@ -14,5 +17,8 @@ export default class {
     }
     static async remove(cid){
         return await cartDao.remove(cid)
+    }
+    static async deleteCartItem(cid, pid){
+        return await cartDao.deleteCartItem(cid, pid)
     }
 }

@@ -2,28 +2,54 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from "../../../axios/api.js";
 import "./ProductDetail.css";
+import { Link } from 'react-router-dom';
 
 const ProductDetail = () => {
   const { id } = useParams(); 
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
-
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await api.get(`/api/productos/${id}`);
         setProduct(response.data);
-      } catch (error) {
-        console.error('Error fetching product:', error);
-      }
+      } catch (err) {
+        setError(err);
+
+      } finally {
+        setLoading(false);
+    }
     };
     fetchProduct();
   }, [id]);
 
-  const handleAddToCart = () => {
-    console.log(`Adding ${quantity} of ${product.title} to cart`);
-  };
 
+  const handleAddToCart = async (quantity1) => {
+    try {
+      const currentUserResponse = await api.get('/auth/sessions/current');
+      if (!currentUserResponse.data.success) {
+        throw new Error('Please log in to add products to the cart.');
+      }
+  
+      const userId = currentUserResponse.data.user._id;
+      const cartResponse = await api.get(`/api/carts/user/${userId}`);
+
+      
+      
+      const response = await api.post(`/api/carts/${cartResponse.data.id}/producto/${product.id}`, {
+        quantity1,
+      });
+      if (response) {
+        window.location.href = "/carrito";
+    }
+    } catch (err) {
+      setError(err);
+    }
+  };
+  
   const handleQuantityChange = (event) => {
     const value = parseInt(event.target.value, 10);
     if (value <= product.stock) {
@@ -31,8 +57,13 @@ const ProductDetail = () => {
     }
   };
 
-  if (!product) return <div>Loading...</div>;
-
+  if (loading) return <div className="loader"></div>;
+  if (error) return (
+    <div className="notLogged">
+        <p>Inicia sesión para agregar el producto al carrito</p>
+        <Link to="/login"><button className='Login'>Iniciar sesión</button></Link>
+    </div>
+);
   return (
     <div className="productContainer">
       <div className="productDetail">
@@ -75,11 +106,11 @@ const ProductDetail = () => {
             <span>Stock: {product.stock}</span>
           </div>
 
-          <button className="addToCart" onClick={handleAddToCart}>
-            Add {quantity} to Cart
+          <button className="addToCart" onClick={() => handleAddToCart(quantity)}>
+            Agrega {quantity} al carrito
           </button>
 
-          {/* Ficha Técnica */}
+
           <div className="fichaTecnica">
             <h4>Ficha Técnica</h4>
             <ul>

@@ -2,78 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import Modal from './Modal/Modal.js';
 import api from '../../axios/api';
-// import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import "./Perfil.css"
 
 const Perfil = () => {
-    /* codigo real tachado solo para mostrar el perfil 
-    const [profile, setProfile] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [isModalOpen, setModalOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userKey, setUserKey] = useState(null);
-    useEffect(() => {
-        const checkLoginStatus = () => {
-            const token = Cookies.get('authToken');
-            if (token) {
-                try {
-                    const decodedToken = JSON.parse(atob(token.split('.')[1]));
-                    setIsLoggedIn(decodedToken.logged);
-                    setUserKey(decodedToken.userKey);
-                } catch (e) {
-                    console.error('Error decoding token:', e);
-                    setIsLoggedIn(false);
-                    setUserKey(null);
-                }
-            } else {
-                setIsLoggedIn(false);
-                setUserKey(null);
-            }
-        };
-
-        checkLoginStatus();
-    }, []);
-
-    useEffect(() => {
-        if (isLoggedIn && userKey) {
-            const fetchProfileData = async () => {
-                try {
-                    const response = await api.get(`/api/profile/${userKey}`);
-                    setProfile(response.data);
-                } catch (err) {
-                    console.error("Error fetching profile:", err);
-                    setError(err);
-                } finally {
-                    setLoading(false);
-                }
-            };
-
-            fetchProfileData();
-        } else {
-            setLoading(false);
-        }
-    }, [isLoggedIn, userKey]);
-
-    const handleImageClick = () => {
-        setModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
-
-    if (!isLoggedIn) {
-        return <div className="notLogged">Por favor, inicia sesión para ver tu perfil.</div>;
-    }
-
-    if (loading) return <div className="loader">Cargando...</div>;
-    if (error) return <p>Error al cargar el perfil: {error.message}</p>;
-    if (!profile) return <p>No se encontró el perfil del usuario.</p>;
- */
-
-    /* Codigo momentaneo para mostrar el perfil */
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -82,21 +15,24 @@ const Perfil = () => {
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                const response = await api.get('/api/profile'); 
-                setProfile(response.data); 
-                } catch (err) {
+                const currentUserResponse = await api.get('/auth/sessions/current');
+                
+                if (currentUserResponse.data.success) {
+                    const profileResponse = await api.get('/api/profile');
+                    setProfile(profileResponse.data);
+                    
+                } else {
+                    setError(new Error("Not authenticated"));
+                }
+            } catch (err) {
                 setError(err);
-                } finally {
+            } finally {
                 setLoading(false);
             }
         };
 
-    fetchProfileData();}, []);
-
-
-    if (loading) return <div className="loader"></div>;
-    if (error) return <p>Error loading profile: {error.message}</p>;
+        fetchProfileData();
+    }, []);
 
     const handleImageClick = () => {
         setModalOpen(true);
@@ -105,29 +41,104 @@ const Perfil = () => {
     const closeModal = () => {
         setModalOpen(false);
     };
-    /* fin codigo momentaneo */
 
+    
+    const formatDate = (dateString) => {
+        if (!dateString) return 'No disponible';
+        return new Date(dateString).toLocaleDateString('es-AR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+    };
+
+    if (loading) return <div className="loader"></div>;
+    if (error) return (
+        <div className="notLogged">
+            <p>Inicia sesión para ver tu perfil</p>
+            <Link to="/login"><button className='Login'>Iniciar sesión</button></Link>
+        </div>
+    );
+    if (!profile) return <div className="notLogged">No se encontró el perfil.</div>;
+    const handleCloseSesion = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            const response = await api.get('/auth/sessions/logout');
+            
+            if (response.data.success) {
+                window.location.href = response.data.redirectUrl;
+            } else {
+                setError(response.data.message);
+            }
+        } catch (err) {
+            console.error(err);
+            setError(err.response?.data?.message || "An error occurred. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    }
+    
+    const handleDeletePerfil = () => {
+        
+    }
+    const handleUpdate = () => {
+        
+    }
+    let buttons = (<></>)
+    if(profile.role === "admin"){
+        buttons = (
+            <div className='pBtns'>
+                <Link to={'/dashboard'}><button className='dashboardBtn'>Panel Control</button></Link> 
+                <button className='closeBtn' onClick={handleCloseSesion}>Cerrar sesión</button>
+            </div>
+                );
+    } else if (profile.role === "owner") {
+        buttons = (
+            <div className='pBtns'>
+                <button className='updateBtn' onClick={handleUpdate}>Actualizar información</button>
+                <Link to={'/dashboard'}><button className='dashboardBtn'>Panel Control</button></Link>
+                <button className='closeBtn' onClick={handleCloseSesion}>Cerrar sesión</button>
+            </div>
+                )
+    } else if (profile.role === "user") {
+        buttons = (
+                    <div className='pBtns'>
+                        <button className='updateBtn' onClick={handleUpdate}>Actualizar información</button>
+                        <button className='deleteBtn' onClick={handleDeletePerfil}>Borrar perfil</button>
+                        <button className='closeBtn'onClick={handleCloseSesion}>Cerrar sesión</button>
+                    </div>
+        )
+    }
     return (
         <div className='perfilContent'>
             <div className='logged'>
                 <div className='pBox'>
                     <div className='pPic' onClick={handleImageClick}>
-                        <img src={profile.avatarUrl} alt='avatar'></img>
+                        <img src={`http://localhost:8080` + profile.avatarUrl} alt='avatar' />
                     </div>
                     <Modal isOpen={isModalOpen} onClose={closeModal} />
+                    
                     <div className='pInfo'>
-                        <h2>{profile.name}</h2>
-                        <h3>{profile.email}</h3>
-                        <h3>{profile.role}</h3>
+                        <div className='pInfoSection'>
+                            <h2>{profile.name} {profile.lastName}</h2>
+                            <p><strong>Email:</strong> {profile.email}</p>
+                            <p><strong>Rol:</strong> {profile.role}</p>
+                            <p><strong>Provincia:</strong> {profile.province || 'No especificada'}</p>
+                            <p><strong>Fecha de nacimiento:</strong> {formatDate(profile.birthDate)}</p>
+                            <p><strong>Última conexión:</strong> {formatDate(profile.lastConnection)}</p>
+                            <p><strong>Emails informativos:</strong> {profile.informativeEmails ? 'Sí' : 'No'}</p>
+                        </div>
                     </div>
-                    <div className='pBtns'>
-                        <button>Actualizar información</button>
-                        <button>Borrar perfil</button>
-                    </div>
+
+                    {buttons}
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Perfil
