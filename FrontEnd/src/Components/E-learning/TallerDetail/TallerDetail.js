@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from "../../../axios/api.js";
 import "./TallerDetail.css";
-
+import { Link } from 'react-router-dom';
 const TallerDetail = () => {
   const { id } = useParams(); 
   const [taller, setTaller] = useState(null);
-  const [isInCart, setIsInCart] = useState(false); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchTaller = async () => {
@@ -14,24 +15,42 @@ const TallerDetail = () => {
         const response = await api.get(`/api/talleres/${id}`);
         setTaller(response.data);
       } catch (error) {
-        console.error('Error fetching taller:', error);
+      } finally {
+        setLoading(false)
       }
     };
     fetchTaller();
   }, [id]);
 
-  // Function to handle adding to cart
-  const addToCart = () => {
-    if (!isInCart) {
-      setIsInCart(true);
-      console.log(`${taller.title} has been added to your cart.`);
-    } else {
-      console.log(`${taller.title} is already in your cart.`);
+  const handleAddToCart = async () => {
+    try {
+      const currentUserResponse = await api.get('/auth/sessions/current');
+      if (!currentUserResponse.data.success) {
+        throw new Error('Please log in to add products to the cart.');
+      }
+  
+      const userId = currentUserResponse.data.user._id;
+      const cartResponse = await api.get(`/api/carts/user/${userId}`);
+
+      
+      
+      const response = await api.post(`/api/carts/${cartResponse.data.id}/taller/${taller.id}`);
+      if (response) {
+        window.location.href = "/carrito";
+    }
+    } catch (err) {
+      setError(err);
     }
   };
+  
 
-  if (!taller) return <div>Loading...</div>;
-
+  if(loading) return <div className="loader"></div>;
+    if (error) return (
+      <div className="notLogged">
+          <p>Inicia sesión para agregar el producto al carrito</p>
+          <Link to="/login"><button className='Login'>Iniciar sesión</button></Link>
+      </div>
+  );
   return (
     <div className="tallerDetailContainer">
       <div className="tallerDetail">
@@ -42,10 +61,8 @@ const TallerDetail = () => {
           <h2>{taller.title}</h2>
           <p>{taller.description}</p>
           <h3>${taller.price}</h3>
-          
-          {/* Skills Section */}
           <div className="skillsSection">
-            <h4>Skills Gained:</h4>
+            <h4>Habilidades del curso:</h4>
             <ul>
               {taller.skills?.map((skill, index) => (
                 <li key={index}>{skill}</li>
@@ -53,9 +70,8 @@ const TallerDetail = () => {
             </ul>
           </div>
 
-          {/* Add to Cart Button */}
-          <button className="buyNow" onClick={addToCart}>
-            {isInCart ? 'Added to Cart' : 'Add to Cart'}
+          <button className="buyNow" onClick={handleAddToCart}>
+            agregar al carrito
           </button>
         </div>
       </div>

@@ -156,4 +156,36 @@
 .notLogged button:disabled {
   cursor: not-allowed;
   opacity: 0.7;
+}
+@media (max-width: 1024px) {
+  .notLogged {
+    margin: 100px;
+    font-size: 1.8rem;
+  }
+  .notLogged button {
+    font-size: 1.1rem;
+    width: 70%;
+  }
+}
+@media (max-width: 768px) {
+  .notLogged {
+    margin: 50px;
+    padding: 15px;
+    font-size: 1.5rem;
+  }
+  .notLogged button {
+    font-size: 1rem;
+    width: 80%;
+  }
+}
+@media (max-width: 480px) {
+  .notLogged {
+    margin: 20px;
+    padding: 10px;
+    font-size: 1.2rem;
+  }
+  .notLogged button {
+    font-size: 0.9rem;
+    width: 100%;
+  }
 }/*# sourceMappingURL=Perfil.css.map */

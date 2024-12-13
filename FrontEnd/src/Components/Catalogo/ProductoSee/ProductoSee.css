@@ -16,11 +16,16 @@
      object-fit: cover;
   background-color: #fff;
 }
-.productoDiv .infoProduct h2, .productoDiv .infoProduct h6, .productoDiv .infoProduct h5 {
+.productoDiv .infoProduct h3, .productoDiv .infoProduct h6, .productoDiv .infoProduct h5 {
   color: #fff;
 }
+.productoDiv .infoProduct .infoPrice {
+  display: flex;
+  justify-content: flex-end;
+}
 .productoDiv .infoProduct .infoPrice h6 {
-  padding-left: 85%;
+  margin: 0 1% 0 0;
+  padding-bottom: 1%;
   color: #fff;
 }
 .productoDiv .infoProduct h4 {

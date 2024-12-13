@@ -112,7 +112,6 @@ const Contacto = () => {
                     <div className='infoBottom'>
                         <h3>Ubicación</h3>
                         <p>San Carlos de Bariloche</p>
-                        <p>Onelli 556 local 10</p>
                     </div>
                 </div>
             </div>

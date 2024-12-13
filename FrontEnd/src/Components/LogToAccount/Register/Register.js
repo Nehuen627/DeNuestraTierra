@@ -132,8 +132,12 @@ const Register = () => {
                 confirmation ? 
                 <div>Usuario registrado correctamente - <Link to='/Login'>Logeate</Link></div> 
                 : 
-                <p>el usuario no se pudo registrar</p>}
+                <></>}
                 {error && <p>Error al registrar al usuario: {error.message}</p>}
+            </div>
+            <div className='login'>
+                <h2>Ya tienes una cuenta?</h2>
+                <Link to='/login'><button>Logeate</button></Link>
             </div>
         </div>
     );

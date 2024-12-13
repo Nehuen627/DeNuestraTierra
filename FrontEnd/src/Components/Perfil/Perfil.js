@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import Modal from './Modal/Modal.js';
 import api from '../../axios/api';
 import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
+
 import "./Perfil.css"
 
 const Perfil = () => {
@@ -11,18 +12,19 @@ const Perfil = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isModalOpen, setModalOpen] = useState(false);
-
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
                 const currentUserResponse = await api.get('/auth/sessions/current');
-                
-                if (currentUserResponse.data.success) {
+                if(currentUserResponse.data === 'user not found') {
+                    console.log(currentUserResponse.data);
+                    
+                    setError(new Error("Not authenticated"));
+                }else if(currentUserResponse.data.success) {
                     const profileResponse = await api.get('/api/profile');
                     setProfile(profileResponse.data);
                     
-                } else {
-                    setError(new Error("Not authenticated"));
                 }
             } catch (err) {
                 setError(err);
@@ -82,12 +84,13 @@ const Perfil = () => {
         }
     }
     
-    const handleDeletePerfil = () => {
-        
-    }
     const handleUpdate = () => {
-        
-    }
+        navigate(`/perfil/update/${profile.id}`);
+    };
+
+    const handleDeletePerfil = () => {
+        navigate(`/perfil/delete/${profile.id}`);
+    };
     let buttons = (<></>)
     if(profile.role === "admin"){
         buttons = (
@@ -118,7 +121,7 @@ const Perfil = () => {
             <div className='logged'>
                 <div className='pBox'>
                     <div className='pPic' onClick={handleImageClick}>
-                        <img src={`http://localhost:8080` + profile.avatarUrl} alt='avatar' />
+                        <img src={profile.avatarUrl} alt='avatar' />
                     </div>
                     <Modal isOpen={isModalOpen} onClose={closeModal} />
                     

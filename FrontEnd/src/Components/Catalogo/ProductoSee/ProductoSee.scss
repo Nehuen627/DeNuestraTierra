@@ -16,12 +16,15 @@
             object-fit: cover;
             background-color: a.$White;
         }
-        h2, h6 , h5{
+        h3, h6 , h5{
             color: a.$White
         }
         .infoPrice {
+            display: flex;
+            justify-content: flex-end;
             h6 {
-                padding-left: 85%;
+                margin: 0 1% 0 0;
+                padding-bottom: 1%;
                 color: a.$White
             }
         }

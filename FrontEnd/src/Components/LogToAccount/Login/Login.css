@@ -105,7 +105,7 @@
 }
 @media (max-width: 480px) {
   .loginContent {
-    width: 95%;
+    width: 85%;
     margin: 0 auto;
   }
   .loginContent form {

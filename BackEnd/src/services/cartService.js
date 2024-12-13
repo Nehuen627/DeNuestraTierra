@@ -18,7 +18,7 @@ export default class {
     static async remove(cid){
         return await cartDao.remove(cid)
     }
-    static async deleteCartItem(cid, pid){
-        return await cartDao.deleteCartItem(cid, pid)
+    static async deleteCartItem(cid, pid, tid){
+        return await cartDao.deleteCartItem(cid, pid, tid)
     }
 }

@@ -17,6 +17,11 @@ const Dashboard = () => {
     const [filteredTalleres, setFilteredTalleres] = useState([]);
     const [productTypes, setProductTypes] = useState([]);
     const [typeForm, setTypeForm] = useState({ type: '' });
+    const [imageFile, setImageFile] = useState(null);
+    const [images, setImages] = useState([]);
+    const [text, setText] = useState('');
+    const [showModal, setShowModal] = useState(false);
+
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
@@ -85,6 +90,71 @@ const Dashboard = () => {
             setError(err.message);
         } finally {
             setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        const fetchImages = async () => {
+            try {
+                const response = await api.get('/api/nosotros/pictures'); 
+                setImages(response.data.pictures);
+                
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+        fetchImages();
+    }, []);
+
+    useEffect(() => {
+        const fetchText = async () => {
+            try {
+                const response = await api.get('/api/nosotros/text');
+                setText(response.data.text);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+        fetchText();
+    }, []);
+
+    const handleImageUpload = async (e) => {
+        e.preventDefault();
+        if (!imageFile) return;
+
+        const formData = new FormData();
+        formData.append('image', imageFile);
+
+        setLoading(true);
+        try {
+            await api.post('/api/nosotros/images', formData);
+            const response = await api.get('/api/nosotros/images');
+            setImages(response.data);
+            setImageFile(null);
+            setShowModal(false);
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDeleteImage = async (imageId) => {
+        try {
+            await api.delete(`/api/nosotros/images/${imageId}`);
+            const response = await api.get('/api/nosotros/images');
+            setImages(response.data);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    const handleUpdateText = async () => {
+        try {
+            await api.patch('/api/nosotros/text', { text });
+            alert('Text updated successfully');
+        } catch (err) {
+            setError(err.message);
         }
     };
 
@@ -251,6 +321,12 @@ const Dashboard = () => {
                 >
                     Tipos de Vino
                 </button>
+                <button 
+                    className={activeTab === 'images' ? 'active' : ''} 
+                    onClick={() => setActiveTab('images')}
+                >
+                    Nosotros Info
+                </button>
             </div>
 
             <div className="dashboard-content">
@@ -282,6 +358,22 @@ const Dashboard = () => {
                         <Plus /> Crear
                     </button>
                 )}
+                {activeTab === 'images' && (
+                    <div className="image-upload-section">
+                        
+                        <div className="text-section">
+                            <h2>Texto de Nosotros Page</h2>
+                            <textarea 
+                                value={text} 
+                                onChange={(e) => setText(e.target.value)} 
+                                rows="4" 
+                                cols="50"
+                            />
+                            <button onClick={handleUpdateText}><Pencil /></button>
+                        </div>
+                    </div>
+                )}
+
 
                 {showForm && (
                                     <div className="form-overlay">
@@ -364,6 +456,8 @@ const Dashboard = () => {
                                     )}
                                     {activeTab === 'talleres' && (
                                         <>
+                                            <h2>Nuevo taller</h2>
+
                                             <input
                                                 type="text"
                                                 placeholder="Título del taller"
@@ -403,6 +497,16 @@ const Dashboard = () => {
                                                 />
                                             </div>
                                         </>
+                                    )}
+                                    {activeTab === 'images' && (
+                                        <form onSubmit={handleImageUpload}>
+                                            <h2>Sube una imagen</h2>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => setImageFile(e.target.files[0])}
+                                            />
+                                        </form>
                                     )}
                                     {activeTab === 'types' && (
                                         <>
@@ -488,6 +592,13 @@ const Dashboard = () => {
                                             </button>
                                         </div>
                                     </div>
+                            )) : activeTab === 'images' ? images.map(img => (
+                                    <div key={img.id} className="image-container">
+                                        <img src={img.url} alt={`Imagen ${img.id}`} />
+                                        <button onClick={() => handleDeleteImage(img.id)}>
+                                            <Trash />
+                                        </button>
+                                    </div>
                             )) : users.map(user => (
                                 <div key={user.id} className="item-card">
                                     <h3>{user.name}</h3>
@@ -537,6 +648,7 @@ const Dashboard = () => {
                             </button>
                         </div>
                     )}
+                    
             </div>
         </div>
     );

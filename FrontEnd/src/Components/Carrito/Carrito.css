@@ -136,4 +136,43 @@
 }
 .addButton:hover {
   background-color: #62102a;
+}
+
+.checkoutMessage {
+  text-align: center;
+  padding: 15px;
+  margin: 20px auto;
+  width: 80%;
+  background-color: #f3f2f2;
+  color: #8e173d;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.297);
+  font-size: 18px;
+  font-weight: bold;
+}
+.checkoutMessage button {
+  margin-top: 2%;
+  padding: 15px 30px;
+  background-color: #8e173d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+.checkoutMessage button:hover {
+  background-color: #ea567a;
+}
+@media (max-width: 768px) {
+  .checkoutMessage {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
+@media (max-width: 480px) {
+  .checkoutMessage {
+    font-size: 14px;
+    padding: 10px;
+  }
 }/*# sourceMappingURL=Carrito.css.map */

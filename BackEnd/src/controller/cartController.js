@@ -1,7 +1,7 @@
 import cartService from "../services/cartService.js";
 import userService from "../services/userService.js";
 import productosService from "../services/productosService.js";
-
+import talleresService from "../services/talleresService.js";
 import { Exception } from "../utils/utils.js";
 export default class {
     static async deleteCart(cid){
@@ -64,6 +64,36 @@ export default class {
             throw new Error(`Error adding product to cart: ${error.message}`);
         }
     }
+    static async addTallerToCart(cid, tid) {
+        try {
+            const cart = await this.getCartContentById(cid);
+            if (!cart) {
+                throw new Error("Cart not found");
+            }
+    
+            const taller = await talleresService.getTallerById(tid);
+            if (!taller) {
+                throw new Error("Taller not found");
+            }
+    
+            const existingTallerIndex = cart.talleres.findIndex(t => t.tallerId._id === tid);
+    
+            if (existingTallerIndex !== -1) {
+                throw new Error("Taller is already in the cart");
+            }
+    
+            cart.talleres.push({
+                tallerId: { _id: tid }
+            });
+    
+            return await cartService.findOneAndUpdate({
+                _id: cid,
+                talleres: cart.talleres
+            });
+        } catch (error) {
+            throw new Error(`Error adding taller to cart: ${error.message}`);
+        }
+    }
     
     static async getCarts(req) {
         try {
@@ -96,12 +126,13 @@ export default class {
             if (!cart) {
                 throw new Error("Cart not found");
             }
-
+    
             return await cartService.deleteCartItem(cid, pid);
         } catch (error) {
-            throw new Error(`Error updating cart: ${error.message}`);
+            throw new Error(`Error deleting product from cart: ${error.message}`);
         }
     }
+    
     
     
     
@@ -217,5 +248,18 @@ export default class {
             throw new Error(`Error removing product quantity: ${error.message}`);
         }
     }
+    static async deleteTallerFromCart(cid, tid) {
+        try {
+            const cart = await this.getCartContentById(cid);
+            if (!cart) {
+                throw new Error("Cart not found");
+            }
+            return await cartService.deleteCartItem(cid, null, tid);
+        } catch (error) {
+            throw new Error(`Error deleting taller from cart: ${error.message}`);
+        }
+    }
+    
+    
 }
 

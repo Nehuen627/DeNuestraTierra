@@ -66,6 +66,7 @@ export const init = () => {
                     cart: 1,
                     name: "current Admin",
                     lastName: "admin",
+                    imgUrl: "http://localhost:8080/images/randomP.png",
                     role: "admin",
                     birthdate: "Admin",
                     province: "admin",
@@ -105,6 +106,7 @@ export const init = () => {
                 cart: 1,
                 firstName: "Admin",
                 lastName: "admin",
+                imgUrl: "http://localhost:8080/images/randomP.png",
                 role: "admin",
                 birthdate: "admin",
                 email: "adminadmin@adming.com",
@@ -115,7 +117,7 @@ export const init = () => {
         try {
             const user = await usersController.findById(id);
             if (!user) {
-                return done(new Error('User not found'));
+                return done('user not found');
             }
             done(null, {
                 _id: user.id,

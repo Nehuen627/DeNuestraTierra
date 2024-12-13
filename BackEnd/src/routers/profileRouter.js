@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/profile', passport.authenticate('currentProfile', { session: false }), async (req, res) => {
     try {
-        const user = req.user; // Get the authenticated user from the request
+        const user = req.user; 
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
@@ -15,6 +15,7 @@ router.get('/profile', passport.authenticate('currentProfile', { session: false 
         const imageUrl = user.imgurl || new URL('/images/default.svg', baseUrl).href;
         
         const profile = {
+            id: user._id,
             name: user.name,
             lastName: user.lastName,
             email: user.email,

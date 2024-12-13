@@ -23,7 +23,7 @@ const Login = () => {
                 console.log("Login successful");
                 window.location.href = response.data.redirectUrl;
             } else {
-                setError(response.data.message || "Invalid credentials");
+                setError(response.data.message || "Credenciales invalidas");
             }
         } catch (err) {
             console.error(err);

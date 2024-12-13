@@ -7,4 +7,5 @@ const router = Router();
 router.get("/nosotros/text", nosotrosController.getText)
 router.get("/nosotros/pictures", nosotrosController.getPictures)
 
+
 export default router;

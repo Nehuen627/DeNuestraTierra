@@ -12,8 +12,11 @@ export default class {
     static async create(finalData){
         return userDao.create(finalData)
     }
-    static async updateUserById(id, user) {
-        return userDao.updateUserById(id, user)
+    static async updateUserById(id, updates) {
+        return userDao.updateUserById(id, updates)
+    }
+    static async updateInfoById(id, updates) {
+        return userDao.updateInfoById(id, updates)
     }
     static async getUsers(){
         return userDao.getUsers()

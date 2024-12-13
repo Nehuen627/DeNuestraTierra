@@ -1,6 +1,7 @@
 import { json, Router } from 'express';
 import cartController from "../controller/cartController.js"
 import productosService from '../services/productosService.js';
+import talleresService from '../services/talleresService.js';
 const router = Router();
 
 router.post("/carts", async (req, res) => {
@@ -114,6 +115,33 @@ router.post("/carts/:cid/producto/:pid", async (req, res) => {
         });
     }
 });
+router.post("/carts/:cid/taller/:tid", async (req, res) => {
+    const idCart = req.params.cid;
+    const idTaller = req.params.tid;
+        
+    try {
+        const taller = await talleresService.getTallerById(idTaller);
+        if (!taller) {
+            return res.status(404).send({ message: "Taller not found" });
+        }
+
+        const updatedCart = await cartController.addTallerToCart(idCart, idTaller);
+
+        if (updatedCart) {
+            res.status(200).send({
+                message: "Taller added to cart successfully",
+                cart: updatedCart
+            });
+        } else {
+            res.status(400).send({ message: "Error adding the taller to the cart" });
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: "Error updating the cart or adding the taller",
+            error: error.message
+        });
+    }
+});
 
 router.put("/carts/:cid/producto/:pid", async (req, res) => {
     const idCart = req.params.cid;
@@ -158,6 +186,21 @@ router.delete("/carts/:cid/producto/:pid", async (req, res) => {
     }
 });
 
+router.delete("/carts/:cid/taller/:tid", async (req, res) => {
+    const { cid, tid } = req.params;
+    try {
+        const updatedCart = await cartController.deleteTallerFromCart(cid, tid);
+        res.status(200).send({
+            message: "Taller removed from cart",
+            cart: updatedCart,
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: "Error removing taller from cart",
+            error: error.message,
+        });
+    }
+});
 
 router.delete("/carts/erase/:cid", async (req, res) => {
     const idCart = req.params.cid;
@@ -211,6 +254,7 @@ router.delete('/carts/:cid/producto/:pid/erase', async (req, res) =>{
         });
     }
 })
+
 /* router.post("/carts/:cid/purchase", async (req, res) => {
     const idCart = req.params.cid;
     

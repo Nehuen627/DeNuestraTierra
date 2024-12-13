@@ -1,0 +1,91 @@
+@use '../../../Sass/Colors.scss' as a;
+@use '../../../Sass/Fonts.scss' as b;
+
+.deleteAccount {
+    padding: 20px;
+    max-width: 600px;
+    margin: 10% auto;
+    background: a.$GreyPink;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px a.$BlackShadow;
+
+    h2 {
+        text-align: center;
+        color: a.$Wine;
+        margin-bottom: 10px;
+    }
+
+    p {
+        text-align: center;
+        font-family: b.$Jost;
+        color: a.$Wine;
+        margin-bottom: 20px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            align-self: center;
+            padding: 10px 20px;
+            background-color: a.$BurgundyLight;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+
+            &:hover {
+                background-color: a.$Burgundy;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 15px;
+
+        p {
+            font-size: 0.9rem;
+        }
+
+        form {
+            input {
+                font-size: 0.9rem;
+            }
+
+            button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 10px;
+
+        p {
+            font-size: 0.8rem;
+        }
+
+        form {
+            input {
+                font-size: 0.8rem;
+            }
+
+            button {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+        }
+    }
+}

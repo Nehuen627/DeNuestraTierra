@@ -17,6 +17,8 @@ import ScrollToTop from './Components/ScrollToTop/ScrollToTop.js';
 import Login from './Components/LogToAccount/Login/Login.js';
 import Register from './Components/LogToAccount/Register/Register.js';
 import Dashboard from './Components/Dashboard/dashboard.js';
+import UpdateUserInfo from './Components/Perfil/optionsPerfil/update.js';
+import DeleteAccount from './Components/Perfil/optionsPerfil/delete.js';
 
 function App() {
   return (
@@ -37,7 +39,10 @@ function App() {
             <Route exact path="/Login" element={<Login/>}/>
             <Route exact path="/Register" element={<Register/>}/>
             <Route exact path="/Dashboard" element={<Dashboard/>}/>
+            <Route path="/perfil" element={<Perfil />} />
             {/* Dynamic routes */}
+            <Route path="/perfil/update/:id" element={<UpdateUserInfo />} />
+            <Route path="/perfil/delete/:id" element={<DeleteAccount />} />
             <Route path="/Producto/:id" element={<ProductDetail/>} />
             <Route path="/Talleres/:id" element={<TallerDetail/>}/>
           </Routes>

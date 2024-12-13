@@ -10,7 +10,7 @@ const productoSee = ({Title, Id, Price, Img, Rating}) => {
             <Link to={`/Producto/${Id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className='infoProduct'>
                 <img src={Img} alt='foto producto'></img>
-                <h2>{Title}</h2>
+                <h3>{Title}</h3>
                 <h4>Id: {Id}</h4>
                 <h5><span>★</span>{Rating}</h5>
                 <div className='infoPrice'>

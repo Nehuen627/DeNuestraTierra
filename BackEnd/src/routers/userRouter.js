@@ -1,10 +1,14 @@
 import { Router } from 'express';
 import userController from '../controller/userController.js';
+import userService from '../services/userService.js';
 const router = Router();
 
 router.get('/users', userController.getUsers)
 router.patch('/users/changeRol/:id', userController.changeRol)
-router.delete('/users/:id', userController.deleteUserById)
+router.delete('/users/delete/:id', userController.deleteUserById)
+router.patch('/users/update/:id', userController.updateUserInfo);
+
+router.patch('/users/update-password/:id', userController.updateUserPassword);
 router.get('/user/regions', (req, res) => {
     const regions = [
         { id: 1, Name: "Buenos Aires" },

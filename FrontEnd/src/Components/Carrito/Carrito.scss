@@ -157,3 +157,43 @@
         background-color: darken(a.$Wine, 10%);
     }
 }
+.checkoutMessage {
+    text-align: center;
+    padding: 15px;
+    margin: 20px auto;
+    width: 80%;
+    background-color: a.$LightGrey2;
+    color: a.$Wine;
+    border-radius: 10px;
+    box-shadow: 0 0 15px a.$BlackShadow;
+    font-size: 18px;
+    font-weight: bold;
+
+    button{
+            margin-top: 2%;
+            padding: 15px 30px;
+            background-color: a.$Wine;
+            color: a.$White;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+                background-color: a.$Pink;
+            }
+        
+    }
+
+
+    @media (max-width: 768px) {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    @media (max-width: 480px) {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

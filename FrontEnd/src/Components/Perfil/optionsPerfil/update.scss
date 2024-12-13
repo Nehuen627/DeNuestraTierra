@@ -1,0 +1,105 @@
+@use '../../../Sass/Colors.scss' as a;
+@use '../../../Sass/Fonts.scss' as b;
+
+.updateUserInfo {
+  padding: 20px;
+  max-width: 600px;
+  margin: 5% auto;
+  background-color: a.$GreyPink;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px a.$BlackShadow;
+
+  h2 {
+    font-family: b.$Jost;
+    color: a.$Wine;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .updateOptions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: a.$Wine;
+      color: a.$White;
+      font-family: b.$Jost;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: a.$Pink;
+      }
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    label {
+      display: flex;
+      flex-direction: column;
+      font-family: b.$Jost;
+      color: a.$Burgundy;
+
+      input {
+        margin-top: 5px;
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      input[type="checkbox"] {
+        margin-top: 0;
+        width: auto;
+      }
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: a.$Wine;
+      color: a.$White;
+      font-family: b.$Jost;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: a.$Pink;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 15px;
+
+    form label input {
+      font-size: 0.9rem;
+    }
+
+    form button {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+
+    form label input {
+      font-size: 0.8rem;
+    }
+
+    form button {
+      font-size: 0.8rem;
+    }
+  }
+}

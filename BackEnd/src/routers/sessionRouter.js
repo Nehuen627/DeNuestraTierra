@@ -5,7 +5,6 @@ import userController from '../controller/userController.js';
 
 const router = Router();
 router.post('/sessions/register', passport.authenticate('register'/* , { failureRedirect: '/register' } */), async (req, res) => {
-    /* res.redirect('/login'); */
     res.status(200).json({    success: true,    redirectUrl: 'http://localhost:3000/login'});
 });
 router.post('/sessions/login', (req, res, next) => {
@@ -51,13 +50,14 @@ router.post('/sessions/login', (req, res, next) => {
                             user: user
                         });
                 } else {
+                    
                     const date = new Date().toISOString();
-                    const connection = await userController.lastConnection(user._id, date);
+                    const connection = await userController.lastConnection(user.id, date);
                     
                     if (connection) {
                         res
                             .cookie('access_token', token, { 
-                                maxAge: 1000*60*30, 
+                                maxAge: 1000 * 60 * 60 * 24,
                                 httpOnly: true, 
                                 signed: true,
                                 sameSite: 'lax'
@@ -88,8 +88,6 @@ router.post('/sessions/login', (req, res, next) => {
 });
 router.get('/sessions/current', passport.authenticate('currentProfile', { session: false }), async (req, res) => {
     try {
-       
-        
         res.json({
             success: true,
             user: req.user
@@ -159,7 +157,6 @@ router.post('/sessions/changePassword', async (req, res) => {
         }
     }
     catch (error) {
-        req.logger.error(error)
         res.redirect('/cambiarContraseña');
     }
 })
@@ -181,6 +178,15 @@ router.post('/sessions/trueChangePassword', async (req, res) => {
     catch (error) {
         res.redirect('/cambiarContraseña');
     }
+})
+router.get("/sessions/deletedUser", async (req, res) => {
+            res
+            .clearCookie('access_token')
+            .json({
+                success: true,   
+            })
+        
+    
 })
 
 export default router;

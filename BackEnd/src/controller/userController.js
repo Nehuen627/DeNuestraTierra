@@ -46,6 +46,58 @@ export default class {
             new Exception(error, 500 )
         }
     }
+    static async updateUserInfo(req, res) {
+        const { id } = req.params;
+        const updates = req.body;
+      
+        try {
+            const currentUser = await userService.getUserById(id);
+      
+            if (!currentUser) {
+                return res.status(404).json({ success: false, message: 'User not found' });
+            }
+      
+            const updatedData = { ...currentUser, ...Object.fromEntries(
+                Object.entries(updates).filter(([_, value]) => value !== '' && value !== undefined)
+            ) };
+      
+            const result = await userService.updateUserById(id, updatedData);
+            res.json({ success: true, data: result });
+        } catch (error) {
+            console.error('Error updating user:', error);
+            res.status(500).json({ success: false, message: 'Error updating user information' });
+        }
+      };
+      
+    static async updateUserPassword(req, res ){
+        const { id } = req.params;
+        const { currentPassword, newPassword } = req.body;
+      
+        try {   
+            const user = await userService.getUserById(id);
+      
+            if (!user) {
+                return res.status(404).json({ success: false, message: 'User not found' });
+            }
+      
+            const passwordMatch = await bcrypt.compare(currentPassword, user.password);
+            if (!passwordMatch) {
+                return res.status(400).json({ success: false, message: 'Incorrect current password' });
+            }
+      
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+      
+            user.password = hashedPassword;
+            await userService.updateUserById(id, user);
+      
+            res.json({ success: true });
+        } catch (error) {
+            console.error('Error updating password:', error);
+            res.status(500).json({ success: false, message: 'Error updating password' });
+        }
+    };
+    
 
     static async updateData(dataToUpdate, data, id){
         try {
@@ -108,7 +160,8 @@ export default class {
             const { id } = req.params;
             
             await userService.deleteUserById(id);
-            res.status(200).json({ message: 'user deleted successfully' });
+            
+            res.status(200).json({ success:true, redirectUrl:"http://localhost:3000/login" });
         } catch (error) {
             res.status(500).json({ message: 'Error deleting user', error });
         }

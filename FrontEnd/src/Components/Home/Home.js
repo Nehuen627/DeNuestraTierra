@@ -112,11 +112,9 @@ const Home = () => {
                     <div className='textLocation'>
                         <GeoAltFill className='pin'/>
                         <h3>San Carlos de Bariloche</h3>
-                        <h3>Onelli 556 local 10</h3>
                     </div>
                     <div className='map'>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d216.97625109826558!2d-71.29755969408036!3d-41.1385909596971!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7b667155570d%3A0x39111efd991a8eda!2sOnelli%20556%2C%20R8400%20San%20Carlos%20de%20Bariloche%2C%20R%C3%ADo%20Negro!5e0!3m2!1sen!2sar!4v1723320215154!5m2!1sen!2sar" width="600" height="400"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96169.09141353668!2d-71.42231446756087!3d-41.12832349423696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x961a7b1520c860e5%3A0x8210ae97cb7b9a65!2sSan%20Carlos%20de%20Bariloche%2C%20R%C3%ADo%20Negro!5e0!3m2!1ses!2sar!4v1734111678498!5m2!1ses!2sar" width="600" height="400"allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     
                 </div>

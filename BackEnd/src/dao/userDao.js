@@ -1,5 +1,6 @@
 import{init} from '../db/db.js';  
 import { v4 as uuidv4 } from 'uuid';
+import cartDao from './cartDao.js';
 
 
 export default class {
@@ -9,10 +10,15 @@ export default class {
         return rows.length > 0 ? rows[0] : null;
     }
     static async deleteUserById(id){
-        const sql = 'DELETE FROM users WHERE id = ?'
-        
-        await init.execute(sql, [id])
-        const [rows] = await init.execute('SELECT * FROM users WHERE id = ?', [id])
+        const cart = await cartDao.findByUserId(id)
+        const cartId = cart.id
+        const cartDeleted = await cartDao.remove(cartId)
+        if (cartDeleted) {
+            const sql = 'DELETE FROM users WHERE id = ?'
+            
+            await init.execute(sql, [id])
+            const [rows] = await init.execute('SELECT * FROM users WHERE id = ?', [id]) 
+        }
         return
     }
     static async getUserByEmail(email){
@@ -54,6 +60,39 @@ export default class {
         const [result] = await init.execute(sql, values);
         return result;
     }
+    static async updateInfoById(id, updates) {
+        if (Object.keys(updates).length === 0) {
+            throw new Error('No fields provided to update');
+        }
+    
+        const allowedFields = ['name', 'email', 'password', 'birthDate', 'province'];
+        const fields = [];
+        const values = [];
+    
+        for (const [key, value] of Object.entries(updates)) {
+            if (!allowedFields.includes(key)) {
+                throw new Error(`Invalid field: ${key}`);
+            }
+            fields.push(`${key} = ?`);
+            values.push(value);
+        }
+    
+        let sql = `UPDATE users SET ${fields.join(', ')} WHERE id = ?`;
+        values.push(id);
+    
+        try {
+            const [result] = await init.execute(sql, values);
+            if (result.affectedRows === 0) {
+                throw new Error('No user found with the given ID');
+            }
+            const updatedUser = await this.getUserById(id);
+            return updatedUser;
+        } catch (error) {
+            console.error('Error executing update query:', error);
+            throw new Error('Database update failed');
+        }
+    }
+    
     static async getUsers() {
         let sql = 'SELECT * FROM users'
         const [rows] = await init.execute(sql);

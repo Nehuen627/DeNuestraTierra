@@ -1,0 +1,90 @@
+.updateUserInfo {
+  padding: 20px;
+  max-width: 600px;
+  margin: 5% auto;
+  background-color: #eddce2;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.297);
+}
+.updateUserInfo h2 {
+  font-family: "Jost", sans-serif;
+  color: #8e173d;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.updateUserInfo .updateOptions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.updateUserInfo .updateOptions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #8e173d;
+  color: #fff;
+  font-family: "Jost", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.updateUserInfo .updateOptions button:hover {
+  background-color: #ea567a;
+}
+.updateUserInfo form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.updateUserInfo form label {
+  display: flex;
+  flex-direction: column;
+  font-family: "Jost", sans-serif;
+  color: #7f2121;
+}
+.updateUserInfo form label input {
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+.updateUserInfo form label input[type=checkbox] {
+  margin-top: 0;
+  width: auto;
+}
+.updateUserInfo form button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #8e173d;
+  color: #fff;
+  font-family: "Jost", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.updateUserInfo form button:hover {
+  background-color: #ea567a;
+}
+@media (max-width: 768px) {
+  .updateUserInfo {
+    padding: 15px;
+  }
+  .updateUserInfo form label input {
+    font-size: 0.9rem;
+  }
+  .updateUserInfo form button {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .updateUserInfo {
+    padding: 10px;
+  }
+  .updateUserInfo form label input {
+    font-size: 0.8rem;
+  }
+  .updateUserInfo form button {
+    font-size: 0.8rem;
+  }
+}/*# sourceMappingURL=update.css.map */

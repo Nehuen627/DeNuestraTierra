@@ -69,6 +69,31 @@
   cursor: not-allowed;
   opacity: 0.7;
 }
+.registerContent .login {
+  margin-top: 1%;
+}
+.registerContent .login h2 {
+  color: #8e173d;
+  text-align: center;
+}
+.registerContent .login button {
+  background-color: #8e173d;
+  color: #fff;
+  padding: 12px 0;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 90%;
+}
+.registerContent .login button:hover {
+  background-color: #ea567a;
+}
+.registerContent .login button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
 .registerContent div {
   text-align: center;
   margin-top: 20px;
