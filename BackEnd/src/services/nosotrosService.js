@@ -8,4 +8,16 @@ export default class NosotrosService {
     static async getPictures() {
         return await nosotrosDao.getPictures();
     }
+
+    static async updateText(newText) {
+        return await nosotrosDao.updateText(newText);
+    }
+
+    static async deleteImageById(id) {
+        return await nosotrosDao.deleteImageById(id);
+    }
+
+    static async addImage(imageUrl) {
+        return await nosotrosDao.addImage(imageUrl);
+    }
 }

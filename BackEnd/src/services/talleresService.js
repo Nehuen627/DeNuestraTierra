@@ -7,7 +7,9 @@ export default class {
         return talleresDao.getTallerById(id)
     }
     static async createTaller(tallerData) {
-        tallerData.skills = JSON.stringify(tallerData.skills);
+        if (typeof tallerData.skills === 'string') {
+            tallerData.skills = tallerData.skills.split(',').map(skill => skill.trim());
+        }
         return talleresDao.createTaller(tallerData)
     }
     static async deleteTaller(id) {

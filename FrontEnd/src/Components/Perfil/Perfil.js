@@ -4,6 +4,7 @@ import Modal from './Modal/Modal.js';
 import api from '../../axios/api';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import profileImg from "../../Images/Pictures/randomP.png"
 
 import "./Perfil.css"
 
@@ -11,15 +12,12 @@ const Perfil = () => {
     const [profile, setProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isModalOpen, setModalOpen] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         const fetchProfileData = async () => {
             try {
                 const currentUserResponse = await api.get('/auth/sessions/current');
                 if(currentUserResponse.data === 'user not found') {
-                    console.log(currentUserResponse.data);
-                    
                     setError(new Error("Not authenticated"));
                 }else if(currentUserResponse.data.success) {
                     const profileResponse = await api.get('/api/profile');
@@ -36,14 +34,7 @@ const Perfil = () => {
         fetchProfileData();
     }, []);
 
-    const handleImageClick = () => {
-        setModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setModalOpen(false);
-    };
-
+    
     
     const formatDate = (dateString) => {
         if (!dateString) return 'No disponible';
@@ -120,11 +111,9 @@ const Perfil = () => {
         <div className='perfilContent'>
             <div className='logged'>
                 <div className='pBox'>
-                    <div className='pPic' onClick={handleImageClick}>
-                        <img src={profile.avatarUrl} alt='avatar' />
+                    <div className='pPic'>
+                        <img src={profileImg} alt='avatar' />
                     </div>
-                    <Modal isOpen={isModalOpen} onClose={closeModal} />
-                    
                     <div className='pInfo'>
                         <div className='pInfoSection'>
                             <h2>{profile.name} {profile.lastName}</h2>

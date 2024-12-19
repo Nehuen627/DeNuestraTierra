@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import userController from '../controller/userController.js';
 import userService from '../services/userService.js';
+import { authenticateLevel } from '../utils/utils.js';
 const router = Router();
 
 router.get('/users', userController.getUsers)
-router.patch('/users/changeRol/:id', userController.changeRol)
+router.patch('/users/changeRol/:id',authenticateLevel(4), userController.changeRol)
 router.delete('/users/delete/:id', userController.deleteUserById)
 router.patch('/users/update/:id', userController.updateUserInfo);
 
@@ -40,7 +41,7 @@ router.get('/user/regions', (req, res) => {
     res.json(regions);
 })
 
-router.get("/users/demo/addUser", async (req, res) => {
+router.get("/users/demo/addUser",authenticateLevel(4), async (req, res) => {
     try {
         const data = req.body
         const user = await userController.addUser(data)
@@ -52,7 +53,7 @@ router.get("/users/demo/addUser", async (req, res) => {
         
     }
 })
-router.get("/users/demo/email", async (req, res) => {
+router.get("/users/demo/email",authenticateLevel(4), async (req, res) => {
     try {
         const { email } = req.body
     

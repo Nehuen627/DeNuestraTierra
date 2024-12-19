@@ -107,7 +107,7 @@ const Contacto = () => {
                     </div>
                     <div className='infoMiddle'>
                         <h3>Teléfono</h3>
-                        <p>2944000000</p>
+                        <p>2944237579</p>
                     </div>
                     <div className='infoBottom'>
                         <h3>Ubicación</h3>

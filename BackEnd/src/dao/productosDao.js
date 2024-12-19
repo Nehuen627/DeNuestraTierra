@@ -1,5 +1,7 @@
 import {init} from '../db/db.js';  
 import { v4 as uuidv4 } from 'uuid';
+import fs from 'fs/promises';
+import path from 'path';
 
 export default class {
     static async getFilteredProductsFromDB({ query, rating, category, sortPrice, limit = 10, offset = 0 }) {
@@ -60,48 +62,113 @@ export default class {
     }
 
     static async updateProductById(id, updates) {
-        let sql = 'UPDATE products SET ';
-        const fields = [];
-        const values = [];
-    
-        for (const [key, value] of Object.entries(updates)) {
-            fields.push(`${key} = ?`);
-            values.push(value);
+        try {
+            // If there's a new image, update the URL
+            if (updates.imgUrl) {
+                updates.imgUrl = `http://localhost:8080${updates.imgUrl}`;
+            }
+
+            let sql = 'UPDATE products SET ';
+            const fields = [];
+            const values = [];
+        
+            for (const [key, value] of Object.entries(updates)) {
+                if (value !== undefined && value !== null) {  // Only update non-null values
+                    fields.push(`${key} = ?`);
+                    values.push(value);
+                }
+            }
+        
+            if (fields.length === 0) return null;  // No valid updates
+
+            sql += fields.join(', ');
+            sql += ' WHERE id = ?';
+            values.push(id);
+        
+            const [result] = await init.execute(sql, values);
+            return result;
+        } catch (error) {
+            throw new Error(`Error updating product: ${error.message}`);
         }
-    
-        sql += fields.join(', ');
-        sql += ' WHERE id = ?';
-        values.push(id);
-    
-        const [result] = await init.execute(sql, values);
-        return result;
     }
 
     static async deleteProduct(id) {
-        const sql = `DELETE FROM products WHERE id = ?`;
-        await init.execute(sql, [id]);
+        try {
+            // First get the image URL from database
+            const [rows] = await init.query('SELECT imgUrl FROM products WHERE id = ?', [id]);
+            if (rows.length === 0) {
+                throw new Error('Product not found');
+            }
 
-        const [rows] = await init.execute('SELECT * FROM products WHERE id = ?', [id])
-        return 
+            // Extract filename from full URL if exists
+            const imgUrl = rows[0].imgUrl;
+            if (imgUrl) {
+                const filename = imgUrl.split('/').pop();
+                
+                // Delete from database first
+                const sql = `DELETE FROM products WHERE id = ?`;
+                await init.execute(sql, [id]);
+
+                // Try to delete file from uploads folder
+                try {
+                    const uploadsPath = path.join(process.cwd(), 'public', 'uploads', filename);
+                    await fs.unlink(uploadsPath);
+                } catch (fileError) {
+                    console.warn(`File ${filename} could not be deleted: ${fileError.message}`);
+                }
+            } else {
+                // If no image, just delete from database
+                const sql = `DELETE FROM products WHERE id = ?`;
+                await init.execute(sql, [id]);
+            }
+
+            return { success: true };
+        } catch (error) {
+            throw new Error(`Error deleting product: ${error.message}`);
+        }
     }
 
-    static async insertProduct({ title, price, imgUrl, rating, type, description, stock, barCode, status = 1,grapeType = null, region = null, harvestYear = null, pairing = null, alcoholContent = null 
-    }) {
-        console.log(title, price, imgUrl, rating, type, description, stock, barCode, status,grapeType, region, harvestYear, pairing, alcoholContent);
-        //! arreglar dashboard create product no funciona
+    static async insertProduct({ title, price, imgUrl, rating, type, description, stock, barCode, status = 1, grapeType = null, region = null, harvestYear = null, pairing = null, alcoholContent = null }) {
+        try {
+            // Validate required fields
+            if (!title || !price || !type || !description || !stock || !barCode) {
+                throw new Error('Missing required fields');
+            }
 
-        const id = uuidv4();
-        const sql = `
-            INSERT INTO products (id, title, price, imgUrl, rating, type, description, stock, barCode, status, grapeType, region, harvestYear, pairing, alcoholContent)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `;
-        await init.execute(sql, [
-            id, title, price, imgUrl, rating, type, description, stock, barCode, status,grapeType, region, harvestYear, pairing, alcoholContent
-        ]);
-        
-        return { 
-            id, title, price, imgUrl, rating, type, description, stock, barCode, status,grapeType, region, harvestYear, pairing, alcoholContent 
-        };
+            const id = uuidv4();
+            const fullImgUrl = imgUrl ? `http://localhost:8080${imgUrl}` : null;
+            
+            const sql = `
+                INSERT INTO products (id, title, price, imgUrl, rating, type, description, stock, barCode, status, grapeType, region, harvestYear, pairing, alcoholContent)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            `;
+            
+            const values = [
+                id, 
+                title, 
+                Number(price), 
+                fullImgUrl, 
+                Number(rating) || 0, 
+                type,
+                description,
+                Number(stock),
+                barCode,
+                Number(status),
+                grapeType || null,
+                region || null,
+                harvestYear || null,
+                pairing || null,
+                alcoholContent || null
+            ];
+
+            await init.execute(sql, values);
+            
+            return { 
+                id, title, price, imgUrl: fullImgUrl, rating, type, description, stock, barCode, status, grapeType, region, harvestYear, pairing, alcoholContent 
+            };
+        } catch (error) {
+            throw new Error(`Error creating product: ${error.message}`);
+        }
     }
     
 

@@ -51,6 +51,26 @@ export class Exception extends Error {
 export function authenticateLevel(level) {
     return async (req, res, next) => {
         try {
+            // Check both Authorization header and cookies for token
+            const authHeader = req.headers.authorization;
+            const cookieToken = req.signedCookies?.access_token;
+            
+            let token;
+            if (authHeader && authHeader.startsWith('Bearer ')) {
+                token = authHeader.split(' ')[1];
+            } else if (cookieToken) {
+                token = cookieToken;
+            }
+            
+            if (!token) {
+                return res.status(401).send({ message: 'No token provided' });
+            }
+
+            // Verify and decode token
+            const decoded = JWT.verify(token, config.jwtSecret);
+            req.user = decoded;  // Add user data to request
+
+            // Now check levels with the decoded user data
             if(level === 1){
                 next()
             } else if (level === 2){
@@ -73,12 +93,16 @@ export function authenticateLevel(level) {
                 }
             }
         }
-        catch (Error) {
+        catch (error) {
+            if (error.name === 'JsonWebTokenError') {
+                return res.status(401).send({ message: 'Invalid token' });
+            }
             createError.Error({
                 name: 'Authentication error',
-                cause: Error,
-                message: 'An error occured within the authenticate method',
+                cause: error,
+                message: 'An error occurred within the authenticate method',
             });
+            res.status(500).send({ message: 'Internal server error' });
         }
     }
 }

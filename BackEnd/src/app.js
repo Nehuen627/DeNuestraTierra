@@ -10,6 +10,9 @@ import  { init as initPassportConfig } from "./config/passportConfig.js"
 import passport from "passport";
 import cookieParser from 'cookie-parser';
 import  sessionStore  from "./db/dbSessionStore.cjs";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+import multer from 'multer';
 
 /* Initialize server */
 const app = express();
@@ -47,6 +50,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', indexRouter);
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
+app.use((err, req, res, next) => {
+    if (err instanceof multer.MulterError) {
+        return res.status(400).json({
+            message: 'File upload error',
+            error: err.message
+        });
+    }
+    next(err);
+});
 
 export default app

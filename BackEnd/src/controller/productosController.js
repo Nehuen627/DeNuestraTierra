@@ -52,11 +52,17 @@ export default class {
 
     static async createProduct(req, res) {
         try {
-            const productData = req.body; 
-            const newProduct = await productosService.addProduct(productData);
-            res.status(201).json({ message: 'Product created successfully', product: newProduct });
+            const productData = req.body;
+            
+            if (req.file) {
+                productData.imgUrl = `/uploads/${req.file.filename}`;
+            }
+    
+            const product = await productosService.addProduct(productData);
+            res.status(201).json(product);
         } catch (error) {
-            res.status(500).json({ message: 'Error creating product', error });
+            console.error('Error creating product:', error);
+            res.status(500).json({ message: error.message, stack: error.stack });
         }
     }
     static async updateStock(req, res) {
@@ -122,7 +128,9 @@ export default class {
     static async createProductosType(req, res) {
         try {
             const productosTypeData = req.body; 
+            
             const newproductosType = await productosService.createProductosType(productosTypeData);
+            
             res.status(201).json({ message: 'productosType created successfully', productosType: newproductosType });
         } catch (error) {
             res.status(500).json({ message: 'Error creating productosType', error });

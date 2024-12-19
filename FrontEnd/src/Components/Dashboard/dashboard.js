@@ -22,9 +22,7 @@ const Dashboard = () => {
     const [text, setText] = useState('');
     const [showModal, setShowModal] = useState(false);
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
+    
 
     const [productForm, setProductForm] = useState({
         title: '',
@@ -32,9 +30,8 @@ const Dashboard = () => {
         price: '',
         type: '',
         stock: '',
-        imgUrl: '',
         rating: 0,
-        barCode: '',
+        barcode: '',
         status: 1,
         grapeType: '',
         region: '',
@@ -42,13 +39,34 @@ const Dashboard = () => {
         pairing: '',
         alcoholContent: ''
     });
-    
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
+
     const [tallerForm, setTallerForm] = useState({
         title: '', description: '', price: '', skills: [], link: ''
     });
     const [showForm, setShowForm] = useState(false);
     const [editingId, setEditingId] = useState(null);
+    useEffect(() => {
+        const fetchUserAuth= async () => {
+            try {
+                const currentUserResponse = await api.get('/auth/sessions/current');
+                if(currentUserResponse.data === 'user not found') {
+                    setError(new Error("Not authenticated"));
+                }else if(currentUserResponse.data.success) {
+                    return
+                }
+            } catch (err) {
+                setError(err);
+            } finally {
+                setLoading(false);
+            }
+        };
 
+        fetchUserAuth();
+    }, []);
     useEffect(() => {
         const fetchInitialData = async () => {
             if (activeTab === 'productos') {
@@ -71,6 +89,8 @@ const Dashboard = () => {
         try {
             let response;
             switch (activeTab) {
+                case 'productos':
+                    handleSearch()
                 case 'talleres':
                     response = await api.get('/api/talleres');
                     setTalleres(response.data);
@@ -97,6 +117,7 @@ const Dashboard = () => {
         const fetchImages = async () => {
             try {
                 const response = await api.get('/api/nosotros/pictures'); 
+                
                 setImages(response.data.pictures);
                 
             } catch (err) {
@@ -118,33 +139,14 @@ const Dashboard = () => {
         fetchText();
     }, []);
 
-    const handleImageUpload = async (e) => {
-        e.preventDefault();
-        if (!imageFile) return;
-
-        const formData = new FormData();
-        formData.append('image', imageFile);
-
-        setLoading(true);
-        try {
-            await api.post('/api/nosotros/images', formData);
-            const response = await api.get('/api/nosotros/images');
-            setImages(response.data);
-            setImageFile(null);
-            setShowModal(false);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
-
     const handleDeleteImage = async (imageId) => {
         try {
             await api.delete(`/api/nosotros/images/${imageId}`);
-            const response = await api.get('/api/nosotros/images');
-            setImages(response.data);
+            const response = await api.get('/api/nosotros/pictures');
+            setImages(response.data.pictures);
         } catch (err) {
+            console.log(err);
+            
             setError(err.message);
         }
     };
@@ -163,38 +165,125 @@ const Dashboard = () => {
         setLoading(true);
         
         try {
-            let formData;
-            if (activeTab === 'productos') {
-                formData = {
-                    ...productForm,
-                    price: Number(productForm.price),
-                    stock: Number(productForm.stock),
-                    rating: Number(productForm.rating),
-                    status: 1
-                };
-            } else if (activeTab === 'talleres') {
-                formData = {
-                    ...tallerForm,
-                    price: Number(tallerForm.price),
-                    skills: Array.isArray(tallerForm.skills) ? tallerForm.skills : []
-                };
-            } else if (activeTab === 'types') {
-                formData = {
-                    ...typeForm
+            
+            if (activeTab === 'images') {
+                if (!imageFile) {
+                    console.log('No image file selected');
+                    return;
                 }
+                const formData = new FormData();
+                formData.append('image', imageFile);
+                
+                console.log('Image file:', imageFile);
+                console.log('FormData entries:', [...formData.entries()]);
+                
+                try {
+                    const response = await api.post('/api/nosotros/images', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    });
+                    const getPicturesResponse = await api.get('/api/nosotros/pictures');
+                    setImages(getPicturesResponse.data.pictures);
+                    setImageFile(null);
+                    setShowModal(false);
+                } catch (err) {
+                    console.error('Upload error:', err);
+                    setError(err.message);
+                }
+                return;
             }
-    
-            if (activeTab === 'types'){
-                await api.post(`/api/productos/type`, formData)
-            } else {
+
+
+            
+            if (activeTab === 'productos') {
+                const formData = new FormData();
+                
+                if (editingId) {
+                    try {
+                        // Update existing product
+                    const productData = {};
+                    
+                    // Handle all fields, including those that might be 0
+                    productData.title = String(productForm.title || '').trim();
+                    productData.description = String(productForm.description || '').trim();
+                    productData.price = Number(productForm.price);
+                    productData.type = String(productForm.type || '').trim();
+                    productData.stock = Number(productForm.stock);
+                    productData.rating = Number(productForm.rating);
+                    productData.barCode = String(productForm.barcode || '').trim();
+                    productData.status = Number(productForm.status);
+                    
+                    // Optional fields - only include if they exist and convert to string if needed
+                    if (productForm.grapeType != null) productData.grapeType = String(productForm.grapeType).trim();
+                    if (productForm.region != null) productData.region = String(productForm.region).trim();
+                    if (productForm.harvestYear != null) productData.harvestYear = String(productForm.harvestYear).trim();
+                    if (productForm.pairing != null) productData.pairing = String(productForm.pairing).trim();
+                    if (productForm.alcoholContent != null) productData.alcoholContent = String(productForm.alcoholContent).trim();
+
+                    // Append all product data
+                    Object.entries(productData).forEach(([key, value]) => {
+                        formData.append(key, value);
+                    });
+                    
+                    // Append the image file if exists
+                    if (imageFile) {
+                        formData.append('image', imageFile);
+                    }
+
+                    await api.patch(`/api/${activeTab}/${editingId}`, formData); 
+                    } catch (error) {
+                        console.log(error);
+                        
+                    }
+                } else {
+                    // Create new product
+                    formData.append('title', productForm.title.trim());
+                    formData.append('description', productForm.description.trim());
+                    formData.append('price', Number(productForm.price));
+                    formData.append('type', productForm.type.trim());
+                    formData.append('stock', Number(productForm.stock));
+                    formData.append('rating', Number(productForm.rating));
+                    formData.append('barCode', productForm.barcode.trim());
+                    formData.append('status', Number(productForm.status));
+                    formData.append('grapeType', productForm.grapeType.trim());
+                    formData.append('region', productForm.region.trim());
+                    formData.append('harvestYear', productForm.harvestYear.trim());
+                    formData.append('pairing', productForm.pairing.trim());
+                    formData.append('alcoholContent', productForm.alcoholContent.trim());
+
+                    if (imageFile) {
+                        formData.append('image', imageFile);
+                    }
+
+                    await api.post(`/api/${activeTab}`, formData);
+                }
+            } else if (activeTab === 'talleres') {
+                const formData = new FormData();
+                
+                // Handle basic fields
+                formData.append('title', tallerForm.title);
+                formData.append('description', tallerForm.description);
+                formData.append('price', Number(tallerForm.price));
+                formData.append('link', tallerForm.link);
+
+                
+                formData.append('skills', tallerForm.skills);
+                
+                // Append image if exists
+                if (imageFile) {
+                    formData.append('image', imageFile);
+                }
+
                 if (editingId) {
                     await api.patch(`/api/${activeTab}/${editingId}`, formData);
                 } else {
                     await api.post(`/api/${activeTab}`, formData);
                 }
-                
-                
-            }
+            } else if (activeTab === 'types'){
+                await api.post(`/api/productos/type`, typeForm)
+            } 
+
             fetchData();
             setShowForm(false);
             setEditingId(null);
@@ -204,9 +293,8 @@ const Dashboard = () => {
                 price: '',
                 type: '',
                 stock: '',
-                imgUrl: '',
                 rating: 0,
-                barCode: '',
+                barcode: '',
                 status: 1,
                 grapeType: '',
                 region: '',
@@ -214,6 +302,7 @@ const Dashboard = () => {
                 pairing: '',
                 alcoholContent: ''
             });
+            setImageFile(null)
             setTallerForm({ title: '', description: '', price: '', skills: [], link: '' });
             setTypeForm({ type: '' });
         } catch (err) {
@@ -286,6 +375,27 @@ const Dashboard = () => {
             alert('Error al actualizar el rol: ' + err.message);
         }
     };
+    const closeForm = async () => {
+        setEditingId(null);
+        setProductForm({
+            title: '',
+            description: '',
+            price: '',
+            type: '',
+            stock: '',
+            rating: 0,
+            barcode: '',
+            status: 1,
+            grapeType: '',
+            region: '',
+            harvestYear: '',
+            pairing: '',
+            alcoholContent: ''
+        });
+        setTallerForm({ title: '', description: '', price: '', skills: [], link: '' });
+        setImageFile(null);
+        setShowForm(false);
+    }
 
     if (error) return (
         <div className="notLogged">
@@ -410,17 +520,12 @@ const Dashboard = () => {
                                                 value={productForm.stock}
                                                 onChange={(e) => setProductForm({...productForm, stock: e.target.value})}
                                             />
-                                            <input
-                                                type="text"
-                                                placeholder="URL de la imagen"
-                                                value={productForm.imgUrl}
-                                                onChange={(e) => setProductForm({...productForm, imgUrl: e.target.value})}
-                                            />
+                                            
                                             <input
                                                 type="text"
                                                 placeholder="Código de barras"
-                                                value={productForm.barCode}
-                                                onChange={(e) => setProductForm({...productForm, barCode: e.target.value})}
+                                                value={productForm.barcode}
+                                                onChange={(e) => setProductForm({...productForm, barcode: e.target.value})}
                                             />
                                             <input
                                                 type="text"
@@ -452,6 +557,15 @@ const Dashboard = () => {
                                                 value={productForm.alcoholContent}
                                                 onChange={(e) => setProductForm({...productForm, alcoholContent: e.target.value})}
                                             />
+                                            <div className="image-upload">
+                                                <label htmlFor="product-image">Imagen del producto:</label>
+                                                <input
+                                                    type="file"
+                                                    id="product-image"
+                                                    accept="image/*"
+                                                    onChange={(e) => setImageFile(e.target.files[0])}
+                                                />
+                                            </div>
                                         </>
                                     )}
                                     {activeTab === 'talleres' && (
@@ -493,20 +607,20 @@ const Dashboard = () => {
                                                     type="file"
                                                     id="taller-image"
                                                     accept="image/*"
-                                                    onChange={(e) => console.log('Image selected:', e.target.files[0])}
+                                                    onChange={(e) => setImageFile(e.target.files[0])}
                                                 />
                                             </div>
                                         </>
                                     )}
                                     {activeTab === 'images' && (
-                                        <form onSubmit={handleImageUpload}>
-                                            <h2>Sube una imagen</h2>
+                                        <>
+                                            <h2>Subir Nueva Imagen</h2>
                                             <input
                                                 type="file"
                                                 accept="image/*"
                                                 onChange={(e) => setImageFile(e.target.files[0])}
                                             />
-                                        </form>
+                                        </>
                                     )}
                                     {activeTab === 'types' && (
                                         <>
@@ -524,7 +638,7 @@ const Dashboard = () => {
                                         <button type="submit">
                                             {editingId ? 'Actualizar' : 'Crear'}
                                         </button>
-                                        <button type="button" onClick={() => setShowForm(false)}>
+                                        <button type="button" onClick={closeForm}>
                                             Cancelar
                                         </button>
                                     </div>
@@ -545,11 +659,12 @@ const Dashboard = () => {
                                     <p>{product.description}</p>
                                     <p>Precio: ${product.price}</p>
                                     <p>Stock: {product.stock}</p>
-                                    <p>Material: {product.material}</p>
-                                    <p>Dimensiones: {product.dimensions}</p>
-                                    <p>Peso: {product.weight}</p>
                                     <p>Tipo: {product.type}</p>
-                                    <p>Cuidados: {product.care_instructions}</p>
+                                    {product.grapeType && <p>Tipo de uva: {product.grapeType}</p>}
+                                    {product.region && <p>Región: {product.region}</p>}
+                                    {product.harvestYear && <p>Año de cosecha: {product.harvestYear}</p>}
+                                    {product.pairing && <p>Maridaje: {product.pairing}</p>}
+                                    {product.alcoholContent && <p>Contenido de alcohol: {product.alcoholContent}</p>}
                                     <div className="card-actions">
                                         <button onClick={() => {
                                             setProductForm(product);

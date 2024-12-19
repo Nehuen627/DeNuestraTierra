@@ -25,11 +25,16 @@ export default class {
     }
     static async createTaller(req, res) {
         try {
-            const tallerData = req.body; 
-            const newTaller = await talleresService.createTaller(tallerData);
-            res.status(201).json({ message: 'Taller created successfully', taller: newTaller });
+            const tallerData = req.body;
+            
+            if (req.file) {
+                tallerData.imgUrl = `/uploads/${req.file.filename}`;
+            }
+
+            const taller = await talleresService.createTaller(tallerData);
+            res.status(201).json(taller);
         } catch (error) {
-            res.status(500).json({ message: 'Error creating taller', error });
+            res.status(500).json({ message: error.message });
         }
     }
     static async deleteTaller(req, res) {
@@ -42,15 +47,18 @@ export default class {
         }
     }
     static async updateTallerById(req, res) {
-        const { id } = req.params;
-        const updates = req.body;  
         try {
+            const { id } = req.params;
+            const updates = req.body;
+
+            if (req.file) {
+                updates.imgUrl = `/uploads/${req.file.filename}`;
+            }
+
             const updatedTaller = await talleresService.updateTallerById(id, updates);
             res.json(updatedTaller);
         } catch (error) {
-            console.log(error);
-                        
-            res.status(500).json({ message: 'Error updating product', error });
+            res.status(500).json({ message: error.message });
         }
     }
 }
