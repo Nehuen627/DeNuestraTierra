@@ -107,18 +107,25 @@
   justify-content: center;
 }
 .catalogoContent .settingsButton {
-  display: none;
+  display: block;
   background-color: #8e173d;
   color: #fff;
   border-radius: 20px;
   padding: 10px;
   border: none;
   cursor: pointer;
-  margin: 20px;
+  margin: 20px auto;
   font-size: 1.2rem;
+  width: 200px;
+  text-align: center;
 }
 .catalogoContent .settingsButton:hover {
   background-color: rgb(166, 52, 52);
+}
+@media (min-width: 769px) {
+  .catalogoContent .settingsButton {
+    display: none;
+  }
 }
 .catalogoContent .modal {
   position: fixed;
@@ -183,9 +190,18 @@
 }
 
 @media (max-width: 768px) {
-  .catalogoContent .form {
+  .catalogoContent {
+    display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+  }
+  .catalogoContent .form {
+    margin: auto;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
   }
   .catalogoContent .settingSearch {
     display: none;
@@ -193,49 +209,78 @@
   .catalogoContent .settingsButton {
     display: block;
     width: 90%;
-    margin: 10px auto;
-    padding: 10px 15px;
-    font-size: 1.2rem;
+    max-width: 300px;
+    margin: 15px auto;
+  }
+  .catalogoContent .displaySearchs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    margin-right: 0px;
+  }
+  .catalogoContent .displaySearchs .searchBar {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: center;
+  }
+  .catalogoContent .displaySearchs .productsDisplay {
+    width: 100%;
+    gap: 20px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
   }
   .catalogoContent .modal .modalContent {
     width: 90%;
+    max-width: 400px;
     padding: 20px;
-    background-color: #eddce2;
-    border-radius: 20px;
-  }
-  .catalogoContent .modal .modalContent h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
   }
   .catalogoContent .modal .modalContent label {
-    font-size: 1.1rem;
     color: #8e173d;
-    margin-bottom: 10px;
-  }
-  .catalogoContent .modal .modalContent select, .catalogoContent .modal .modalContent .starRating {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    border: none;
-    font-size: 1rem;
-    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
   }
   .catalogoContent .modal .modalContent select {
-    background-color: #8e173d;
+    background-color: #a91846;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+  }
+  .catalogoContent .modal .modalContent select:hover {
+    background-color: rgb(166, 52, 52);
   }
   .catalogoContent .modal .modalContent .starRating {
     display: flex;
-    justify-content: space-around;
-    margin: 0 auto;
-    padding: 0;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    width: 100%;
+  }
+  .catalogoContent .modal .modalContent .starRating label {
+    margin: 0;
+    display: flex;
+    align-items: center;
   }
   .catalogoContent .modal .modalContent .starRating .star {
     font-size: 2rem;
     cursor: pointer;
     color: #ea567a;
-    border-radius: 50%;
-    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
   }
   .catalogoContent .modal .modalContent .starRating .star:hover, .catalogoContent .modal .modalContent .starRating .star:hover ~ .star {
     color: #8e173d;
@@ -244,93 +289,45 @@
     color: #8e173d;
   }
   .catalogoContent .modal .modalContent .closeModal {
-    background-color: #8e173d;
-    color: #fff;
-    width: 50%;
-    padding: 12px;
-    font-size: 1.1rem;
-    border-radius: 10px;
+    width: 100%;
     margin-top: 15px;
-    cursor: pointer;
-  }
-  .catalogoContent .modal .modalContent .closeModal:hover {
-    background-color: rgb(166, 52, 52);
-  }
-  .catalogoContent .displaySearchs {
-    margin: 0 auto;
-  }
-  .catalogoContent .displaySearchs .searchBar {
-    width: 90%;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .catalogoContent .displaySearchs .searchBar input {
-    width: 100%;
-    padding: 15px;
+    padding: 10px;
     font-size: 1.2rem;
-    border-radius: 30px;
-    border: none;
-    margin-bottom: 15px;
-    background-color: #eddce2;
-    color: #7f2121;
-  }
-  .catalogoContent .displaySearchs .searchBar input:focus {
-    outline: none;
-    border: 2px solid #8e173d;
-  }
-  .catalogoContent .displaySearchs .searchBar button {
-    width: 100%;
-    padding: 12px 0;
-    font-size: 1.2rem;
-    border-radius: 30px;
-    background-color: #8e173d;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  .catalogoContent .displaySearchs .searchBar button:hover {
-    background-color: rgb(166, 52, 52);
-  }
-  .catalogoContent .displaySearchs .productsDisplay {
-    gap: 20px;
   }
 }
 @media (max-width: 480px) {
   .catalogoContent .settingsButton {
-    width: 95%;
-    padding: 12px 20px;
-    font-size: 1.1rem;
-  }
-  .catalogoContent .modal .modalContent {
-    width: 85%;
-    padding: 15px;
-  }
-  .catalogoContent .modal .modalContent h3 {
-    font-size: 1.4rem;
-  }
-  .catalogoContent .modal .modalContent select, .catalogoContent .modal .modalContent .starRating {
+    width: 90%;
+    max-width: 300px;
+    margin: 15px auto;
+    padding: 8px 15px;
     font-size: 1rem;
-    padding: 8px;
   }
-  .catalogoContent .modal .modalContent .starRating {
-    padding: 0;
+  .catalogoContent .form {
+    margin: auto;
   }
-  .catalogoContent .modal .modalContent .closeModal {
-    font-size: 1rem;
-    padding: 10px;
+  .catalogoContent .displaySearchs {
+    padding: 0 10px;
+    margin-right: 0px;
   }
   .catalogoContent .displaySearchs .searchBar {
-    width: 95%;
+    width: 100%;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
   }
   .catalogoContent .displaySearchs .searchBar input {
-    padding: 12px;
-    font-size: 1.1rem;
+    width: 100%;
   }
   .catalogoContent .displaySearchs .searchBar button {
-    padding: 10px 0;
-    font-size: 1.1rem;
+    width: 100%;
+  }
+  .catalogoContent .displaySearchs .productsDisplay {
+    width: 100%;
+  }
+  .catalogoContent .displaySearchs .productsDisplay .productoDiv {
+    width: 100%;
+    margin: 0 auto;
   }
 }
 @media (max-width: 768px) {
@@ -343,5 +340,15 @@
   .pagination .pageButton {
     padding: 6px 10px;
     font-size: 0.9rem;
+  }
+}
+@media (max-width: 1300px) {
+  .catalogoContent .settingSearch {
+    width: 20%;
+    margin-left: 20px;
+  }
+  .catalogoContent .displaySearchs {
+    width: 75%;
+    margin-right: 0px;
   }
 }/*# sourceMappingURL=Catalogo.css.map */

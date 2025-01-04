@@ -34,9 +34,12 @@ const Register = () => {
         };
     }, []);
 
-    const optionsSelector = type.map((option) => (
-        <option key={option.Id} value={option.Name}>{option.Name}</option>
-    ));
+    const optionsSelector = [
+        <option key="default" value="">Elige tu región</option>,
+        ...type.map((option) => (
+            <option key={option.Id} value={option.Name}>{option.Name}</option>
+        ))
+    ];
 
     useEffect(() => {
         if (pass && confirmPass && pass !== confirmPass) {

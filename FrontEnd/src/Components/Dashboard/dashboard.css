@@ -12,8 +12,18 @@
   background-color: #eddce2;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.297);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.dashboard .dashboard-nav::-webkit-scrollbar {
+  height: 4px;
+}
+.dashboard .dashboard-nav::-webkit-scrollbar-thumb {
+  background-color: #8e173d;
+  border-radius: 4px;
 }
 .dashboard .dashboard-nav button {
+  flex-shrink: 0;
   padding: 10px 20px;
   background-color: #8e173d;
   color: #fff;
@@ -70,6 +80,12 @@
 }
 .dashboard .dashboard-content .search-section .search-form button:last-child:hover {
   background-color: #dcbac6;
+}
+@media (max-width: 768px) {
+  .dashboard .dashboard-content .search-section .search-form {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 .dashboard .dashboard-content .add-button {
   padding: 10px 20px;
@@ -309,9 +325,9 @@
   }
   .dashboard .dashboard .search-section .search-form {
     flex-direction: column;
-  }
-  .dashboard .dashboard .search-section .search-form input, .dashboard .dashboard .search-section .search-form button {
-    width: 100%;
+    /* input, button {
+        width: 100%;
+    } */
   }
   .dashboard .dashboard .pagination {
     flex-direction: column;
@@ -485,4 +501,36 @@
 }
 .image-upload-section .preview-area .preview-item button:hover {
   background-color: #ea567a;
+}
+
+.panelButtons {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 15px;
+}
+.panelButtons button {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .panelButtons {
+    gap: 8px;
+  }
+  .panelButtons button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 480px) {
+  .panelButtons {
+    gap: 5px;
+  }
+  .panelButtons button {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
 }/*# sourceMappingURL=dashboard.css.map */

@@ -8,6 +8,7 @@
     h2, h1, p, h3 {
         color: a.$Wine;
     }
+    
     .topBlock {
         background-color: a.$Burgundy2;
         border-radius: 20px;
@@ -125,6 +126,63 @@
     }
     .error {
         background: a.$Burgundy;
+    }
+
+    @media (max-width: 1300px) {
+        .topBlock {
+            width: 60%;
+            padding: 20px;
+            h1 {
+                font-size: 1.8rem;
+            }
+            h3 {
+                font-size: 1rem;
+            }
+        }
+        .contentBlock {
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+
+            .form, .infoManual {
+                width: 65%;
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .form {
+                padding: 15px;
+                margin: 20px 0;
+                .personalInfo {
+                    flex-direction: column;
+                    .emailInfo, .nameInfo {
+                        width: 100%;
+                        margin-bottom: 15px;
+                        input {
+                            width: 90%;
+                        }
+                    }
+                }
+                .messageInfo {
+                    flex-direction: column;
+                    align-items: center;
+                    .messageArea {
+                        width: 90%;
+                        margin-bottom: 15px;
+                        textarea {
+                            height: 300px;
+                        }
+                    }
+                    .sendBtn {
+                        width: 100%;
+                        justify-content: center;
+                    }
+                }
+            }
+            .infoManual {
+                margin: 0;
+            }
+        }
     }
 
     // Tablet breakpoint (768px)

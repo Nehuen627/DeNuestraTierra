@@ -127,18 +127,26 @@
     }
 
     .settingsButton {
-        display: none;
+        display: block;
         background-color: a.$Wine;
         color: a.$White;
         border-radius: 20px;
         padding: 10px;
         border: none;
         cursor: pointer;
-        margin: 20px;
+        margin: 20px auto;
         font-size: 1.2rem;
+        width: 200px;
+        text-align: center;
 
         &:hover {
             background-color: a.$Burgundy2;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .settingsButton {
+            display: none;
         }
     }
 
@@ -215,9 +223,17 @@
 
 @media (max-width: 768px) {
     .catalogoContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+
         .form {
+            margin: auto;
             flex-direction: column;
             align-items: center;
+            width: 100%;
+            padding: 0;
         }
 
         .settingSearch {
@@ -227,123 +243,104 @@
         .settingsButton {
             display: block;
             width: 90%;
-            margin: 10px auto;
-            padding: 10px 15px;
-            font-size: 1.2rem;
-        }
-
-        .modal .modalContent {
-            width: 90%;
-            padding: 20px;
-            background-color: a.$GreyPink;
-            border-radius: 20px;
-
-            h3 {
-                font-size: 1.5rem;
-                margin-bottom: 15px;
-            }
-
-            label {
-                font-size: 1.1rem;
-                color: a.$Wine;
-                margin-bottom: 10px;
-            }
-
-            select, .starRating {
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 15px;
-                border-radius: 10px;
-                border: none;
-                font-size: 1rem;
-                color: a.$White;
-
-                
-            }
-            select {
-                background-color: a.$Wine;
-            }
-            .starRating {
-                display: flex;
-                justify-content: space-around;
-                margin: 0 auto;
-                padding: 0 ;
-                .star {
-                    font-size: 2rem;
-                    cursor: pointer;
-                    color: a.$Pink;
-                    border-radius: 50%;
-                    padding: 5px; 
-            
-                    &:hover, 
-                    &:hover ~ .star {
-                        color: a.$Wine;
-                    }
-                }
-            
-                .active {
-                    color: a.$Wine;
-                }
-            }
-            .closeModal {
-                background-color: a.$Wine;
-                color: a.$White;
-                width: 50%;
-                padding: 12px;
-                font-size: 1.1rem;
-                border-radius: 10px;
-                margin-top: 15px;
-                cursor: pointer;
-
-                &:hover {
-                    background-color: a.$Burgundy2;
-                }
-            }
+            max-width: 300px;
+            margin: 15px auto;
         }
 
         .displaySearchs {
-            margin: 0 auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+            margin-right: 0px;
             .searchBar {
-                width: 90%;
-                margin: 20px auto;
+                width: 100%;
+                max-width: 500px;
                 display: flex;
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
+            }
 
-                input {
-                    width: 100%;
-                    padding: 15px;
+            .productsDisplay {
+                width: 100%;
+                gap: 20px;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+            }
+        }
+
+        .modal {
+            .modalContent {
+                width: 90%;
+                max-width: 400px;
+                padding: 20px;
+
+                label {
+                    color: a.$Wine;
+                    font-weight: bold;
                     font-size: 1.2rem;
-                    border-radius: 30px;
-                    border: none;
-                    margin-bottom: 15px;
-                    background-color: a.$GreyPink;
-                    color: a.$Burgundy;
-
-                    &:focus {
-                        outline: none;
-                        border: 2px solid a.$Wine;
-                    }
+                    margin-bottom: 5px;
                 }
 
-                button {
-                    width: 100%;
-                    padding: 12px 0;
-                    font-size: 1.2rem;
-                    border-radius: 30px;
-                    background-color: a.$Wine;
+                select {
+                    background-color: a.$WineLight;
                     color: a.$White;
+                    padding: 5px;
                     border: none;
+                    border-radius: 10px;
+                    margin-bottom: 10px;
+                    font-size: 1.2rem;
                     cursor: pointer;
+                    width: 100%;
 
                     &:hover {
                         background-color: a.$Burgundy2;
                     }
                 }
-            }
 
-            .productsDisplay {
-                gap: 20px;
+                .starRating {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    margin: 15px 0;
+                    width: 100%;
+
+                    label {
+                        margin: 0;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .star {
+                        font-size: 2rem;
+                        cursor: pointer;
+                        color: a.$Pink;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 2rem;
+                        height: 2rem;
+
+                        &:hover, 
+                        &:hover ~ .star {
+                            color: a.$Wine;
+                        }
+                    }
+
+                    .active {
+                        color: a.$Wine;
+                    }
+                }
+
+                .closeModal {
+                    width: 100%;
+                    margin-top: 15px;
+                    padding: 10px;
+                    font-size: 1.2rem;
+                }
             }
         }
     }
@@ -352,49 +349,43 @@
 @media (max-width: 480px) {
     .catalogoContent {
         .settingsButton {
-            width: 95%;
-            padding: 12px 20px;
-            font-size: 1.1rem;
+            width: 90%;
+            max-width: 300px;
+            margin: 15px auto;
+            padding: 8px 15px;
+            font-size: 1rem;
         }
-
-        .modal .modalContent {
-            width: 85%;
-            padding: 15px;
-            h3 {
-                font-size: 1.4rem;
-            }
-
-            select, .starRating {
-                font-size: 1rem;
-                padding: 8px;
-            }
-            .starRating {
-                padding: 0;
-            }
-            .closeModal {
-                font-size: 1rem;
-                padding: 10px;
-            }
+        .form {
+            margin: auto;
         }
-
         .displaySearchs {
+            padding: 0 10px;
+            margin-right: 0px;
             .searchBar {
-                width: 95%;
+                width: 100%;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+                
                 input {
-                    padding: 12px;
-                    font-size: 1.1rem;
+                    width: 100%;
                 }
 
                 button {
-                    padding: 10px 0;
-                    font-size: 1.1rem;
+                    width: 100%;
+                }
+            }
+
+            .productsDisplay {
+                width: 100%;
+                .productoDiv {
+                    width: 100%;
+                    margin: 0 auto;
                 }
             }
         }
     }
 }
-
-
 
 @media (max-width: 768px) {
     .pagination .pageButton {
@@ -407,5 +398,19 @@
     .pagination .pageButton {
         padding: 6px 10px;
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1300px) {
+    .catalogoContent {
+        .settingSearch {
+            width: 20%;
+            margin-left: 20px;
+        }
+        
+        .displaySearchs {
+            width: 75%;
+            margin-right: 0px;
+        }
     }
 }

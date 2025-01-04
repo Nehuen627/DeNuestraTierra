@@ -37,3 +37,15 @@
         transform: scale(1.03) ;
     }
 }
+
+@media (max-width: 768px) {
+    .productoDiv {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .productoDiv {
+        width: 90%;
+    }
+}

@@ -8,7 +8,6 @@
 
 .tallerDetail {
   display: flex;
-  align-items: flex-start;
   background-color: #f3f2f2;
   padding: 20px;
   border-radius: 10px;
@@ -65,11 +64,17 @@
 .tallerDetail .tallerInfo .skillsSection ul {
   list-style-type: disc;
   padding-left: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .tallerDetail .tallerInfo .skillsSection ul li {
   font-size: 16px;
   margin-bottom: 5px;
   color: #333;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin-right: 10px;
 }
 .tallerDetail .tallerInfo .buyNow {
   padding: 10px 30px;
@@ -88,25 +93,60 @@
 @media (max-width: 768px) {
   .tallerDetail {
     flex-direction: column;
+    padding: 15px;
+    margin: 20px;
+    width: auto;
+    max-width: calc(100% - 40px);
   }
-  .tallerDetail .tallerGallery,
-  .tallerDetail .tallerInfo {
+  .tallerDetail .tallerGallery {
     width: 100%;
-    margin-left: 0;
+    max-width: 300px;
+    margin: 0 auto 20px;
+  }
+  .tallerDetail .tallerGallery img {
+    max-height: 300px;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .tallerDetail .tallerInfo {
+    width: auto;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
   }
 }
 @media (max-width: 480px) {
+  .tallerDetail {
+    margin: 10px;
+    padding: 10px;
+    max-width: calc(100% - 20px);
+  }
   .tallerDetail .tallerGallery {
-    max-width: 100%;
+    max-width: 250px;
+  }
+  .tallerDetail .tallerGallery img {
+    max-height: 250px;
+  }
+  .tallerDetail .tallerInfo {
+    padding: 10px;
   }
   .tallerDetail .tallerInfo h2 {
-    font-size: 22px;
-  }
-  .tallerDetail .tallerInfo h3 {
     font-size: 20px;
   }
-  .tallerDetail .buyNow {
+  .tallerDetail .tallerInfo h3 {
+    font-size: 18px;
+  }
+  .tallerDetail .tallerInfo p {
     font-size: 16px;
-    padding: 10px 20px;
+  }
+  .tallerDetail .tallerInfo .skillsSection h4 {
+    font-size: 18px;
+  }
+  .tallerDetail .tallerInfo .skillsSection li {
+    font-size: 14px;
+  }
+  .tallerDetail .tallerInfo .buyNow {
+    font-size: 16px;
+    padding: 8px 15px;
   }
 }/*# sourceMappingURL=TallerDetail.css.map */

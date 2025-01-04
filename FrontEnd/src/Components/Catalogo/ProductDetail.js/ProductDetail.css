@@ -127,24 +127,65 @@
 @media (max-width: 768px) {
   .productDetail {
     flex-direction: column;
-  }
-  .productDetail .productGallery, .productDetail .productInfo {
+    padding: 15px;
+    margin: 20px;
     width: 100%;
-    margin-left: 0;
+    max-width: 100%;
+    border-radius: 0;
+  }
+  .productDetail .productGallery {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px;
+  }
+  .productDetail .productGallery img {
+    max-height: 300px;
+    -o-object-fit: contain;
+       object-fit: contain;
+  }
+  .productDetail .productInfo {
+    width: 100%;
+    margin: 0;
+    padding: 15px;
+    box-sizing: border-box;
   }
 }
 @media (max-width: 480px) {
-  .productDetail .productGallery {
+  .productDetail {
+    margin: 10px;
+    padding: 10px;
     max-width: 100%;
+    border-radius: 0;
+  }
+  .productDetail .productGallery {
+    max-width: 250px;
+  }
+  .productDetail .productGallery img {
+    max-height: 250px;
+  }
+  .productDetail .productInfo {
+    padding: 10px;
   }
   .productDetail .productInfo h2 {
-    font-size: 22px;
-  }
-  .productDetail .productInfo h3 {
     font-size: 20px;
   }
-  .productDetail .addToCart {
+  .productDetail .productInfo h3 {
+    font-size: 18px;
+  }
+  .productDetail .productInfo p {
     font-size: 16px;
-    padding: 10px 20px;
+  }
+  .productDetail .productInfo .addToCart {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+  .productDetail .productInfo .fichaTecnica {
+    padding: 10px;
+  }
+  .productDetail .productInfo .fichaTecnica h4 {
+    font-size: 18px;
+  }
+  .productDetail .productInfo .fichaTecnica li {
+    font-size: 14px;
   }
 }/*# sourceMappingURL=ProductDetail.css.map */

@@ -15,8 +15,20 @@
         background-color: a.$GreyPink;
         border-radius: 10px;
         box-shadow: 0 4px 6px a.$BlackShadow;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background-color: a.$Wine;
+            border-radius: 4px;
+        }
 
         button {
+            flex-shrink: 0;
             padding: 10px 20px;
             background-color: a.$Wine;
             color: a.$White;
@@ -83,6 +95,13 @@
                             background-color: darken(a.$GreyPink, 10%);
                         }
                     }
+                }
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    gap: 10px;
+                    
+                    
                 }
             }
         }
@@ -365,9 +384,9 @@
                 .search-form {
                     flex-direction: column;
 
-                    input, button {
+                    /* input, button {
                         width: 100%;
-                    }
+                    } */
                 }
             }
 
@@ -571,6 +590,38 @@
                     background-color: a.$Pink;
                 }
             }
+        }
+    }
+}
+
+.panelButtons {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 15px;
+
+    button {
+        min-width: fit-content;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+        gap: 8px;
+        
+        button {
+            padding: 8px 15px;
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        gap: 5px;
+        
+        button {
+            padding: 6px 12px;
+            font-size: 0.8rem;
         }
     }
 }

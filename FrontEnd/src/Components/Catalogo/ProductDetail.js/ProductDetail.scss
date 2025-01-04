@@ -144,28 +144,76 @@
 
   @media (max-width: 768px) {
     flex-direction: column;
-    .productGallery, .productInfo {
-      width: 100%;
-      margin-left: 0;
+    padding: 15px;
+    margin: 20px ;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 0;
+    
+    .productGallery {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 20px;
+        
+        img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+    }
+    
+    .productInfo {
+        width: 100%;
+        margin: 0;
+        padding: 15px;
+        box-sizing: border-box;
     }
   }
 
   @media (max-width: 480px) {
+    margin: 10px ;
+    padding: 10px;
+    max-width: 100%;
+    border-radius: 0;
+    
     .productGallery {
-      max-width: 100%;
+        max-width: 250px;
+        
+        img {
+            max-height: 250px;
+        }
     }
 
-    .productInfo h2 {
-      font-size: 22px;
-    }
+    .productInfo {
+        padding: 10px;
+        
+        h2 {
+            font-size: 20px;
+        }
 
-    .productInfo h3 {
-      font-size: 20px;
-    }
+        h3 {
+            font-size: 18px;
+        }
 
-    .addToCart {
-      font-size: 16px;
-      padding: 10px 20px;
+        p {
+            font-size: 16px;
+        }
+
+        .addToCart {
+            font-size: 16px;
+            padding: 8px 15px;
+        }
+        
+        .fichaTecnica {
+            padding: 10px;
+            
+            h4 {
+                font-size: 18px;
+            }
+            
+            li {
+                font-size: 14px;
+            }
+        }
     }
   }
 }

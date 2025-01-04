@@ -6,6 +6,7 @@
   flex-direction: column;
 }
 .loginContent form {
+  margin-top: 2%;
   background-color: #eddce2;
   border-radius: 20px;
   padding: 40px;

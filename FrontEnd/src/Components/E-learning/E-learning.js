@@ -30,7 +30,6 @@ const Elearning = () => {
             key={curso.Id}
             Title={curso.title}
             Id={curso.id}
-            Description={curso.description}
             Price={curso.price}
             Skills={curso.skills}
             Img={curso.imgUrl}

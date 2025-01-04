@@ -357,6 +357,12 @@ const Dashboard = () => {
                 taller.description.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setFilteredTalleres(filtered);
+        } else if (activeTab === 'users') {
+            const filtered = users.filter(user => 
+                user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                user.email?.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+            setUsers(filtered);
         }
     };
     
