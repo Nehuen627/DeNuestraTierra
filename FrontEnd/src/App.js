@@ -19,7 +19,7 @@ import Register from './Components/LogToAccount/Register/Register.js';
 import Dashboard from './Components/Dashboard/dashboard.js';
 import UpdateUserInfo from './Components/Perfil/optionsPerfil/update.js';
 import DeleteAccount from './Components/Perfil/optionsPerfil/delete.js';
-
+import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy.js'
 function App() {
   return (
     <div className="App">
@@ -39,6 +39,7 @@ function App() {
             <Route exact path="/Login" element={<Login/>}/>
             <Route exact path="/Register" element={<Register/>}/>
             <Route exact path="/Dashboard" element={<Dashboard/>}/>
+            <Route exact path="/politica-privacidad" element={<PrivacyPolicy/>}/>
             <Route path="/perfil" element={<Perfil />} />
             {/* Dynamic routes */}
             <Route path="/perfil/update/:id" element={<UpdateUserInfo />} />

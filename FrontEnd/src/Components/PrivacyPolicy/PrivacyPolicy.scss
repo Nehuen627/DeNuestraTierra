@@ -1,0 +1,118 @@
+@use '../../Sass/Colors.scss' as a;
+@use '../../Sass/Fonts.scss' as b;
+
+.privacy-container {
+    min-height: 100vh;
+    padding: 40px 20px;
+    
+    .privacy-content {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: a.$GreyPink;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px a.$BlackShadow;
+
+        h1 {
+            color: a.$Wine;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 30px;
+
+            h2 {
+                color: a.$Wine;
+                font-size: 1.8rem;
+                margin-bottom: 15px;
+            }
+
+            p {
+                color: #333;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                margin-bottom: 15px;
+            }
+
+            ul {
+                list-style-type: disc;
+                padding-left: 20px;
+                margin-bottom: 15px;
+
+                li {
+                    color: #333;
+                    font-size: 1.1rem;
+                    line-height: 1.6;
+                    margin-bottom: 10px;
+                }
+            }
+
+            a {
+                color: a.$Wine;
+                text-decoration: none;
+                font-weight: bold;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            strong {
+                color: a.$Wine;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+// Tablet
+@media (max-width: 768px) {
+    .privacy-container {
+        padding: 20px;
+        
+        .privacy-content {
+            padding: 30px;
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                h2 {
+                    font-size: 1.5rem;
+                }
+
+                p, ul li {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}
+
+// Mobile
+@media (max-width: 480px) {
+    .privacy-container {
+        padding: 10px;
+        
+        .privacy-content {
+            padding: 20px;
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                h2 {
+                    font-size: 1.3rem;
+                }
+
+                p, ul li {
+                    font-size: 0.95rem;
+                }
+            }
+        }
+    }
+} 

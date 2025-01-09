@@ -13,7 +13,7 @@ const Footer = () => {
                             <h3>Tienda</h3>
                             <div className='shopLinks2'>
                                 <p><Link to='/Catalogo'>Productos</Link></p>
-                                <p><Link to='/Talleres'>Cursos</Link></p>
+                                <p><Link to='/Talleres'>Talleres</Link></p>
                             </div>
                         </div>
                         <div className='us'>
@@ -27,6 +27,8 @@ const Footer = () => {
                     <div className='location'>
                         <h3>Ubicación</h3>
                         <p>San Carlos de Bariloche</p>
+                        <br/>
+                        <h4><Link to='/politica-privacidad'>Política de privacidad</Link></h4>
                     </div>
                 </div>
                 <div className='logoName'>
@@ -50,6 +52,7 @@ const Footer = () => {
                         </div>
                     </div>
                     <h3>© De Nuestra Tierra, 2024</h3>
+                    
                 </div>
             </div>
             <div className='credits'>
